@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElEmegi.Eticaret.UI.WEB", "ElEmegi.Eticaret.UI.WEB\ElEmegi.Eticaret.UI.WEB.csproj", "{06F157AA-BA9A-4A0B-92FE-01C85362E1D3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElEmegi.Eticaret.Core.Model", "ElEmegi.Eticaret.Core.Model\ElEmegi.Eticaret.Core.Model.csproj", "{B4954E48-F54C-4B7E-A900-60A2F77657A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{06F157AA-BA9A-4A0B-92FE-01C85362E1D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06F157AA-BA9A-4A0B-92FE-01C85362E1D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06F157AA-BA9A-4A0B-92FE-01C85362E1D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4954E48-F54C-4B7E-A900-60A2F77657A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4954E48-F54C-4B7E-A900-60A2F77657A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4954E48-F54C-4B7E-A900-60A2F77657A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4954E48-F54C-4B7E-A900-60A2F77657A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
