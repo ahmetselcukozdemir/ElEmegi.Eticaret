@@ -53,15 +53,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndDB.cs" />
+    <Compile Include="EntityBase.cs" />
+    <Compile Include="Entity\Basket.cs" />
+    <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\OrderProduct.cs" />
+    <Compile Include="Entity\User.cs" />
+    <Compile Include="Entity\UserAddress.cs" />
+    <Compile Include="Entity\Order.cs" />
+    <Compile Include="Entity\Product.cs" />
+    <Compile Include="Entity\Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entity\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
