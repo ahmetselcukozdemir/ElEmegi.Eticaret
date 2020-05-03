@@ -18,5 +18,7 @@ namespace ElEmegi.Eticaret.Core.Model.Entity
         public decimal TotalTaxPrice{ get; set; }
         public decimal TotalDiscount{ get; set; }
         public decimal TotalPrice{ get; set; }
+        public virtual List<OrderPayment> OrderPayments{ get; set; }
+        public virtual List<OrderProduct> OrderProducts{ get; set; }
     }
 }

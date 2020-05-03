@@ -56,12 +56,14 @@
     <Compile Include="EntityBase.cs" />
     <Compile Include="Entity\Basket.cs" />
     <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\OrderPayment.cs" />
     <Compile Include="Entity\OrderProduct.cs" />
     <Compile Include="Entity\User.cs" />
     <Compile Include="Entity\UserAddress.cs" />
     <Compile Include="Entity\Order.cs" />
     <Compile Include="Entity\Product.cs" />
     <Compile Include="Entity\Status.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
