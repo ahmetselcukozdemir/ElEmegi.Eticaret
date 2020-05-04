@@ -1,0 +1,51 @@
+﻿@model ElEmegi.Eticaret.Core.Model.Entity.User
+
+@{
+    ViewBag.Title = "CreateUser";
+}
+
+<div class="col-md-12 p-b-30">
+    @{
+        if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+    }
+    <form class="leave-comment" method="post" action="/Uye-Kayit/">
+        <h4 class="m-text26 p-b-36 p-t-50 text-center">
+            Üye Kayıt
+        </h4>
+
+        <div class="bo4 of-hidden size15 m-b-20 text-center">
+            @*<input class="sizefull s-text7 p-l-22 p-r-22 text-center" type="text" name="name" placeholder="Full Name">*@
+            @Html.TextBox("Name", null, new { @class = "sizefull s-text7 p-l-22 p-r-22 text-center", @placeholder = "Adınız" })
+        </div>
+
+        <div class="bo4 of-hidden size15 m-b-20 text-center">
+            @*<input class="sizefull s-text7 p-l-22 p-r-22 text-center" type="text" name="phone-number" placeholder="Phone Number">*@
+            @Html.TextBox("LastName", null, new { @class = "sizefull s-text7 p-l-22 p-r-22 text-center", @placeholder = "Soyadınz" })
+        </div>
+        <div class="bo4 of-hidden size15 m-b-20 text-center">
+            @*<input class="sizefull s-text7 p-l-22 p-r-22 text-center" type="text" name="phone-number" placeholder="Phone Number">*@
+            @Html.TextBox("Email", null, new { @class = "sizefull s-text7 p-l-22 p-r-22 text-center", @placeholder = "Email" })
+        </div>
+        <div class="bo4 of-hidden size15 m-b-20 text-center">
+            @*<input class="sizefull s-text7 p-l-22 p-r-22 text-center" type="text" name="phone-number" placeholder="Phone Number">*@
+            @Html.TextBox("Telephone", null, new { @class = "sizefull s-text7 p-l-22 p-r-22 text-center", @placeholder = "Telefon" })
+        </div>
+        <div class="bo4 of-hidden size15 m-b-20 text-center">
+            @*<input class="sizefull s-text7 p-l-22 p-r-22 text-center" type="text" name="phone-number" placeholder="Phone Number">*@
+            @Html.Password("Password", null, new { @class = "sizefull s-text7 p-l-22 p-r-22 text-center", @placeholder = "Şifre" })
+        </div>
+        <div class="bo4 of-hidden size15 m-b-20 text-center">
+            @*<input class="sizefull s-text7 p-l-22 p-r-22 text-center" type="text" name="phone-number" placeholder="Phone Number">*@
+            @Html.TextBox("TCKN", null, new { @class = "sizefull s-text7 p-l-22 p-r-22 text-center", @placeholder = "TC Kimlik No" })
+        </div>
+        <div class="w-size25">
+            <!-- Button -->
+            <button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4 text-center" type="submit">
+                Kayıt Ol
+            </button>
+        </div>
+    </form>
+</div>

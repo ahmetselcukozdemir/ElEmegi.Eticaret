@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ElEmegi.Eticaret.Core.Model.Entity.Category>
+
+@{
+    foreach (var item in Model)
+    {
+        <li><a href="/Kategori/@item.Name.Replace(" ","-")/@item.ID/">@item.Name</a></li>
+    }
+}

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ElEmegi.Eticaret.Core.Model.Entity.UserAddress>
+
+@{
+    ViewBag.Title = "AddressList";
+}
+<div class="container">
+<p>
+    @Html.ActionLink("Yeni Adres Ekle", "CreateUserAddress")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.ActionLink("Seç", "CreateOrder", new { id=item.ID },new {@class="btn btn-danger"}) 
+        </td>
+    </tr>
+}
+
+</table>
+</div>

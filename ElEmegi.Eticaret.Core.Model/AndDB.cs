@@ -30,6 +30,7 @@ namespace ElEmegi.Eticaret.Core.Model
         public DbSet<Order> Orders{ get; set; }
         public DbSet<OrderProduct> OrderProducts{ get; set; }
         public DbSet<OrderPayment> OrderPayments{ get; set; }
+        public DbSet<Member> Members{ get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

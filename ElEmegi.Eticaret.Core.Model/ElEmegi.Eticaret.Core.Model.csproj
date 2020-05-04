@@ -56,6 +56,7 @@
     <Compile Include="EntityBase.cs" />
     <Compile Include="Entity\Basket.cs" />
     <Compile Include="Entity\Category.cs" />
+    <Compile Include="Entity\Member.cs" />
     <Compile Include="Entity\OrderPayment.cs" />
     <Compile Include="Entity\OrderProduct.cs" />
     <Compile Include="Entity\User.cs" />
