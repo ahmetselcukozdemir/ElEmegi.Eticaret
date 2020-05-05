@@ -1,0 +1,74 @@
+﻿@model ElEmegi.Eticaret.Core.Model.Entity.Order
+@{
+    ViewBag.Title = "Sipariş Detayı";
+}
+<div class="container">
+<h2>@Model.ID Nolu Siparişinizin Durumu : <strong>@Model.Status.Name</strong></h2>
+<hr/>
+<b>Banka Bilgileri</b>
+<table class="table table-bordered">
+    <tr>
+        <td>Banka </td>
+        <td>Banka İsimi</td>
+    </tr>
+    <tr>
+        <td>İban</td>
+        <td>TR030431531551</td>
+    </tr>
+    <tr>
+        <td>Alıcı Adı</td>
+        <td>Firma  Bilgileri</td>
+    </tr>
+</table>
+@{
+    if (Model.StatusID == 1)
+    {
+        <a href="/Order/Pay?id=@Model.ID" class="btn btn-success">Ödeme Yaptım</a>
+    }
+}
+<hr/>
+<b>Sipariş Bilgileri</b>
+<table class="table table-bordered">
+    <tr>
+        <td>Toplam </td>
+        <td>@Model.TotalPrice.ToString("##,## ₺")</td>
+    </tr>
+    <tr>
+        <td>Ürünler Toplamı</td>
+        <td>@Model.TotalProductPrice.ToString("##,## ₺")</td>
+    </tr>
+    <tr>
+        <td>İndirim Toplamı</td>
+        @{
+            if (@Model.TotalDiscount.ToString() == "0,00")
+            {
+                <td>0 ₺  </td>
+            }
+        }
+        <td>@Model.TotalDiscount.ToString("##,## ")</td>
+    </tr>
+    <tr>
+        <td>Vergi Toplamı</td>
+        <td>@Model.TotalTaxPrice.ToString("##,## ₺")</td>
+    </tr>
+</table>
+<hr/>
+<b>Ürünler</b>
+<table class="table table-bordered">
+    <tr>
+        <th>Fotograf</th>
+        <th>Ürün</th>
+        <th>Adet</th>
+    </tr>
+    @{
+        foreach (var item in Model.OrderProducts)
+        {
+            <tr>
+                <td><img src="@item.Product.ImageUrl" width="100" height="100"/></td>
+                <td>@item.Product.Name</td>
+                <td>@item.Quantity</td>
+            </tr>
+        }
+    }
+</table>
+</div> 

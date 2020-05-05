@@ -28,6 +28,7 @@ namespace ElEmegi.Eticaret.UI.WEB.Areas.Admin.Controllers
             else
             {
                 //Hatalı Giriş
+                ViewBag.ErrorMessage = "Email veya şifreniz hatalı.";
                 return View();
             }
           

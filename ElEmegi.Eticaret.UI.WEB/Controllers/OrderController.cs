@@ -36,11 +36,12 @@ namespace ElEmegi.Eticaret.UI.WEB.Controllers
 
         public ActionResult CreateOrder(int id)
         {
+
             var sepet = db.Baskets.Include("Product").Where(x => x.UserID == LoginUserID).ToList();
             Order order = new Order();
             order.CreateDate = DateTime.Now;
             order.CreateUserID = LoginUserID;
-            order.StatusID = 2;
+            order.StatusID = 1;
             order.TotalProductPrice = sepet.Sum(x => x.Product.Price);
             order.TotalTaxPrice = sepet.Sum(x => x.Product.Tax);
             order.TotalDiscount = sepet.Sum(x => x.Product.Discount);
@@ -57,10 +58,40 @@ namespace ElEmegi.Eticaret.UI.WEB.Controllers
                     ProductID = item.ProductID,
                     Quantity = item.Quantity
                 });
+                //sepet temizleme 
+
+                db.Baskets.Remove(item);
+                db.SaveChanges();
             }
             db.Orders.Add(order);
             db.SaveChanges();
-            return View();
+            var order_id = db.Orders.Where(x => x.UserID == LoginUserID).LastOrDefault().ID;
+            return RedirectToAction("Detail", new {id = order_id});
+        }
+
+        public ActionResult Detail(int id)
+        {
+            var data = db.Orders.Include("OrderProducts")
+                .Include("OrderProducts.Product")
+                .Include("OrderPayments")
+                .Include("Status")
+                .Include("UserAddress").Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        [Route("Siparislerim")]
+        public ActionResult OrderList()
+        {
+            var data = db.Orders.Include("Status").Where(x => x.UserID == LoginUserID).ToList();
+            return View(data);
+        }
+
+        public ActionResult Pay(int id)
+        {
+            var order = db.Orders.Where(x => x.ID == id).FirstOrDefault();
+            order.StatusID = 1002;
+            db.SaveChanges();
+            return RedirectToAction("Detail", new {id = order.ID});
         }
     }
 }

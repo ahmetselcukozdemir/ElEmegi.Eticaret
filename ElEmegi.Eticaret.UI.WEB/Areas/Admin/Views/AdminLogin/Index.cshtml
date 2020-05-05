@@ -30,7 +30,12 @@
                     <span class="login100-form-title p-t-20 p-b-45">
                         Admin Girişi
                     </span>
-
+                    @{ 
+                        if (ViewBag.ErrorMessage != null)
+                        {
+                            <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+                        }
+                    }
                     <div class="wrap-input100 validate-input m-b-10" data-validate="Email is required">
                        @*<input class="input100" type="text" name="username" placeholder="Username">*@
                        @Html.TextBox("Email", null, new { @class = "input100" })

@@ -240,6 +240,12 @@
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
                     <p class="centered"><a href="profile.html"><img src="~/Areas/Admin/Content/admin/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+                    @{
+                        if (members.Name == null)
+                        {
+                            Response.Redirect("/Admin/AdminLogin/");
+                        }
+                    }
                     <h5 class="centered">@members.Name</h5>
                   @if (members.IsAdmin == true)
                   {
@@ -285,7 +291,7 @@
                             <span>Sipariş Yönetimi</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="form_component.html">Form Components</a></li>
+                            <li><a href="/Admin/AdminOrders/">Siparişler</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">

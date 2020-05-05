@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ElEmegi.Eticaret.Core.Model.Entity.Order>
+
+@{
+    ViewBag.Title = "OrderList";
+}
+<div class="container" style="min-height: 300px;">
+<table class="table table-hover">
+    <tr>
+        <th>
+            Sipariş No
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Status.Name)*@
+            Sipariş Durumu
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.TotalProductPrice)*@
+            Toplam Ücret
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.CreateDate)*@
+            Sipariş Tarihi
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.Name)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.ActionLink("Sipariş Detayı", "Detail", new {id = item.ID},new {@class="btn btn-danger"})
+        </td>
+    </tr>
+}
+
+</table>
+</div>

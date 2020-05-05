@@ -23,7 +23,12 @@ namespace ElEmegi.Eticaret.UI.WEB.Controllers
             var categories = db.Categories.Where(x => x.ParentID == 0 && x.IsActive == true).ToList();
             return PartialView(categories);
         }
-      
+        public PartialViewResult GetCartProductList()
+        {
+            var baskets = db.Baskets.Include("Product").Where(x => x.ProductID == LoginUserID).ToList();
+            return PartialView(baskets);
+        }
+
         [Route("Uye-Giris")]
         public ActionResult Login()
         {

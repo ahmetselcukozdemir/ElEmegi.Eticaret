@@ -3185,6 +3185,11 @@
     <Content Include="Content\vendor\slick\slick-theme.scss" />
     <Content Include="Content\vendor\slick\slick.less" />
     <Content Include="Content\vendor\slick\slick.scss" />
+    <Content Include="Areas\Admin\Views\AdminOrders\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminOrders\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminOrders\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminOrders\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminOrders\Index.cshtml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -3197,6 +3202,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\AdminControllerBase.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminLoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminOrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
@@ -3207,6 +3213,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3236,6 +3243,11 @@
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Order\AddressList.cshtml" />
     <Content Include="Views\Order\CreateUserAddress.cshtml" />
+    <Content Include="Views\Order\CreateOrder.cshtml" />
+    <Content Include="Views\Order\Detail.cshtml" />
+    <Content Include="Views\Order\OrderList.cshtml" />
+    <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Home\GetCartProductList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

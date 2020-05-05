@@ -42,7 +42,7 @@
                     </li>
 
                     <li>
-                        <a href="cart.html">Alışveriş</a>
+                        <a href="/Shop/">Alışveriş</a>
                     </li>
                     <li>
                         <a href="index.html">Kategoriler</a>
@@ -71,53 +71,7 @@
                 <!-- Header cart noti -->
                 <div class="header-cart header-dropdown">
                     <ul class="header-cart-wrapitem">
-                        <li class="header-cart-item">
-                            <div class="header-cart-item-img">
-                                <img src="~/Content/images/item-cart-01.jpg" alt="IMG">
-                            </div>
-
-                            <div class="header-cart-item-txt">
-                                <a href="#" class="header-cart-item-name">
-                                    White Shirt With Pleat Detail Back
-                                </a>
-
-                                <span class="header-cart-item-info">
-                                    1 x $19.00
-                                </span>
-                            </div>
-                        </li>
-
-                        <li class="header-cart-item">
-                            <div class="header-cart-item-img">
-                                <img src="~/Content/images/item-cart-02.jpg" alt="IMG">
-                            </div>
-
-                            <div class="header-cart-item-txt">
-                                <a href="#" class="header-cart-item-name">
-                                    Converse All Star Hi Black Canvas
-                                </a>
-
-                                <span class="header-cart-item-info">
-                                    1 x $39.00
-                                </span>
-                            </div>
-                        </li>
-
-                        <li class="header-cart-item">
-                            <div class="header-cart-item-img">
-                                <img src="~/Content/images/item-cart-03.jpg" alt="IMG">
-                            </div>
-
-                            <div class="header-cart-item-txt">
-                                <a href="#" class="header-cart-item-name">
-                                    Nixon Porter Leather Watch In Tan
-                                </a>
-
-                                <span class="header-cart-item-info">
-                                    1 x $17.00
-                                </span>
-                            </div>
-                        </li>
+                        @Html.Action("GetCartProductList", "Home")
                     </ul>
 
                     <div class="header-cart-total">
@@ -295,7 +249,7 @@
 
                                         <div class="header-cart-item-txt">
                                             <a href="/Sepetim/" class="header-cart-item-name">
-                                                Sepetim
+                                                   Sepetim
                                             </a>
                                         </div>
                                     </li>
@@ -305,7 +259,7 @@
                                         </div>
 
                                         <div class="header-cart-item-txt">
-                                            <a href="#" class="header-cart-item-name">
+                                            <a href="/Siparislerim/" class="header-cart-item-name">
                                                 Siparişlerim
                                             </a>
                                         </div>

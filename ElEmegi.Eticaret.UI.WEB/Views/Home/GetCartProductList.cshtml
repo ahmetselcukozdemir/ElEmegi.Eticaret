@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ElEmegi.Eticaret.Core.Model.Entity.Basket>
+@{
+    foreach (var item in Model)
+    {
+        <li class="header-cart-item">
+            <div class="header-cart-item-img">
+                <img src="@item.Product.ImageUrl" alt="IMG">
+            </div>
+
+            <div class="header-cart-item-txt">
+                <a href="#" class="header-cart-item-name">
+                    @item.Product.Name
+                </a>
+
+                <span class="header-cart-item-info">
+                    @item.Quantity x @item.Product.Price
+                </span>
+            </div>
+        </li>
+    }
+}
+
+
