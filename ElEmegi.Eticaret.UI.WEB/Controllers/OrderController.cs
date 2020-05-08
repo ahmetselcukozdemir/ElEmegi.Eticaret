@@ -65,8 +65,8 @@ namespace ElEmegi.Eticaret.UI.WEB.Controllers
             }
             db.Orders.Add(order);
             db.SaveChanges();
-            var order_id = db.Orders.Where(x => x.UserID == LoginUserID).LastOrDefault().ID;
-            return RedirectToAction("Detail", new {id = order_id});
+            //var order_id = db.Orders.Where(x => x.UserID == LoginUserID).LastOrDefault().ID;
+            return RedirectToAction("Detail", new {id = order.ID});
         }
 
         public ActionResult Detail(int id)

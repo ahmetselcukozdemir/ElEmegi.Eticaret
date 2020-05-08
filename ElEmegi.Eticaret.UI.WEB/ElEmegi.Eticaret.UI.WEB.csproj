@@ -3209,6 +3209,7 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Controllers\Base\AndControllerBase.cs" />
     <Compile Include="Controllers\BasketController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
@@ -3248,6 +3249,8 @@
     <Content Include="Views\Order\OrderList.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Home\GetCartProductList.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3259,6 +3262,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Blog\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ElEmegi.Eticaret.Core.Model\ElEmegi.Eticaret.Core.Model.csproj">

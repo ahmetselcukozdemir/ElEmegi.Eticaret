@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElEmegi.Eticaret.UI.WEB", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElEmegi.Eticaret.Core.Model", "ElEmegi.Eticaret.Core.Model\ElEmegi.Eticaret.Core.Model.csproj", "{B4954E48-F54C-4B7E-A900-60A2F77657A8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "version2", "version2", "{03ED62FD-0173-4DA7-BBB8-46CF6625522B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElEmegi.Ecommerce.Web.UI", "ElEmegi.Ecommerce.Web.UI\ElEmegi.Ecommerce.Web.UI.csproj", "{8B9E1151-DE24-4092-8D42-A452D2A9D27F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElEmegi.Ecommerce.Web.UI.Tests", "ElEmegi.Ecommerce.Web.UI.Tests\ElEmegi.Ecommerce.Web.UI.Tests.csproj", "{6110577D-5B49-4F4D-A02B-6B853FD73688}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElEmegi.Ecommerce.Core.Model", "ElEmegi.Ecommerce.Core.Model\ElEmegi.Ecommerce.Core.Model.csproj", "{1F0A6C29-0165-409C-A062-B6350E8A82BD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "version1", "version1", "{60F61071-66DE-46D5-89AA-15C41635A489}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +31,27 @@ Global
 		{B4954E48-F54C-4B7E-A900-60A2F77657A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4954E48-F54C-4B7E-A900-60A2F77657A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4954E48-F54C-4B7E-A900-60A2F77657A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B9E1151-DE24-4092-8D42-A452D2A9D27F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B9E1151-DE24-4092-8D42-A452D2A9D27F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B9E1151-DE24-4092-8D42-A452D2A9D27F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B9E1151-DE24-4092-8D42-A452D2A9D27F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6110577D-5B49-4F4D-A02B-6B853FD73688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6110577D-5B49-4F4D-A02B-6B853FD73688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6110577D-5B49-4F4D-A02B-6B853FD73688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6110577D-5B49-4F4D-A02B-6B853FD73688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F0A6C29-0165-409C-A062-B6350E8A82BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F0A6C29-0165-409C-A062-B6350E8A82BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F0A6C29-0165-409C-A062-B6350E8A82BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F0A6C29-0165-409C-A062-B6350E8A82BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{06F157AA-BA9A-4A0B-92FE-01C85362E1D3} = {60F61071-66DE-46D5-89AA-15C41635A489}
+		{B4954E48-F54C-4B7E-A900-60A2F77657A8} = {60F61071-66DE-46D5-89AA-15C41635A489}
+		{8B9E1151-DE24-4092-8D42-A452D2A9D27F} = {03ED62FD-0173-4DA7-BBB8-46CF6625522B}
+		{6110577D-5B49-4F4D-A02B-6B853FD73688} = {03ED62FD-0173-4DA7-BBB8-46CF6625522B}
+		{1F0A6C29-0165-409C-A062-B6350E8A82BD} = {03ED62FD-0173-4DA7-BBB8-46CF6625522B}
 	EndGlobalSection
 EndGlobal

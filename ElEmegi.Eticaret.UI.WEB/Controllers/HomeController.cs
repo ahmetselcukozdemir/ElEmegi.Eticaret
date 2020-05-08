@@ -11,6 +11,7 @@ namespace ElEmegi.Eticaret.UI.WEB.Controllers
     public class HomeController : AndControllerBase
     {
         AndDB db = new AndDB();
+
         // GET: Home
         public ActionResult Index()
         {
@@ -18,11 +19,13 @@ namespace ElEmegi.Eticaret.UI.WEB.Controllers
             var data = db.Products.OrderByDescending(x => x.CreateDate).Take(5).ToList();
             return View(data);
         }
+
         public PartialViewResult GetIsActiveCategories()
         {
             var categories = db.Categories.Where(x => x.ParentID == 0 && x.IsActive == true).ToList();
             return PartialView(categories);
         }
+
         public PartialViewResult GetCartProductList()
         {
             var baskets = db.Baskets.Include("Product").Where(x => x.ProductID == LoginUserID).ToList();
@@ -34,9 +37,10 @@ namespace ElEmegi.Eticaret.UI.WEB.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [Route("Uye-Giris")]
-        public ActionResult Login(string Email,string Password)
+        public ActionResult Login(string Email, string Password)
         {
             var users = db.Users.Where(x => x.Email == Email && x.Password == Password && x.IsActive == true).ToList();
             if (users.Count == 1)
@@ -51,12 +55,14 @@ namespace ElEmegi.Eticaret.UI.WEB.Controllers
                 return View();
             }
         }
+
         [HttpGet]
         [Route("Uye-Kayit")]
         public ActionResult CreateUser()
         {
             return View();
         }
+
         [HttpPost]
         [Route("Uye-Kayit")]
         public ActionResult CreateUser(User entity)
@@ -75,6 +81,17 @@ namespace ElEmegi.Eticaret.UI.WEB.Controllers
 
                 return View();
             }
+        }
+
+        public ActionResult AboutUs()
+        {
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            return View();
+
         }
     }
 }
