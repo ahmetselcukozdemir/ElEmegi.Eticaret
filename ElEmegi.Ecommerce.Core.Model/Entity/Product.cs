@@ -27,5 +27,7 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
+        public int MemberID{ get; set; }
+        public virtual Member Member{ get; set; }
     }
 }

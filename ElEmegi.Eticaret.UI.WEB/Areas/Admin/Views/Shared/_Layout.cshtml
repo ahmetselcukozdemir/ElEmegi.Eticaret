@@ -1,9 +1,9 @@
 ﻿@{
-    var members = Session["AdminLoginMember"] as ElEmegi.Eticaret.Core.Model.Entity.Member;
-    if (members == null)
-    {
-       Response.Redirect("/Admin/AdminLogin/");
-    }
+//var members = Session["AdminLoginMember"] as ElEmegi.Eticaret.Core.Model.Entity.Member;
+//if (members == null)
+//{
+//   Response.Redirect("/Admin/AdminLogin/");
+//}
  }
 <!DOCTYPE html>
 <html>
@@ -240,22 +240,15 @@
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
                     <p class="centered"><a href="profile.html"><img src="~/Areas/Admin/Content/admin/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-                    @{
-                        if (members.Name == null)
-                        {
-                            Response.Redirect("/Admin/AdminLogin/");
-                        }
-                    }
-                    <h5 class="centered">@members.Name</h5>
-                  @if (members.IsAdmin == true)
-                  {
+                    <h5 class="centered">@Session["admin_name"]</h5>
+                 
                     <li class="mt">
                         <a class="active" href="/Admin/">
                             <i class="fa fa-dashboard"></i>
                             <span>Durum</span>
                         </a>
                     </li>
-                  }
+             
                       
                     <li class="sub-menu">
                         <a href="javascript:;">

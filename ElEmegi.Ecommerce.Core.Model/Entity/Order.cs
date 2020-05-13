@@ -24,6 +24,8 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
         public string Road{ get; set; }
         public string Type { get; set; }
         public string PostCode { get; set; }
+
+        public List<OrderLine> OrderLines { get; set; }
     }
     public class OrderLine
     {
@@ -34,5 +36,6 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
         public double Price { get; set; }
         public int ProductID { get; set; }
         public virtual Product Product { get; set; }
+    
     }
 }

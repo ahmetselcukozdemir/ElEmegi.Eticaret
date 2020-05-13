@@ -11,6 +11,7 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
     {
         protected override void Seed(DataContext context)
         {
+            context.SaveChanges();
             base.Seed(context);
         }
     }
