@@ -68,6 +68,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 Response.Cookies.Add(cerez);
               
             }
+            else
+            {
+                ModelState.AddModelError("LoginUserError", "Bilgilerinizi kontrol edin.");
+                return RedirectToAction("Login", "Account");
+            }
 
             Session["ad"] = user.Name;
             Session["soyad"] = user.Surname;

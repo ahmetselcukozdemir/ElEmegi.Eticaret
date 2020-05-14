@@ -54,7 +54,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             var user = db.Users.Find(entity.ID);
             if (file != null && file.ContentLength > 01)
             {
-                var path = Path.Combine(Server.MapPath("~/Upload_Edilecek_Klasörümüz"), file.FileName);
+                var path = Path.Combine(Server.MapPath("~/Content/images/"), file.FileName);
                 file.SaveAs(path);
                 user.Name = entity.Name;
                 user.Surname = entity.Surname;
