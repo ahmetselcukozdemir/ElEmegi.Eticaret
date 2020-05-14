@@ -14,7 +14,8 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
         public DateTime OrderDate { get; set; }
         public EnumOrderState OrderState { get; set; }
 
-        public string UserName { get; set; }
+        public string Name { get; set; }
+        public string Surname{ get; set; }
         public string AddressTitle { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
@@ -24,8 +25,9 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
         public string Road{ get; set; }
         public string Type { get; set; }
         public string PostCode { get; set; }
-
+        public bool OrderUserControl{ get; set; }
         public List<OrderLine> OrderLines { get; set; }
+        public int UserID { get; set; }
     }
     public class OrderLine
     {
@@ -36,6 +38,7 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
         public double Price { get; set; }
         public int ProductID { get; set; }
         public virtual Product Product { get; set; }
+     
     
     }
 }

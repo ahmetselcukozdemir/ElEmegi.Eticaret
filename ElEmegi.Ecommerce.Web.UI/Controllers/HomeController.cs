@@ -39,6 +39,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             var data = db.Products.OrderByDescending(x => x.IsApproved).Take(5).ToList();
             return PartialView(data);
         }
+
+     
         public Cart GetCart()
         {
             Cart cart = (Cart)Session["Cart"];

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using ElEmegi.Ecommerce.Core.Model.Entity;
@@ -9,6 +11,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
     public class Cart
     {
         private List<CartLine> _cardLines = new List<CartLine>();
+        private int cart_id = 0;
         public List<CartLine> CartLines
         {
             get
@@ -23,7 +26,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             var line = _cardLines.Where(i => i.Product.ID == product.ID).FirstOrDefault();
             if (line == null)
             {
-                _cardLines.Add(new CartLine() { Product = product, Quantity = quantity });
+                cart_id++;
+                _cardLines.Add(new CartLine() { Product = product, Quantity = quantity ,ID=cart_id});
             }
             else
             {
@@ -47,6 +51,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
         }
         public class CartLine
         {
+
+            public int ID { get; set; } = 1;
             public Product Product { get; set; }
             public int Quantity { get; set; }
         }

@@ -8,7 +8,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
 {
     public class ShippingDetails
     {
-        public string UserName { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
 
         [Required(ErrorMessage = "Lütfen adres tanımını giriniz.")]
         public string AdresBasligi { get; set; }
@@ -30,5 +31,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
 
         [Required(ErrorMessage = "Lütfen bir posta kodu giriniz.")]
         public string PostaKodu { get; set; }
+
+        public bool OrderUserControl { get; set; }
+        public int UserID{ get; set; }
     }
 }

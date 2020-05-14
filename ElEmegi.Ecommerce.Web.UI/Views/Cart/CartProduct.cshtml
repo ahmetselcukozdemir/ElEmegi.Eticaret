@@ -7,22 +7,21 @@
     <!-- Header cart noti -->
     <div class="header-cart header-dropdown">
         <ul class="header-cart-wrapitem">
-           
-                    <li class="header-cart-item">
-                        <div class="header-cart-item-img">
-                            <img src="" alt="IMG">
-                        </div>
+            <li class="header-cart-item">
+                <div class="header-cart-item-img">
+                    @*<img src="" alt="IMG">*@
+                </div>
 
-                        <div class="header-cart-item-txt">
-                            <a href="#" class="header-cart-item-name">
-                               df
-                            </a>
+                <div class="header-cart-item-txt">
+                    <a href="#" class="header-cart-item-name">
+                        @Model.CartLines.Count
+                    </a>
 
-                            <span class="header-cart-item-info">
-                             hg
-                            </span>
-                        </div>
-                    </li>
+                    <span class="header-cart-item-info">
+                       tane ürün var.
+                    </span>
+                </div>
+            </li>
              
           
 
@@ -30,14 +29,14 @@
         </ul>
 
         <div class="header-cart-total">
-            Total: $75.00
+            @Model.CartLines.
         </div>
 
         <div class="header-cart-buttons">
             <div class="header-cart-wrapbtn">
                 <!-- Button -->
                 <a href="/Cart/Index/" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-
+                    Sepete Git
                 </a>
             </div>
 

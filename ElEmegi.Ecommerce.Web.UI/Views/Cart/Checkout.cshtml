@@ -4,5 +4,124 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Checkout</h2>
+@using ElEmegi.Ecommerce.Web.UI.Models
+@model ElEmegi.Ecommerce.Web.UI.Models.ShippingDetails
+<div class="container wow fadeIn">
+
+    <h2 class="my-5 h2 text-center">Sipariş Bilgileriniz</h2>
+
+    <div class="row">
+
+        <div class="col-md-8 mb-4">
+            <p>Lütfen sipariş bilgilerinizi doldurun.</p>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <form>
+
+                            @if (@Session["ad"] != null && @Session["soyad"] != null)
+                            {
+                               
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Adınız </label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(Model => Model.Name, new { @Value=@Session["ad"] ,@class="form-control", @readonly = "readonly" })                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Soyadınız </label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control",@Value=@Session["soyad"], @readonly = "readonly" })
+                                    </div>
+                                </div>
+                                
+                            }
+                            else
+                            {
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Adınız </label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputPassword3" class="col-sm-2 col-form-label">Soyadınız </label>
+                                    <div class="col-sm-10">
+                                        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            }
+
+
+                     
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Adres Başlığı</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.AdresBasligi, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Adres Email</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Adres</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Adres, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Şehir</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Sehir, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Semt</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Semt, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Mahalle</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.Mahalle, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Posta Kodu</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(x => x.PostaKodu, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-check-square"></i> Sipariş Ver !</button>
+                        </div>
+                    </div>
+                </form>
+            }
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Sepet Özeti</span>
+                <span class="fas fa-shopping-cart"></span>
+            </h4>
+            <form class="card p-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Promosyon kodunuzu girin" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
 

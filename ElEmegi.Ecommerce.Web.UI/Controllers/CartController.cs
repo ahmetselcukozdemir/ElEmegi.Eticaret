@@ -19,17 +19,19 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public PartialViewResult CartProduct()
         {
             return PartialView(GetCart());
+            var product_list = GetCart();
+
         }
-        public ActionResult AddToCart(int Id)
+        public ActionResult AddToCart(int Id,int text1)
         {
             var product = db.Products.Where(i => i.ID == Id).FirstOrDefault();
             if (product != null)
             {
-                GetCart().AddProduct(product, 1);
+                GetCart().AddProduct(product, text1);
             }
             return RedirectToAction("Index");
         }
-
+  
         public ActionResult RemoveFromCart(int Id)
         {
             var product = db.Products.Where(i => i.ID == Id).FirstOrDefault();
@@ -75,31 +77,69 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         private void SaveOrder(Cart cart, ShippingDetails entity)
         {
-            var order = new Order();
-            order.OrderNumber = "Spr" + (new Random()).Next(111111, 999999).ToString();
-            order.Total = cart.Total();
-            order.OrderDate = DateTime.Now;
-            order.OrderState = EnumOrderState.Waiting;
-            order.UserName = User.Identity.Name;
-            order.AddressTitle = entity.AdresBasligi;
-            order.Address = entity.Adres;
-            order.City = entity.Sehir;
-            order.District = entity.Semt;
-            order.Neighborhood = entity.Mahalle;
-            order.PostCode = entity.PostaKodu;
-
-            order.OrderLines = new List<OrderLine>();
-            foreach (var pr in cart.CartLines)
+            if (Request.Cookies["cerezim"] != null)
             {
-                OrderLine ordeline = new OrderLine();
-                ordeline.Quantity = pr.Quantity;
-                ordeline.Price = pr.Quantity * pr.Product.Price;
-                ordeline.ProductID = pr.Product.ID;
+                var order = new Order();
+                order.OrderNumber = "Spr" + (new Random()).Next(111111, 999999).ToString();
+                order.Total = cart.Total();
+                order.OrderDate = DateTime.Now;
+                order.OrderState = EnumOrderState.Waiting;
+                order.Name = entity.Name;
+                order.Surname = entity.Surname;
+                order.AddressTitle = entity.AdresBasligi;
+                order.Address = entity.Adres;
+                order.City = entity.Sehir;
+                order.District = entity.Semt;
+                order.Neighborhood = entity.Mahalle;
+                order.PostCode = entity.PostaKodu;
+                order.OrderUserControl = true;
+                order.UserID = Convert.ToInt32(Session["ID"]);
+                order.OrderLines = new List<OrderLine>();
+                foreach (var pr in cart.CartLines)
+                {
+                    OrderLine ordeline = new OrderLine();
+                    ordeline.Quantity = pr.Quantity;
+                    ordeline.Price = pr.Quantity * pr.Product.Price;
+                    ordeline.ProductID = pr.Product.ID;
 
-                order.OrderLines.Add(ordeline);
+                    order.OrderLines.Add(ordeline);
+                }
+                db.Orders.Add(order);
+                db.SaveChanges();
             }
-            db.Orders.Add(order);
-            db.SaveChanges();
+            else
+            {
+                var order = new Order();
+                order.OrderNumber = "Spr" + (new Random()).Next(111111, 999999).ToString();
+                order.Total = cart.Total();
+                order.OrderDate = DateTime.Now;
+                order.OrderState = EnumOrderState.Waiting;
+                order.Name = Session["ad"].ToString();
+                order.Surname = Session["soyad"].ToString();
+                order.AddressTitle = entity.AdresBasligi;
+                order.Address = entity.Adres;
+                order.City = entity.Sehir;
+                order.District = entity.Semt;
+                order.Neighborhood = entity.Mahalle;
+                order.PostCode = entity.PostaKodu;
+                order.OrderUserControl = false;
+
+                order.OrderLines = new List<OrderLine>();
+                foreach (var pr in cart.CartLines)
+                {
+                    OrderLine ordeline = new OrderLine();
+                    ordeline.Quantity = pr.Quantity;
+                    ordeline.Price = pr.Quantity * pr.Product.Price;
+                    ordeline.ProductID = pr.Product.ID;
+
+                    order.OrderLines.Add(ordeline);
+                }
+                db.Orders.Add(order);
+                db.SaveChanges();
+            }
+           
+         
+            
         }
 
         public Cart GetCart()

@@ -1,0 +1,189 @@
+﻿@model ElEmegi.Ecommerce.Core.Model.Entity.User
+@{
+    ViewBag.Title = "ProfileEdit";
+}
+
+<style type="text/css">
+    body {
+        margin-top: 20px;
+        background: #eee;
+    }
+
+    .card {
+        background-color: #fff;
+        border: 0 solid #eee;
+        border-radius: 0;
+    }
+
+    .card {
+        margin-bottom: 30px;
+        -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+    }
+
+    .card-profile .card-header {
+        height: 9rem;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .card-profile-img {
+        max-width: 8rem;
+        margin-top: -6rem;
+        margin-bottom: 1rem;
+        border: 3px solid #fff;
+        border-radius: 100%;
+    }
+
+    .avatar {
+        width: 2rem;
+        height: 2rem;
+        line-height: 2rem;
+        border-radius: 50%;
+        display: inline-block;
+        background: #ced4da no-repeat center/cover;
+        position: relative;
+        text-align: center;
+        color: #868e96;
+        font-weight: 600;
+        vertical-align: bottom;
+    }
+
+        .avatar.avatar-md {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .avatar.avatar-lg {
+            width: 4rem;
+            height: 4rem;
+        }
+
+        .avatar.avatar-xl {
+            width: 5rem;
+            height: 5rem;
+        }
+
+        .avatar.avatar-xxl {
+            width: 7rem;
+            height: 7rem;
+            min-width: 7rem;
+        }
+
+    .card-header:first-child {
+        border-radius: 0 0 0 0;
+    }
+
+    .card-header:first-child {
+        border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+    }
+
+    .card-header {
+        padding: 1rem 1.25rem;
+        background-color: #fff;
+        border-bottom: 1px solid #eee;
+    }
+
+    .card-header {
+        -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
+        box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
+    }
+</style>
+<body>
+    @{
+        if (Session["ad"] == null && Session["soyad"] != null)
+        {
+            Response.Redirect(Url.Action("Login", "Account"));
+        }
+        else
+        {
+
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card card-profile">
+                            <div style="background-image: url(https://demo.bootstrapious.com/admin-premium/1-4-5/img/photos/paul-morris-116514-unsplash.jpg);" class="card-header"></div>
+                            <div class="card-body text-center">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="card-profile-img">
+                                <h3 class="mb-3">@Model.Name <strong>@Model.Surname</strong></h3>
+                                <p class="mb-4">One morning, when Gregor Samsa woke from troubled </p>
+                            </div>
+                        </div>
+
+                        <form class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">İşlemler</h3>
+                            </div>
+
+                            <div class="card-footer text-left">
+
+                                <button class="btn btn-primary"><i class="fa fa-address-book"></i> Kişisel Bilgilerim</button><br /><br />
+                                <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Siparişlerim</button><br /><br />
+                                <button class="btn btn-primary"><i class="fa fa-commenting"></i> Mesajlar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-8">
+                        <form class="card">
+                            <div class="card-body">
+                                <form class="card">
+                                    <div class="card-body">
+                                        <h3 class="card-title">Edit Profile</h3>
+                                        <div class="row">
+                                        @using (Html.BeginForm("ProfileEdit","Profile",FormMethod.Post,new {enctype = "multipart/form-data"}))
+                                        {
+
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group mb-4">
+                                                    <label class="form-label">Adınız </label>
+                                                    @Html.TextBox("Name",)
+                                                    @Html.TextBox("Name",  "", new {@class = "form-control"})
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group mb-4">
+                                                    <label class="form-label">Soyadınız </label>
+                                                    @Html.TextBoxFor(a => a.Surname)
+                                                    @Html.TextBox("Surname",   "", new {@class = "form-control"})
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group mb-4">
+                                                    <label class="form-label">E-mail Adresiniz </label>
+                                                    @Html.TextBoxFor(a=>a.Email)
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group mb-4">
+                                                    <label class="form-label">Şifreniz</label>
+                                                    @Html.TextBox("Email",  "", new {@class = "form-control"})
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-3">
+                                                <div class="form-group mb-4">
+                                                    <label class="form-label">Fotograf</label>
+                                                    <input type="file" name="file" class="button form-control" />
+                                                </div>
+                                            </div>
+
+                                        }
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-right">
+                                        <button type="submit" class="btn btn-primary">Kişisel Bilgilerimi Güncelle</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script src="http://netdna.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <script type="text/javascript">
+
+            </script>
+
+        }
+    }

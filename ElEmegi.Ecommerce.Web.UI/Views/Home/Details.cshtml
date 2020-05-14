@@ -79,16 +79,19 @@
                         {
                             
                             <div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
-                                @Html.TextBoxFor(i => i.ID, new { @type = "number",@class="form-control" }) 
+                                @Html.TextBox("text1", 1,new{@type="number"}) 
                             </div>
 
                             <div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
                                 @Html.HiddenFor(i => i.ID)
+
                                 <button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
                                     Sepete At
                                 </button>
                             </div>
+                         
                         }
+                     
                     </div>
                   
                 </div>
