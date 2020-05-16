@@ -10,6 +10,7 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
     public class Product
     {
         public int ID { get; set; }
+        public string EncryptedString{ get; set; }
         [DisplayName("Ürün Adı")]
         public string Name { get; set; }
         [DisplayName("Ürün Açıklaması")]

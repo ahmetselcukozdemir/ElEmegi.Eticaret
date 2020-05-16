@@ -72,8 +72,8 @@
             @Html.DisplayFor(modelItem => item.IsHome)
         </td>
         <td>
-            @Html.ActionLink("Güncelle", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Detay", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Güncelle", "Edit", new { id=item.EncryptedString }) |
+            @Html.ActionLink("Detay", "Details", new { id=item.EncryptedString }) |
             @Html.ActionLink("Sil", "Delete", new { id=item.ID })
         </td>
     </tr>

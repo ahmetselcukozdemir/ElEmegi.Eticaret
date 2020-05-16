@@ -9,6 +9,7 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
     public class Order
     {
         public int ID { get; set; }
+        public string EncryptedString { get; set; }
         public string OrderNumber { get; set; }
         public double Total { get; set; }
         public DateTime OrderDate { get; set; }

@@ -13,13 +13,13 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
     public class AdminProductController : Controller
     {
         private DataContext db = new DataContext();
-       
+
         // GET: AdminProduct
         public ActionResult Index()
         {
             var admin_cerez = Request.Cookies["admin_cerezim"];
             int id = Convert.ToInt32(admin_cerez["id"]);
-            if (admin_cerez !=null)
+            if (admin_cerez != null)
             {
                 var products = db.Products.Include(p => p.Category).Include(p => p.Member).Where(x => x.MemberID == id);
                 return View(products.ToList());
@@ -33,13 +33,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         }
 
         // GET: AdminProduct/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+
+            Product product = db.Products.Where(x => x.EncryptedString = id);
             if (product == null)
             {
                 return HttpNotFound();
@@ -57,12 +58,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // POST: AdminProduct/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Description,DescriptionTwo,Price,Image,Stock,IsApproved,IsHome,CategoryId,MemberID")] Product product)
+        public ActionResult Create([Bind(Include = "ID,EncryptedString,Name,Description,DescriptionTwo,Price,Image,Stock,IsApproved,IsHome,CategoryId,MemberID")] Product product)
         {
+           
+         
             var admin_cerez = Request.Cookies["admin_cerezim"];
             if (ModelState.IsValid)
             {
-                if (admin_cerez !=null)
+                if (admin_cerez != null)
                 {
                     product.MemberID = Convert.ToInt32(admin_cerez["id"]);
                 }
@@ -70,6 +73,17 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 {
                     Response.Redirect("/Admin/Login/");
                 }
+
+                //EncryptedString
+                char[] cr = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
+                string result = string.Empty;
+                Random r = new Random();
+                for (int i = 0; i < 15; i++)
+                {
+                    result += cr[r.Next(0, cr.Length - 1)].ToString();
+                }
+
+                product.EncryptedString = result;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -79,28 +93,38 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return View(product);
         }
 
-       
+
         // GET: AdminProduct/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id,int userid)
         {
-            if (id == null)
+            
+            if (userid == Convert.ToInt32(Session["ID"]) )
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Product product = db.Products.Find(id);
+                if (product == null)
+                {
+                    return HttpNotFound();
+                }
+
+                ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
+                ViewBag.MemberID = new SelectList(db.Members, "ID", "Name", product.MemberID);
+                return View(product);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "AdminProduct");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
-            ViewBag.MemberID = new SelectList(db.Members, "ID", "Name", product.MemberID);
-            return View(product);
+           
         }
-       
+
         // POST: AdminProduct/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Description,DescriptionTwo,Price,Image,Stock,IsApproved,IsHome,CategoryId,MemberID")] Product product)
+        public ActionResult Edit([Bind(Include = "ID,Name,Description,DescriptionTwo,Price,Image,Stock,IsApproved,IsHome,CategoryId,MemberID,EncryptedString")] Product product)
         {
             var admin_cerez = Request.Cookies["admin_cerezim"];
             if (ModelState.IsValid)
@@ -114,12 +138,16 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 {
                     Response.Redirect("/Admin/Login/");
                 }
+
+
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
+
+
                 return RedirectToAction("Index");
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
-          
+
             return View(product);
         }
 
