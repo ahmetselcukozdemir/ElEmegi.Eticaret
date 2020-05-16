@@ -62,16 +62,20 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             if (ModelState.IsValid)
             {
-                //siparişi veritabanına kayıt et.
-                SaveOrder(cart, entity);
-                //cartı sıfırla.
-                cart.Clear();
-                return View("Completed");
+               
+                    //siparişi veritabanına kayıt et.
+                    SaveOrder(cart, entity);
+                    //cartı sıfırla.
+                    cart.Clear();
+                    return View("Completed");
+              
+                  ViewBag.ErrorMessage = "Lütfen sözleşmeyi onaylayın.";
+                  
+                
             }
-            else
-            {
+           
                 return View(entity);
-            }
+           
 
         }
 

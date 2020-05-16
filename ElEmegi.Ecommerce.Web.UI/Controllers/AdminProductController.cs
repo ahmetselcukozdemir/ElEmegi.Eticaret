@@ -79,6 +79,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return View(product);
         }
 
+       
         // GET: AdminProduct/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -95,7 +96,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             ViewBag.MemberID = new SelectList(db.Members, "ID", "Name", product.MemberID);
             return View(product);
         }
-
+       
         // POST: AdminProduct/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -106,7 +107,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             {
                 if (admin_cerez != null)
                 {
-                    int id = Convert.ToInt32(admin_cerez["id"]);
+                    var id = Convert.ToInt32(admin_cerez["id"]);
                     product.MemberID = id;
                 }
                 else
