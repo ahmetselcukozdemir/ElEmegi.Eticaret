@@ -53,7 +53,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Checkout(ShippingDetails entity)
+        public ActionResult Checkout(ShippingDetails entity,bool? check)
         {
             var cart = GetCart();
             if (cart.CartLines.Count == 0)

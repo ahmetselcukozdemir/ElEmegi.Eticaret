@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Razor.Parser;
@@ -30,11 +31,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return View();
         }
 
-        public ActionResult ProfileEdit()
+        public ActionResult ProfileEdit(int id)
         {
             if (Session["ID"] !=null )
             {
-                int id = Convert.ToInt32(Session["ID"]);
+                int user_id = Convert.ToInt32(Session["ID"]);
                 var user = db.Users.Where(x => x.ID == id).FirstOrDefault();
                 return View(user);
             }
@@ -47,7 +48,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         }
 
-        [HttpPost]
+  
         public ActionResult ProfileEdit(User entity, HttpPostedFileBase file)
         {
             int id = Convert.ToInt32(Session["ID"]);
@@ -92,9 +93,19 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return View();
         }
 
-        public ActionResult Details()
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var user = db.Users.Where(x => x.ID == id).FirstOrDefault();
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
         }
     }
 }

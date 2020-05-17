@@ -73,8 +73,8 @@
         </td>
         <td>
             @Html.ActionLink("Güncelle", "Edit", new { id=item.EncryptedString }) |
-            @Html.ActionLink("Detay", "Details", new { id=item.EncryptedString }) |
-            @Html.ActionLink("Sil", "Delete", new { id=item.ID })
+            @Html.ActionLink("Detay", "Details", new { id=item.EncryptedString,userid=@Session["ID"] }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.EncryptedString })
         </td>
     </tr>
 }

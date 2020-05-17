@@ -33,17 +33,16 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         }
 
         // GET: AdminProduct/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
-            Product product = db.Products.Where(x => x.EncryptedString = id);
+            var product = db.Products.Where(x => x.EncryptedString == id).FirstOrDefault();
             if (product == null)
             {
-                return HttpNotFound();
+                return HttpNotFound();  
             }
             return View(product);
         }
@@ -95,16 +94,15 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
 
         // GET: AdminProduct/Edit/5
-        public ActionResult Edit(int? id,int userid)
+        public ActionResult Edit(string id)
         {
-            
-            if (userid == Convert.ToInt32(Session["ID"]) )
-            {
+          
                 if (id == null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                Product product = db.Products.Find(id);
+                //Product product = db.Products.Find(id);
+                var product = db.Products.Where(x => x.EncryptedString == id).FirstOrDefault();
                 if (product == null)
                 {
                     return HttpNotFound();
@@ -113,11 +111,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
                 ViewBag.MemberID = new SelectList(db.Members, "ID", "Name", product.MemberID);
                 return View(product);
-            }
-            else
-            {
-                return RedirectToAction("Index", "AdminProduct");
-            }
+           
            
         }
 

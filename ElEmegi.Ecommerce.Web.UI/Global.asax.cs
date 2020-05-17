@@ -7,6 +7,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using ElEmegi.Ecommerce.Web.UI.Controllers;
+
 namespace ElEmegi.Ecommerce.Web.UI
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -18,5 +20,6 @@ namespace ElEmegi.Ecommerce.Web.UI
             Database.SetInitializer(new DataInitializer());
             Database.SetInitializer(new IdentityInitializer());
         }
+   
     }
 }

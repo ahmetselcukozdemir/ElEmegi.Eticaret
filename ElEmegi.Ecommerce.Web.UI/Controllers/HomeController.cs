@@ -40,6 +40,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return PartialView(data);
         }
 
+        public ActionResult ErrorPage()
+        {
+            Response.TrySkipIisCustomErrors = true;
+            return View();
+        }
      
         public Cart GetCart()
         {
