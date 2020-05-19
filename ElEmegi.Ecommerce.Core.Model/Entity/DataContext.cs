@@ -20,5 +20,6 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<User> Users{ get; set; }
         public DbSet<Member> Members{ get; set; }
+        public DbSet<Blog> Blogs{ get; set; }
     }
 }

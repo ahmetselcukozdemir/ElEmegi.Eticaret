@@ -40,9 +40,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return PartialView(data);
         }
 
-        public ActionResult ErrorPage()
+        public ActionResult Contact()
         {
-            Response.TrySkipIisCustomErrors = true;
             return View();
         }
      

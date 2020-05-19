@@ -1,8 +1,61 @@
-﻿@model ElEmegi.Ecommerce.Core.Model.Entity.User
+﻿
 @{
     ViewBag.Title = "Index";
-   
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+    @{
+        if (Session["ad"] == null)
+        {
+            Response.Redirect(Url.Action("Login", "Account"));
+        }
+        else
+        {
+
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card card-profile">
+                            <div style="background-image: url(https://demo.bootstrapious.com/admin-premium/1-4-5/img/photos/paul-morris-116514-unsplash.jpg);" class="card-header"></div>
+                            <div class="card-body text-center">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="card-profile-img">
+                                <h3 class="mb-3">@Model.Name <strong>@Model.Surname</strong></h3>
+                                <p class="mb-4">One morning, when Gregor Samsa woke from troubled </p>
+                            </div>
+                        </div>
+
+                        <form class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">İşlemler</h3>
+                            </div>
+
+                            <div class="card-footer text-left">
+                                @Html.ActionLink("Kişisel Bilgiler","Edit", "Profile", new { id = @Session["ID"]}, new{@class="btn btn-primary"})
+                                <button class="btn btn-primary"><i class="fa fa-shoppinsg-cart"></i> Siparişlerim</button><br /><br />
+                                <button class="btn btn-primary"><i class="fa fa-commenting"></i> Mesajlar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-8">
+
+                        <form class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">İstatistik</h3>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script src="http://netdna.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+            <script type="text/javascript">
+
+            </script>
+
+        }
+    }
 
 <style type="text/css">
     body {
@@ -90,56 +143,3 @@
         box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
     }
 </style>
-<body>
-@{
-    if (Session["ad"] == null)
-    {
-        Response.Redirect(Url.Action("Login", "Account"));
-    }
-    else
-    {
-      
-            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="card card-profile">
-                            <div style="background-image: url(https://demo.bootstrapious.com/admin-premium/1-4-5/img/photos/paul-morris-116514-unsplash.jpg);" class="card-header"></div>
-                            <div class="card-body text-center">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="card-profile-img">
-                                <h3 class="mb-3">@Model.Name <strong>@Model.Surname</strong></h3>
-                                <p class="mb-4">One morning, when Gregor Samsa woke from troubled </p>
-                            </div>
-                        </div>
-
-                        <form class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">İşlemler</h3>
-                            </div>
-
-                            <div class="card-footer text-left" >
-                                <a href="/Profile/ProfileEdit/@Session["ID"]" class="btn btn-primary"><i class="fa fa-address-book"></i> Kişisel Bilgilerim</a> <br/> <br/>
-                                <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Siparişlerim</button><br /><br/>
-                                <button class="btn btn-primary"><i class="fa fa-commenting"></i> Mesajlar</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-lg-8">
-
-                        <form class="card">
-                            <div class="card-body">
-                                <h3 class="card-title">İstatistik</h3>
-
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <script src="http://netdna.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-            <script type="text/javascript">
-
-            </script>
-
-            }
-            }

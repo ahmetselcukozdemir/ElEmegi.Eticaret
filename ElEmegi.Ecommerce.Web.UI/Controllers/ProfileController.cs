@@ -30,13 +30,13 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             return View();
         }
-
-        public ActionResult ProfileEdit(int id)
+        [HttpGet]
+        public ActionResult Edit(int id )
         {
-            if (Session["ID"] !=null )
+            if (id != null )
             {
                 int user_id = Convert.ToInt32(Session["ID"]);
-                var user = db.Users.Where(x => x.ID == id).FirstOrDefault();
+                var user = db.Users.Where(x => x.ID == user_id).FirstOrDefault();
                 return View(user);
             }
             else
@@ -48,33 +48,19 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         }
 
-  
-        public ActionResult ProfileEdit(User entity, HttpPostedFileBase file)
+        [HttpPost]
+        public ActionResult Edit(User entity)
         {
             int id = Convert.ToInt32(Session["ID"]);
             var user = db.Users.Find(entity.ID);
-            if (file != null && file.ContentLength > 01)
-            {
-                var path = Path.Combine(Server.MapPath("~/Content/images/"), file.FileName);
-                file.SaveAs(path);
-                user.Name = entity.Name;
-                user.Surname = entity.Surname;
-                user.Email = entity.Email;
-                user.Password = user.Password;
-                user.Photo = path;
-                db.SaveChanges();
-                return RedirectToAction("Index", "Profile");
-            }
-            else
-            {
+           
                 user.Name = entity.Name;
                 user.Surname = entity.Surname;
                 user.Email = entity.Email;
                 user.Password = user.Password;
                 db.SaveChanges();
                 return RedirectToAction("Index", "Profile");
-            }
-            return View();
+            
         }
 
         public ActionResult MyOrders()
