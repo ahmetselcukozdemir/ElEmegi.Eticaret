@@ -19,10 +19,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public PartialViewResult CartProduct()
         {
             return PartialView(GetCart());
-            var product_list = GetCart();
-
         }
-        public ActionResult AddToCart(int Id,int text1)
+        public ActionResult AddToCart(int Id, int text1)
         {
             var product = db.Products.Where(i => i.ID == Id).FirstOrDefault();
             if (product != null)
@@ -31,7 +29,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             return RedirectToAction("Index");
         }
-  
+
         public ActionResult RemoveFromCart(int Id)
         {
             var product = db.Products.Where(i => i.ID == Id).FirstOrDefault();
@@ -53,7 +51,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Checkout(ShippingDetails entity,bool? check)
+        public ActionResult Checkout(ShippingDetails entity, bool? check)
         {
             var cart = GetCart();
             if (cart.CartLines.Count == 0)
@@ -62,20 +60,20 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             if (ModelState.IsValid)
             {
-               
-                    //siparişi veritabanına kayıt et.
-                    SaveOrder(cart, entity);
-                    //cartı sıfırla.
-                    cart.Clear();
-                    return View("Completed");
-              
-                  ViewBag.ErrorMessage = "Lütfen sözleşmeyi onaylayın.";
-                  
-                
+
+                //siparişi veritabanına kayıt et.
+                SaveOrder(cart, entity);
+                //cartı sıfırla.
+                cart.Clear();
+                return View("Completed");
+
+                ViewBag.ErrorMessage = "Lütfen sözleşmeyi onaylayın.";
+
+
             }
-           
-                return View(entity);
-           
+
+            return View(entity);
+
 
         }
 
@@ -141,9 +139,9 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
             }
-           
-         
-            
+
+
+
         }
 
         public Cart GetCart()

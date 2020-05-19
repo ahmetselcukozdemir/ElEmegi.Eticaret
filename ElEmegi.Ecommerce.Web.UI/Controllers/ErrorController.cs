@@ -16,21 +16,21 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         }
         public ActionResult Page404()
         {
-            ViewBag.ErrorMessage = "Aradığınız sayfa bulunamıyor.Yetkiliniz ile paylaşıldı, merak etmeyin :)";
+            ViewBag.ErrorMessage = "Aradığınız sayfa bulunamıyor.Yetkiliniz ile paylaşıldı,merak etmeyin :)";
             Response.TrySkipIisCustomErrors = true;
             Response.StatusCode = 404;
             return View("PageError");
         }
         public ActionResult Page403()
         {
-            ViewBag.ErrorMessage = "Bu sayfaya erişmek için yetkiniz bulunmamaktadır.";
+            ViewBag.ErrorMessage = "Bu sayfaya erişmek için yetkiniz bulunmamaktadır. :(";
             Response.TrySkipIisCustomErrors = true;
             Response.StatusCode = 403;
             return View("PageError");
         }
         public ActionResult Page500()
         {
-            ViewBag.ErrorMessage = " Internal Server hatası karşılaşıldı.";
+            ViewBag.ErrorMessage = "Internal Server hatası karşılaşıldı.Bilgilendirme yöneticinize yapıldı.Panik yok :) ";
             Response.StatusCode = 500;
             Response.TrySkipIisCustomErrors = true;
             return View("PageError");

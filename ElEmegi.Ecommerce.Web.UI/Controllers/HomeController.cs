@@ -25,6 +25,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             var data = db.Products.OrderByDescending(x => x.IsApproved).Take(5).ToList();
             return View(data);
+
         }
 
         public ActionResult Details(int id)
@@ -39,7 +40,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             var data = db.Products.OrderByDescending(x => x.IsApproved).Take(5).ToList();
             return PartialView(data);
         }
-
         public ActionResult Contact()
         {
             return View();

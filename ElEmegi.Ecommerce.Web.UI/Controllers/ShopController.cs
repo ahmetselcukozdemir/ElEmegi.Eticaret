@@ -14,7 +14,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public ActionResult Index()
         {
             var data = db.Products.Where(x => x.IsApproved == true && x.IsHome == true).ToList();
+            var category = db.Categories.ToList();
+            ViewBag.categoryList = category;
             return View(data);
         }
+
+       
     }
 }

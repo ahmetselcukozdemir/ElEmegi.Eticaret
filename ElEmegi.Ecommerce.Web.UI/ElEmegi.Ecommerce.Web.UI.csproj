@@ -3281,7 +3281,6 @@
     <Content Include="Views\Home\GetBestSellers.cshtml" />
     <Content Include="Views\Cart\CartProduct.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
-    <Content Include="Views\Shared\CartProduct.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\View.cshtml" />

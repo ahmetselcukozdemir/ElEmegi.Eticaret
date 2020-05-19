@@ -2,35 +2,49 @@
 
 <div class="header-wrapicon2">
     <img src="~/Content/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-    <span class="header-icons-noti">@Model.CartLines.Count</span>
+    <span class="header-icons-noti">adet</span>
 
     <!-- Header cart noti -->
     <div class="header-cart header-dropdown">
         <ul class="header-cart-wrapitem">
-            <li class="header-cart-item">
-                <div class="header-cart-item-img">
-                    @*<img src="" alt="IMG">*@
-                </div>
+            @{
+                if (Model.CartLines.Count < 1)
+                {
+                    <div class="alert alert-warning" role="alert">
+                        <i class="far fa-frown"></i> Alışveriş sepetinizde ürün bulunmamaktadır.
+                    </div>
+                }
+                else
+                {
+                    foreach (var item in Model.CartLines)
+                    {
+                        <li class="header-cart-item">
+                            <div class="header-cart-item-img">
+                                <img src="@item.Product.Image" alt="IMG">
+                            </div>
 
-                <div class="header-cart-item-txt">
-                    <a href="#" class="header-cart-item-name">
-                        @Model.CartLines.Count
-                    </a>
+                            <div class="header-cart-item-txt">
+                                <a href="#" class="header-cart-item-name">
+                                    @item.Product.Name
+                                </a>
 
-                    <span class="header-cart-item-info">
-                       tane ürün var.
-                    </span>
-                </div>
-            </li>
+                                <span class="header-cart-item-info">
+                                    @item.Quantity
+                                </span>
+                            </div>
+                        </li>
+                        <div class="header-cart-total">
+                         Toplam :   @Model.Total().ToString("c")
+                        </div>
+                    }       
+                }
              
+                    
+                }
           
-
-
         </ul>
 
-        <div class="header-cart-total">
-            @Model.CartLines.
-        </div>
+      
 
         <div class="header-cart-buttons">
             <div class="header-cart-wrapbtn">
