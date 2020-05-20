@@ -1,4 +1,4 @@
-﻿using ElEmegi.Ecommerce.Core.Model.Entity;
+﻿using ElEmegi.Ecommerce.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

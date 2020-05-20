@@ -1,14 +1,8 @@
-﻿using ElEmegi.Ecommerce.Core.Model.Entity;
-using ElEmegi.Ecommerce.Web.UI.Identity;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using ElEmegi.Ecommerce.Model.Entity;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
-using ElEmegi.Ecommerce.Web.UI.Models;
 
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
 {
@@ -19,7 +13,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // GET: Account
         public ActionResult Index()
         {
-       
            return View();
         }
         [HttpGet]

@@ -2,6 +2,21 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    if (ViewBag.status == "Success")
+    {
+        <div class="container" style="height: 600px;">
+        <div class="row">
+            <h2>Click buttons to test alert messages</h2>
+            <br />
+            <div class="col-md-3">
+                <button id="autoclosable-btn-danger" class="btn btn-primary btn-danger btn-block">
+                    Autocloseable message danger	
+                </button>
+                <div/>
+            </div>
+        </div>
+        </div>
+    }
 }
 
     @{
@@ -31,7 +46,7 @@
                             </div>
 
                             <div class="card-footer text-left">
-                                @Html.ActionLink("Kişisel Bilgiler","Edit", "Profile", new { id = @Session["ID"]}, new{@class="btn btn-primary"})
+                                @Html.ActionLink("Kişisel Bilgiler", "Edit", "Profile", new { id = @Session["ID"] }, new { @class = "btn btn-primary" })
                                 <button class="btn btn-primary"><i class="fa fa-shoppinsg-cart"></i> Siparişlerim</button><br /><br />
                                 <button class="btn btn-primary"><i class="fa fa-commenting"></i> Mesajlar</button>
                             </div>
@@ -57,89 +72,158 @@
         }
     }
 
-<style type="text/css">
-    body {
-        margin-top: 20px;
-        background: #eee;
-    }
 
-    .card {
-        background-color: #fff;
-        border: 0 solid #eee;
-        border-radius: 0;
-    }
+    <style type="text/css">
+        body {
+            margin-top: 20px;
+            background: #eee;
+        }
 
-    .card {
-        margin-bottom: 30px;
-        -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
-        box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
-    }
+        .card {
+            background-color: #fff;
+            border: 0 solid #eee;
+            border-radius: 0;
+        }
 
-    .card-profile .card-header {
-        height: 9rem;
-        background-size: cover;
-        background-position: center center;
-    }
+        .card {
+            margin-bottom: 30px;
+            -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+            box-shadow: 2px 2px 2px rgba(0,0,0,0.1), -1px 0 2px rgba(0,0,0,0.05);
+        }
 
-    .card-profile-img {
-        max-width: 8rem;
-        margin-top: -6rem;
-        margin-bottom: 1rem;
-        border: 3px solid #fff;
-        border-radius: 100%;
-    }
+        .card-profile .card-header {
+            height: 9rem;
+            background-size: cover;
+            background-position: center center;
+        }
 
-    .avatar {
-        width: 2rem;
-        height: 2rem;
-        line-height: 2rem;
-        border-radius: 50%;
-        display: inline-block;
-        background: #ced4da no-repeat center/cover;
-        position: relative;
-        text-align: center;
-        color: #868e96;
-        font-weight: 600;
-        vertical-align: bottom;
-    }
+        .card-profile-img {
+            max-width: 8rem;
+            margin-top: -6rem;
+            margin-bottom: 1rem;
+            border: 3px solid #fff;
+            border-radius: 100%;
+        }
 
-    .avatar.avatar-md {
-        width: 3rem;
-        height: 3rem;
-    }
+        .avatar {
+            width: 2rem;
+            height: 2rem;
+            line-height: 2rem;
+            border-radius: 50%;
+            display: inline-block;
+            background: #ced4da no-repeat center/cover;
+            position: relative;
+            text-align: center;
+            color: #868e96;
+            font-weight: 600;
+            vertical-align: bottom;
+        }
 
-    .avatar.avatar-lg {
-        width: 4rem;
-        height: 4rem;
-    }
+        .avatar.avatar-md {
+            width: 3rem;
+            height: 3rem;
+        }
 
-    .avatar.avatar-xl {
-        width: 5rem;
-        height: 5rem;
-    }
+        .avatar.avatar-lg {
+            width: 4rem;
+            height: 4rem;
+        }
 
-    .avatar.avatar-xxl {
-        width: 7rem;
-        height: 7rem;
-        min-width: 7rem;
-    }
+        .avatar.avatar-xl {
+            width: 5rem;
+            height: 5rem;
+        }
 
-    .card-header:first-child {
-        border-radius: 0 0 0 0;
-    }
+        .avatar.avatar-xxl {
+            width: 7rem;
+            height: 7rem;
+            min-width: 7rem;
+        }
 
-    .card-header:first-child {
-        border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
-    }
+        .card-header:first-child {
+            border-radius: 0 0 0 0;
+        }
 
-    .card-header {
-        padding: 1rem 1.25rem;
-        background-color: #fff;
-        border-bottom: 1px solid #eee;
-    }
+        .card-header:first-child {
+            border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+        }
 
-    .card-header {
-        -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
-        box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
-    }
-</style>
+        .card-header {
+            padding: 1rem 1.25rem;
+            background-color: #fff;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-header {
+            -webkit-box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
+            box-shadow: 2px 2px 2px rgba(0,0,0,0.05);
+        }
+    </style>
+<script>
+    $(document).ready(function () {
+        $('.alert-autocloseable-success').hide();
+        $('.alert-autocloseable-warning').hide();
+        $('.alert-autocloseable-danger').hide();
+        $('.alert-autocloseable-info').hide();
+
+        $('#autoclosable-btn-success').click(function () {
+            $('#autoclosable-btn-success').prop("disabled", true);
+            $('.alert-autocloseable-success').show();
+
+            $('.alert-autocloseable-success').delay(5000).fadeOut("slow", function () {
+                // Animation complete.
+                $('#autoclosable-btn-success').prop("disabled", false);
+            });
+        });
+
+        $('#normal-btn-success').click(function () {
+            $('.alert-normal-success').show();
+        });
+
+        $('#autoclosable-btn-warning').click(function () {
+            $('#autoclosable-btn-warning').prop("disabled", true);
+            $('.alert-autocloseable-warning').show();
+
+            $('.alert-autocloseable-warning').delay(3000).fadeOut("slow", function () {
+                // Animation complete.
+                $('#autoclosable-btn-warning').prop("disabled", false);
+            });
+        });
+
+        $('#normal-btn-warning').click(function () {
+            $('.alert-normal-warning').show();
+        });
+
+        $('#autoclosable-btn-danger').ready(function () {
+            $('#autoclosable-btn-danger').prop("disabled", true);
+            $('.alert-autocloseable-danger').show();
+
+            $('.alert-autocloseable-danger').delay(5000).fadeOut("slow", function () {
+                // Animation complete.
+                $('#autoclosable-btn-danger').prop("disabled", false);
+            });
+        });
+
+        $('#normal-btn-danger').click(function () {
+            $('.alert-normal-danger').show();
+        });
+
+        $('#autoclosable-btn-info').click(function () {
+            $('#autoclosable-btn-info').prop("disabled", true);
+            $('.alert-autocloseable-info').show();
+
+            $('.alert-autocloseable-info').delay(6000).fadeOut("slow", function () {
+                // Animation complete.
+                $('#autoclosable-btn-info').prop("disabled", false);
+            });
+        });
+
+        $('#normal-btn-info').click(function () {
+            $('.alert-normal-info').show();
+        });
+
+        $(document).on('click', '.close', function () {
+            $(this).parent().hide();
+        });
+    });
+</script>

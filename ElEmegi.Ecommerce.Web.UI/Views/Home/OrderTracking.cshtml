@@ -1,0 +1,47 @@
+﻿@model ElEmegi.Ecommerce.Model.Entity.Order
+@{
+    ViewBag.Title = "OrderTracking";
+}
+<main  class="mt-5 pt-4">
+  
+<div class="container dark-grey-text mt-5">
+              
+    <h2>Sipariş Takip</h2>
+    <hr/>
+    <div class="row">
+        <section class="text-center mb-4">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Sipariş Numarası</th>
+                    <th>Ad-Soyad</th>
+                    <th>Sipariş Tarihi</th>
+                    <th>Sipariş Durumu</th>
+                    <th>Sipariş Adet</th>
+                    <th>Ücret</th>
+                    <td> </td>
+                </tr>
+                </thead>
+                <tbody>
+              
+                    <tr>
+                        <td>@Model.ID</td>
+                        <td>@Model.OrderNumber</td>
+                        <td>@Model.Name @Model.Surname</td>
+                        <td>@Model.OrderDate</td>
+                        <td>@Model.OrderState</td>
+                        <td>@Model.OrderLines.Count</td>
+                        <td>@Model.Total ₺</td>
+                        <td>
+                            @*@Html.ActionLink("Details", "Details", new {id = Model.ID}, new {@class = "btn btn-primary btn-sm"})*@
+                        </td>
+                    </tr>
+              
+                </tbody>
+            </table>
+        </section>       </div>    </div>
+   
+</main>
+
+

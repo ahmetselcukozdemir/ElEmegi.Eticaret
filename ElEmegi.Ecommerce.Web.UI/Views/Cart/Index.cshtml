@@ -43,8 +43,9 @@
                                         <td class="column-2">@item.Product.Name</td>
                                         <td class="column-3">$@item.Product.Price</td>
                                         <td class="column-4">
-                                            <div class="flex-w bo5 of-hidden w-size17">
-                                                @item.Quantity
+                                            <div class="flex-w bo5 of-hidden w-size17">                                                
+                                                @Html.EditorFor(model => @item.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                                @*@item.Quantity*@
                                             </div>
                                         </td>
                                         <td class="column-5">@((item.Product.Price * item.Quantity).ToString("c"))</td>
@@ -54,8 +55,12 @@
                                                 @Html.Hidden("Id", item.Product.ID)
                                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" aria-hidden="true"></i> Sil</button>
                                             }
-                                            @item.ID
-                                        
+                                            @using (Html.BeginForm("UpdateFromCart", "Cart", new { quantity = item.Quantity }))
+                                            {
+                                                @Html.Hidden("Id", item.ID)
+                                                <button type="submit" class="btn btn-info"><i class="fas fa-trash-alt" aria-hidden="true"></i> Güncelle</button>
+                                            }
+
                                         </td>
                                     </tr>
                                 }
@@ -107,3 +112,6 @@
 
     </div>
 </section>
+
+
+

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
-using ElEmegi.Ecommerce.Core.Model.Entity;
+using ElEmegi.Ecommerce.Model.Entity;
 
 namespace ElEmegi.Ecommerce.Web.UI.Models
 {
@@ -41,6 +41,15 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             _cardLines.RemoveAll(i => i.Product.ID == product.ID);
         }
 
+        public void UpdateCart(Product product,int quantity)
+        {
+            var line = _cardLines.Where(x => x.Product.ID == product.ID).FirstOrDefault();
+            if (line !=null)
+            {
+                _cardLines.Find(x=>x.Product.ID == product.ID)
+            }
+
+        }
         public double Total()
         {
             return _cardLines.Sum(i => i.Product.Price * i.Quantity);
@@ -51,7 +60,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
         }
         public class CartLine
         {
-
+            [Key]
+            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
             public int ID { get; set; } = 1;
             public Product Product { get; set; }
             public int Quantity { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ElEmegi.Ecommerce.Core.Model.Entity;
+using ElEmegi.Ecommerce.Model.Entity;
 using ElEmegi.Ecommerce.Web.UI.Models;
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
 {
@@ -40,8 +40,10 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult UpdateCart(int Id)
+
+        public ActionResult UpdateFromCart(int Id,int quan)
         {
+         
             return RedirectToAction("Index");
         }
         public ActionResult Checkout()
@@ -51,7 +53,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Checkout(ShippingDetails entity, bool? check)
+        public ActionResult Checkout(ShippingDetails entity)
         {
             var cart = GetCart();
             if (cart.CartLines.Count == 0)
@@ -60,21 +62,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             if (ModelState.IsValid)
             {
-
                 //siparişi veritabanına kayıt et.
                 SaveOrder(cart, entity);
                 //cartı sıfırla.
                 cart.Clear();
                 return View("Completed");
-
                 ViewBag.ErrorMessage = "Lütfen sözleşmeyi onaylayın.";
-
-
             }
-
             return View(entity);
-
-
         }
 
         private void SaveOrder(Cart cart, ShippingDetails entity)

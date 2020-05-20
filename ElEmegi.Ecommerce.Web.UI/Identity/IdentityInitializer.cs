@@ -1,5 +1,5 @@
 ﻿using ElEmegi.Ecommerce.Web.UI.Identity;
-using ElEmegi.Ecommerce.Core.Model.Entity;
+using ElEmegi.Ecommerce.Model.Entity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;

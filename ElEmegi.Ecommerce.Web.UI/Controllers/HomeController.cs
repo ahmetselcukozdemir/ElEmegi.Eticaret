@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using ElEmegi.Ecommerce.Core.Model.Entity;
+using ElEmegi.Ecommerce.Model.Entity;
 using ElEmegi.Ecommerce.Web.UI.Models;
 
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
@@ -44,7 +46,26 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             return View();
         }
-     
+        
+        public ActionResult OrderTracking(string order_id)
+        {
+            var order = db.Orders.Where(x => x.OrderNumber == order_id.ToString()).Include("OrderLines").FirstOrDefault();
+            if (order !=null)
+            {
+                return View(order);
+            }
+            else
+            {
+                ViewBag.ErrorOrder = "Sipariş bulunamadı,lütfen sipariş numaranızı kontrol edin.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View();
+        }
+        public ActionResult About()
+        {
+            return View();
+        }
         public Cart GetCart()
         {
             Cart cart = (Cart)Session["Cart"];

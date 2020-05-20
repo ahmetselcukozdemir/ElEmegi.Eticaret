@@ -2,7 +2,7 @@
 
 <div class="header-wrapicon2">
     <img src="~/Content/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-    <span class="header-icons-noti">adet</span>
+    <span class="header-icons-noti">@Model.CartLines.Count</span>
 
     <!-- Header cart noti -->
     <div class="header-cart header-dropdown">
@@ -29,14 +29,15 @@
                                 </a>
 
                                 <span class="header-cart-item-info">
-                                    @item.Quantity
+                                    @item.Quantity adet
                                 </span>
                             </div>
                         </li>
-                        <div class="header-cart-total">
-                         Toplam :   @Model.Total().ToString("c")
-                        </div>
-                    }       
+                       
+                    }
+                    <div class="header-cart-total">
+                        Toplam :   @Model.Total().ToString("c")
+                    </div>
                 }
              
                     
@@ -57,7 +58,7 @@
             <div class="header-cart-wrapbtn">
                 <!-- Button -->
                 <a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-                    Check Out
+                    Tamamla
                 </a>
             </div>
         </div>

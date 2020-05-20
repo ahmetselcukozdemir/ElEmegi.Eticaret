@@ -1,4 +1,6 @@
-﻿@model IEnumerable<ElEmegi.Ecommerce.Core.Model.Entity.Product>
+﻿@model PagedList.IPagedList<ElEmegi.Ecommerce.Model.Entity.Product>
+@using PagedList.Mvc;
+@using PagedList;
 @{
     ViewBag.Title = "Index";
 }
@@ -148,8 +150,9 @@
 
                 <!-- Pagination -->
                 <div class="pagination flex-m flex-w p-t-26">
-                    <a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-                    <a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
+                    <a class="">@Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}))</a>
+                    @*<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
+                    <a href="#" class="item-pagination flex-c-m trans-0-4">2</a>*@
                 </div>
             </div>
         </div>

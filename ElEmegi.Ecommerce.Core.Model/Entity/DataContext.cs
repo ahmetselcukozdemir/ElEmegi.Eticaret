@@ -21,5 +21,6 @@ namespace ElEmegi.Ecommerce.Core.Model.Entity
         public DbSet<User> Users{ get; set; }
         public DbSet<Member> Members{ get; set; }
         public DbSet<Blog> Blogs{ get; set; }
+        public DbSet<Log> Logs{ get; set; }
     }
 }

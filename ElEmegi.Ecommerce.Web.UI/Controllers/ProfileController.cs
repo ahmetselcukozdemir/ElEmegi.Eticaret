@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Razor.Parser;
-using ElEmegi.Ecommerce.Core.Model.Entity;
+using ElEmegi.Ecommerce.Model.Entity;
 using ElEmegi.Ecommerce.Web.UI.Models;
 
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
@@ -18,6 +18,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // GET: Profile
         public ActionResult Index()
         {
+            if (TempData["Status"] != null)
+            {
+                var data = TempData["Status"].ToString();
+                ViewBag.status = data;
+            }
             if (Request.Cookies["cerezim"] != null)
             {
                 int id = Convert.ToInt32(Session["ID"]);
@@ -30,37 +35,40 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             return View();
         }
-        [HttpGet]
-        public ActionResult Edit(int id )
+        public ActionResult Edit(int id)
         {
-            if (id != null )
-            {
-                int user_id = Convert.ToInt32(Session["ID"]);
-                var user = db.Users.Where(x => x.ID == user_id).FirstOrDefault();
-                return View(user);
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
 
-            return View();
+            int user_id = Convert.ToInt32(Session["ID"]);
+            var user = db.Users.Where(x => x.ID == user_id).FirstOrDefault();
+            return View(user);
 
         }
 
         [HttpPost]
         public ActionResult Edit(User entity)
         {
-            int id = Convert.ToInt32(Session["ID"]);
-            var user = db.Users.Find(entity.ID);
-           
+            try
+            {
+
+                int id = Convert.ToInt32(Session["ID"]);
+                var user = db.Users.Where(x => x.ID == id).FirstOrDefault();
+
                 user.Name = entity.Name;
                 user.Surname = entity.Surname;
                 user.Email = entity.Email;
-                user.Password = user.Password;
+                user.Password = entity.Password;
+                user.LastActivityDate = DateTime.Now;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Profile");
-            
+                TempData["Status"] = "Success";
+
+                return RedirectToAction("Index");
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public ActionResult MyOrders()

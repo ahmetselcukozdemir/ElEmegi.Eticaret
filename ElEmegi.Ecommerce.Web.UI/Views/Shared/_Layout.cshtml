@@ -66,21 +66,13 @@
 
                 <ul class="main_menu">
                     <li>
-                        <a href="product.html">Anasayfa</a>
+                        <a href="/Home/Index/">Anasayfa</a>
                     </li>
                     <li>
-                        <a href="about.html">Hakkımızda</a>
-                    </li>
-                    <li>
-                        <a href="index.html">Kategoriler</a>
-                        <ul class="sub_menu">
-                            <li><a href="index.html"> V1</a></li>
-                            <li><a href="home-02.html">V2</a></li>
-                            <li><a href="home-03.html">V3</a></li>
-                        </ul>
+                        <a href="/Home/About/">Hakkımızda</a>
                     </li>
                     <li class="sale-noti">
-                        <a href="product.html">Alışveriş</a>
+                        <a href="/Shop/Index/">Alışveriş</a>
                     </li>
 
                     <li>
@@ -88,11 +80,11 @@
                     </li>
 
                     <li>
-                        <a href="blog.html">Blog</a>
+                        <a href="/Blog/Index/">Blog</a>
                     </li>
 
                     <li>
-                        <a href="contract.html">İletişim</a>
+                        <a href="/Home/Contact/">İletişim</a>
                     </li>
                 </ul>
             </nav>
@@ -469,23 +461,25 @@
 
         <div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
             <h4 class="s-text12 p-b-30">
-                Bize Ulaşın
+                Sipariş Takip
             </h4>
 
-            <form>
+            @using(Html.BeginForm("OrderTracking", "Home", FormMethod.Post, new {@class="form-control"}))
+            {
                 <div class="effect1 w-size9">
-                    <input class="s-text7 bg6 w-full p-b-5" type="text" name="email" placeholder="email@example.com">
+                    <input class="s-text7 bg6 w-full p-b-5" type="text" name="order_id" placeholder="Sipariş numarasını giriniz..">
                     <span class="effect1-line"></span>
                 </div>
 
                 <div class="w-size2 p-t-20">
                     <!-- Button -->
-                    <button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-                        Paylaş
-                    </button>
+                    <input type="submit" value="Gönder" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4"/>
                 </div>
-
-            </form>
+            }
+            @if (@ViewBag.ErrorOrder != null)
+            {
+                <p>@ViewBag.ErrorOrder</p>
+            }
         </div>
     </div>
 
