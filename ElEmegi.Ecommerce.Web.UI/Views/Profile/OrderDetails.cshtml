@@ -1,0 +1,102 @@
+﻿@using ElEmegi.Ecommerce.Model.Entity
+@model ElEmegi.Ecommerce.Web.UI.Models.OrderDetailsModel
+@{
+    ViewBag.Title = "OrderDetails";
+}
+
+<div class="container">
+    <h2>Sipariş Detay Bilgileri</h2>
+    <hr />
+    <div class="row">
+        <dl class="row">
+
+            <dt class="col-sm-3">Order State</dt>
+
+            <dt class="col-sm-9">
+                @if (Model.OrderState == EnumOrderState.Waiting)
+                {
+                    <span class="badge-danger">Onay Bekleniyor..</span>
+                }
+                @if (Model.OrderState == EnumOrderState.Prepare)
+                {
+                    <span class="badge-danger">Ürünleriniz hazırlanıyor...</span>
+                }
+                @if (Model.OrderState == EnumOrderState.Cargo)
+                {
+                    <span class="badge-danger">Ürünleriniz kargoya verildi..</span>
+                }
+                @if (Model.OrderState == EnumOrderState.Completed)
+                {
+                    <span class="badge-danger">Tamamlandı..</span>
+                }
+                @if (Model.OrderState == EnumOrderState.Cancel)
+                {
+                    <span class="badge-danger">Sipariş İptal edildi..</span>
+                }
+            </dt>
+
+            <dt class="col-sm-3">Sipariş ID</dt>
+            <dd class="col-sm-9">@Model.OrderId</dd>
+
+            <dt class="col-sm-3">Sipariş Numarası</dt>
+            <dt class="col-sm-9">@Model.OrderNumber</dt>
+
+            <dt class="col-sm-3">Ücret</dt>
+            <dt class="col-sm-9">@Model.Total ₺ </dt>
+
+            <dt class="col-sm-3">Sipariş Tarihi</dt>
+            <dt class="col-sm-9">@Model.OrderDate.ToShortDateString()</dt>
+
+            <dt class="col-sm-3">Adres</dt>
+            <dd class="col-sm-9">
+                @Model.AdresBasligi
+                <hr/>
+                @Model.Adres
+                <br/>
+                @Model.Sehir - @Model.Semt- @Model.Mahalle
+                <br/>
+                @Model.PostaKodu
+
+            </dd>
+
+            <dt class="col-sm-3">Satın Alınan Ürünler</dt>
+            <dt class="col-sm-9">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Fotograf</th>
+                        <th>Ürün Adı</th>
+                        <th>Adet</th>
+                        <th>Ücret</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.OrderLines)
+                    {
+                        <tr>
+                            <td>
+                                <img src="~/Content/Upload/@item.Image" width="70"/>
+                            </td>
+                            <td>@item.ProductName</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price</td>
+                            <td>
+                                <a href="/Home/Details/@item.ProductId" class="btn btn-primary" target="_blank">Ürün Detayı</a>
+                            </td>
+                        </tr>
+                    }
+
+                    </tbody>
+                </table>
+            </dt>
+
+
+
+
+        </dl>
+    </div>
+</div>
+
+
+

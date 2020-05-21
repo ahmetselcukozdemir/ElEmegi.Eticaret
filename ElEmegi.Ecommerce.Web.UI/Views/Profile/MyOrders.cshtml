@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ElEmegi.Ecommerce.Web.UI.Models.UserOrderModel>
+@{
+    ViewBag.Title = "MyOrders";
+}
+
+<div class="container"  style="margin-top: 80px;">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Sipariş Bilgileriniz</h2>
+            <hr />
+            <table class="table  table-bordered table-striped " >
+                <thead>
+                <tr>
+                    <th>Sipariş Numarası</th>
+                    <th>Sipariş Tarihi</th>
+                    <th>Total</th>
+                    <th>Durum</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.OrderNumber</td>
+                        <td>@item.OrderDate.ToShortDateString()</td>
+                        <td>@item.Total ₺ </td>
+                        <td>@item.OrderState</td>
+                        <td>
+                            @Html.ActionLink("Details", "OrderDetails",new { id=@item.ID},new { @class="btn btn-primary"})
+                        </td>
+                    </tr>
+                }
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

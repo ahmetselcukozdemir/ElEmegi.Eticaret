@@ -47,7 +47,8 @@
 
                             <div class="card-footer text-left">
                                 @Html.ActionLink("Kişisel Bilgiler", "Edit", "Profile", new { id = @Session["ID"] }, new { @class = "btn btn-primary" })
-                                <button class="btn btn-primary"><i class="fa fa-shoppinsg-cart"></i> Siparişlerim</button><br /><br />
+                                @Html.ActionLink("Siparişlerim","MyOrders","Profile",new{ @class="btn btn-primary"})
+                                @*<button class="btn btn-primary"><i class="fa fa-shoppinsg-cart"></i> Siparişlerim</button><br /><br />*@
                                 <button class="btn btn-primary"><i class="fa fa-commenting"></i> Mesajlar</button>
                             </div>
                         </form>

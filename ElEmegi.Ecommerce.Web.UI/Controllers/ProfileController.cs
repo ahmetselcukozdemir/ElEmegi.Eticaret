@@ -75,9 +75,16 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             if (Session["ID"] != null)
             {
-                int user_id = Convert.ToInt32(Session["ID"]);
-                var orders = db.Orders.Where(i => i.UserID == user_id && i.OrderUserControl == true).OrderByDescending(i => i.OrderState).ToList();
-                return View(orders);
+                var user_id = Convert.ToInt32(Session["ID"]);
+                var orders = db.Orders.Where(i => i.UserID == 1).Select(i => new UserOrderModel()
+                {
+                    ID = i.ID,
+                    OrderNumber = i.OrderNumber,
+                    OrderDate = i.OrderDate,
+                    OrderState = i.OrderState,
+                    Total = i.Total
+                }).OrderByDescending(i => i.OrderState).ToList();
+                return View(orders.AsEnumerable());
             }
             else
             {
@@ -87,19 +94,33 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return View();
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult OrderDetails(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            var entity = db.Orders.Where(i => i.ID == id)
+                .Select(i => new OrderDetailsModel()
+                {
+                    OrderId = i.ID,
+                    OrderNumber = i.OrderNumber,
+                    Total = i.Total,
+                    OrderDate = i.OrderDate,
+                    OrderState = i.OrderState,
+                    Adres = i.Address,
+                    AdresBasligi = i.AddressTitle,
+                    Sehir = i.City,
+                    Semt = i.District,
+                    Mahalle = i.Neighborhood,
+                    PostaKodu = i.PostCode,
+                    OrderLines = i.OrderLines.Select(a => new OrderLineModel()
+                    {
+                        ProductId = a.ProductID,
+                        ProductName = a.Product.Name.Length > 50 ? a.Product.Name.Substring(0, 47) + "..." : a.Product.Name,
+                        Image = a.Product.Image,
+                        Quantity = a.Quantity,
+                        Price = a.Price
+                    }).ToList()
 
-            var user = db.Users.Where(x => x.ID == id).FirstOrDefault();
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(user);
+                }).FirstOrDefault();
+            return View(entity);
         }
     }
 }

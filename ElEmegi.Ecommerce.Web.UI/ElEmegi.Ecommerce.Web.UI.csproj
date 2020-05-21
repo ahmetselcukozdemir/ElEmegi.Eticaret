@@ -175,6 +175,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\images\admin.png" />
     <Content Include="Content\adminlogin\css\main.css" />
     <Content Include="Content\adminlogin\css\util.css" />
     <Content Include="Content\adminlogin\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -2914,6 +2915,7 @@
     <Content Include="Content\images\product3.PNG" />
     <Content Include="Content\images\product4.PNG" />
     <Content Include="Content\images\profiles\banner-01.jpg" />
+    <Content Include="Content\images\register.jpg" />
     <Content Include="Content\images\shop-item-09.jpg" />
     <Content Include="Content\images\thumb-item-01.jpg" />
     <Content Include="Content\images\thumb-item-02.jpg" />
@@ -3312,6 +3314,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Home\OrderTracking.cshtml" />
+    <Content Include="Views\Profile\MyOrders.cshtml" />
+    <Content Include="Views\Profile\OrderDetails.cshtml" />
+    <Content Include="Views\Home\OpportunitiesOfTheDayProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

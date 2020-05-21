@@ -42,6 +42,12 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             var data = db.Products.OrderByDescending(x => x.IsApproved).Take(5).ToList();
             return PartialView(data);
         }
+
+        public PartialViewResult OpportunitiesOfTheDayProduct()
+        {
+            var data = (from x in db.Orders orderby Guid.NewGuid() ascending select x).ToList();
+            return PartialView((IEnumerable<Product>) data);
+        }
         public ActionResult Contact()
         {
             return View();

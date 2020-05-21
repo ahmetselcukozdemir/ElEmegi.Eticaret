@@ -125,7 +125,10 @@
                                     </a>
                                 </div>
                             </li>
-                            <li>
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="~/Content/images/item-cart-01.jpg" alt="IMG">
+                                </div>
                                 <div class="header-cart-item-txt">
                                     <a href="/Profile/MyOrders/" class="header-cart-item-name">
                                         Siparişlerim
@@ -159,8 +162,41 @@
             }
             else
             {
-               
-                @Html.ActionLink("Giriş Yap", "Login", "Account", "", new { @class = " " })
+                <div class="header-wrapicon2">
+                    <img src="~/Content/images/icons/icon-header-01.png" class="header-icon1 js-show-header-dropdown" alt="ICON" > 
+                    <!-- Header cart noti -->
+                   
+                    <div class="header-cart header-dropdown">
+
+                        <ul class="header-cart-wrapitem">
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="~/Content/images/item-cart-01.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    @Html.ActionLink("Giriş Yap", "Login", "Account", "", new { @class = " " })
+
+                                </div>
+                            </li>
+                            <li class="header-cart-item">
+                                <div class="header-cart-item-img">
+                                    <img src="~/Content/images/item-cart-01.jpg" alt="IMG">
+                                </div>
+
+                                <div class="header-cart-item-txt">
+                                    @Html.ActionLink("Üye Ol", "Register", "Account", "", new { @class = " " })
+
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+
+
             }
             <span class="linedivide1"></span>
             @Html.Action("CartProduct", "Cart")

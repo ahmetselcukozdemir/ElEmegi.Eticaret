@@ -25,11 +25,10 @@
             <div class="wrap-login100 p-t-190 p-b-30">
                 <form class="login100-form validate-form" method="post">
                     <div class="login100-form-avatar">
-                        <img src="/Admin/Content/adminlogin/images/avatar-01.jpg" alt="AVATAR">
+                        <img src="~/Content/images/admin.png" alt="AVATAR">
                     </div>
-
                     <span class="login100-form-title p-t-20 p-b-45">
-                        Admin Girişi
+                        Mağaza Admin Girişi
                     </span>
                     @{
                         if (ViewBag.ErrorMessage != null)
@@ -62,11 +61,15 @@
                     </div>
 
                     <div class="text-center w-full p-t-25 p-b-230">
+                        <a href="/Home/Index/" class="txt1">
+                            Siteye geri dön.
+                        </a>
+                        /
                         <a href="#" class="txt1">
                             Şifremi Unuttum
                         </a>
+
                     </div>
-                
                     <div class="text-center w-full">
                         <a class="txt1" href="#">
                             Create new account

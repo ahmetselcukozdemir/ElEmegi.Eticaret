@@ -3,6 +3,10 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
+    if (@Model ==null)
+    {
+        Response.Redirect("/Admin/Logout/");
+    }
 }
 
 <h2>Index</h2>
@@ -73,7 +77,7 @@
         </td>
         <td>
             @Html.ActionLink("Güncelle", "Edit", new { id=item.EncryptedString }) |
-            @Html.ActionLink("Detay", "Details", new { id=item.EncryptedString,userid=@Session["ID"] }) |
+            @Html.ActionLink("Detay", "Details", new { id=item.EncryptedString}) |
             @Html.ActionLink("Sil", "Delete", new { id=item.EncryptedString })
         </td>
     </tr>

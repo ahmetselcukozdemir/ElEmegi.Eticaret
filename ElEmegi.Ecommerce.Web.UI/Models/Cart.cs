@@ -46,7 +46,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             var line = _cardLines.Where(x => x.Product.ID == product.ID).FirstOrDefault();
             if (line !=null)
             {
-                _cardLines.Find(x=>x.Product.ID == product.ID)
+                _cardLines.Find(x => x.Product.ID == product.ID);
             }
 
         }
