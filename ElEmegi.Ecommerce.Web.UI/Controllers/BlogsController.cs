@@ -25,12 +25,12 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Page400", "Error");
             }
             Blog blog = db.Blogs.Find(id);
             if (blog == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("PageError", "Error");
             }
             return View(blog);
         }
@@ -62,12 +62,12 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("PageError", "Error");
             }
             Blog blog = db.Blogs.Find(id);
             if (blog == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("PageError", "Error");
             }
             return View(blog);
         }
@@ -91,12 +91,12 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("PageError", "Error");
             }
             Blog blog = db.Blogs.Find(id);
             if (blog == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("PageError", "Error");
             }
             return View(blog);
         }

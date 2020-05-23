@@ -34,5 +34,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
 
         public bool OrderUserControl { get; set; }
         public int UserID{ get; set; }
+        public int MemberID{ get; set; }
     }
 }

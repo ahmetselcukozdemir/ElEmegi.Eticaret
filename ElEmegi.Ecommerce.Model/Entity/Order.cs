@@ -33,6 +33,7 @@ namespace ElEmegi.Ecommerce.Model.Entity
         public bool OrderUserControl{ get; set; }
         public List<OrderLine> OrderLines { get; set; }
         public int UserID { get; set; }
+        public int MemberID{ get; set; }
     }
     public class OrderLine
     {

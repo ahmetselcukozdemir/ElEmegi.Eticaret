@@ -18,16 +18,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             {
                 return _cardLines;
             }
-
         }
-
         public void AddProduct(Product product, int quantity)
         {
             var line = _cardLines.Where(i => i.Product.ID == product.ID).FirstOrDefault();
             if (line == null)
             {
                 cart_id++;
-                _cardLines.Add(new CartLine() { Product = product, Quantity = quantity ,ID=cart_id});
+                _cardLines.Add(new CartLine() { Product = product, Quantity = quantity, ID = cart_id });
             }
             else
             {
@@ -35,16 +33,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
                 line.Quantity += quantity;
             }
         }
-
         public void DeleteProduct(Product product)
         {
             _cardLines.RemoveAll(i => i.Product.ID == product.ID);
         }
-
-        public void UpdateCart(Product product,int quantity)
+        public void UpdateCart(Product product, int quantity)
         {
-            var data =_cardLines.Find(x => x.Product.ID == product.ID);
-            if (data !=null)
+            var data = _cardLines.Find(x => x.Product.ID == product.ID);
+            if (data != null)
             {
                 data.Quantity = quantity;
             }

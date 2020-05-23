@@ -14,6 +14,13 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             Response.TrySkipIisCustomErrors = true;
             return View();
         }
+        public ActionResult Page400()
+        {
+            ViewBag.ErrorMessage = "BadRequest hatası ile karşılaşıldı.Bilgilendirme yapıldı,sorun yok. :)";
+            Response.TrySkipIisCustomErrors = true;
+            Response.StatusCode = 400;
+            return View("PageError");
+        }
         public ActionResult Page404()
         {
             ViewBag.ErrorMessage = "Aradığınız sayfa bulunamıyor.Yetkiliniz ile paylaşıldı,merak etmeyin :)";

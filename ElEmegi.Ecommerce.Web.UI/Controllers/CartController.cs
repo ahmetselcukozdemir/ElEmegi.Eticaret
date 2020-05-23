@@ -15,7 +15,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             return View(GetCart());
         }
-
         public PartialViewResult CartProduct()
         {
             return PartialView(GetCart());
@@ -29,7 +28,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             return RedirectToAction("Index");
         }
-
         public ActionResult RemoveFromCart(int Id)
         {
             var product = db.Products.Where(i => i.ID == Id).FirstOrDefault();
@@ -39,7 +37,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             return RedirectToAction("Index");
         }
-
         public ActionResult UpdateFromCart(int Id, int quantity)
         {
             var product = db.Products.Where(x => x.ID == Id).FirstOrDefault();
@@ -48,12 +45,10 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
              GetCart().UpdateCart(product,quantity);
             }
             return RedirectToAction("Index");
-
         }
         public ActionResult Checkout()
         {
             return View(new ShippingDetails());
-
         }
 
         [HttpPost]
@@ -75,7 +70,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             return View(entity);
         }
-
         private void SaveOrder(Cart cart, ShippingDetails entity)
         {
             if (Request.Cookies["cerezim"] != null)
@@ -102,7 +96,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     ordeline.Quantity = pr.Quantity;
                     ordeline.Price = pr.Quantity * pr.Product.Price;
                     ordeline.ProductID = pr.Product.ID;
-
                     order.OrderLines.Add(ordeline);
                 }
                 db.Orders.Add(order);
@@ -115,8 +108,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 order.Total = cart.Total();
                 order.OrderDate = DateTime.Now;
                 order.OrderState = EnumOrderState.Waiting;
-                order.Name = Session["ad"].ToString();
-                order.Surname = Session["soyad"].ToString();
+                order.Name = entity.Name;
+                order.Surname = entity.Surname;
                 order.AddressTitle = entity.AdresBasligi;
                 order.Address = entity.Adres;
                 order.City = entity.Sehir;
@@ -132,15 +125,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     ordeline.Quantity = pr.Quantity;
                     ordeline.Price = pr.Quantity * pr.Product.Price;
                     ordeline.ProductID = pr.Product.ID;
-
                     order.OrderLines.Add(ordeline);
                 }
                 db.Orders.Add(order);
                 db.SaveChanges();
             }
-
-
-
         }
 
         public Cart GetCart()
