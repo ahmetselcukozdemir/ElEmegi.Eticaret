@@ -21,12 +21,16 @@ namespace ElEmegi.Ecommerce.Model.Entity
         public double Price { get; set; }
         [DisplayName("Ürün Fotograf")]
         public string Image { get; set; }
+        [DisplayName("Ürün Fotograf 2")]
+        public string ImageTwo{ get; set; }
+        [DisplayName("Ürün Fotograf 3")]
+        public string ImageThree{ get; set; }
         [DisplayName("Ürün Stok")]
         public int Stock { get; set; }
         public bool IsApproved { get; set; }
         public bool IsHome { get; set; }
+        public DateTime CreatedDate{ get; set; }
         public int CategoryId { get; set; }
-
         public Category Category { get; set; }
         public int MemberID{ get; set; }
         public virtual Member Member{ get; set; }

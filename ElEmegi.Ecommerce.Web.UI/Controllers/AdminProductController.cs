@@ -82,6 +82,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 }
 
                 product.EncryptedString = result;
+                product.CreatedDate = DateTime.Now;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -94,7 +95,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         // GET: AdminProduct/Edit/EncryptedString
         public ActionResult Edit(string id)
-        {
+            {
           
                 if (id == null)
                 {
@@ -117,7 +118,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // POST: AdminProduct/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Description,DescriptionTwo,Price,Image,Stock,IsApproved,IsHome,CategoryId")] Product product)
+        public ActionResult Edit([Bind(Include = "ID,EncryptedString,Name,Description,DescriptionTwo,Price,Image,ImageTwo,ImageThree,Stock,IsApproved,IsHome,CategoryId")] Product product)
         {
             var admin_cerez = Request.Cookies["admin_cerezim"];
             if (ModelState.IsValid)
@@ -141,7 +142,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
 
-            return View(product);
+            return View();
         }
 
         // GET: AdminProduct/Delete/5

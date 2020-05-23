@@ -1,0 +1,131 @@
+﻿@model ElEmegi.Ecommerce.Model.Entity.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EncryptedString)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EncryptedString)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DescriptionTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DescriptionTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageTwo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageTwo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageThree)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageThree)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsApproved)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsHome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsHome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

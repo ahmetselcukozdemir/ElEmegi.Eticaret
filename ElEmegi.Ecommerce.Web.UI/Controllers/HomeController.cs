@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml;
 using ElEmegi.Ecommerce.Model.Entity;
 using ElEmegi.Ecommerce.Web.UI.Models;
 
@@ -47,6 +48,12 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             var data = (from x in db.Orders orderby Guid.NewGuid() ascending select x).ToList();
             return PartialView((IEnumerable<Product>) data);
+        }
+
+        public PartialViewResult NewProducts()
+        {
+            var data = db.Products.ToList();
+            return PartialView(data);
         }
         public ActionResult Contact()
         {

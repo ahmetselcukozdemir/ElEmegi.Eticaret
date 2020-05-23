@@ -1,0 +1,112 @@
+﻿@model IEnumerable<ElEmegi.Ecommerce.Model.Entity.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EncryptedString)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescriptionTwo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageTwo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageThree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsHome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EncryptedString)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DescriptionTwo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageTwo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageThree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Stock)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsHome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EncryptedString }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EncryptedString }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EncryptedString })
+        </td>
+    </tr>
+}
+
+</table>

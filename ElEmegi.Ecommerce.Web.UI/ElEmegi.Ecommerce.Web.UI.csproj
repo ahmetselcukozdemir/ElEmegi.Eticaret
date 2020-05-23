@@ -2928,6 +2928,7 @@
     <Content Include="Content\js\slick-custom.js" />
     <Content Include="Content\js\slick-custom.min.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\price.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\vendor\animate\animate.css" />
     <Content Include="Content\vendor\animsition\css\animsition.css" />
@@ -3128,6 +3129,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminBlogController.cs" />
     <Compile Include="Controllers\AdminCategoriesController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminProductController.cs" />
@@ -3135,6 +3137,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
     <Compile Include="Global.asax.cs">
@@ -3293,7 +3296,6 @@
     <Content Include="Views\AdminProduct\Create.cshtml" />
     <Content Include="Views\AdminProduct\Delete.cshtml" />
     <Content Include="Views\AdminProduct\Details.cshtml" />
-    <Content Include="Views\AdminProduct\Edit.cshtml" />
     <Content Include="Views\AdminProduct\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
@@ -3317,6 +3319,13 @@
     <Content Include="Views\Profile\MyOrders.cshtml" />
     <Content Include="Views\Profile\OrderDetails.cshtml" />
     <Content Include="Views\Home\OpportunitiesOfTheDayProduct.cshtml" />
+    <Content Include="Views\Home\NewProducts.cshtml" />
+    <Content Include="Views\AdminProduct\Edit.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3326,6 +3335,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AdminBlog\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ElEmegi.Ecommerce.Model\ElEmegi.Ecommerce.Model.csproj">
