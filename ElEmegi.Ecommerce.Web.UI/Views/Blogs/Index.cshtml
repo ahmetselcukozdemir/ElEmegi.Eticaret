@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ElEmegi.Ecommerce.Model.Entity.Blog>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+
+<h2>Yazılarım</h2>
+
+<p>
+    @Html.ActionLink("Yeni Yazı", "Create","",new{@class="btn btn-success"})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.ActionLink("Güncelle", "Edit", new { id=item.ID },new{@class="btn btn-success"}) |
+            @Html.ActionLink("Detay", "Details", new { id=item.ID },new{@class="btn btn-primary"}) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.ID },new{@class="btn btn-danger"})
+        </td>
+    </tr>
+}
+
+</table>

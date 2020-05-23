@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using ElEmegi.Ecommerce.Model.Entity;
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
 {
-    public class AdminCategoriesController : Controller
+    public class CategoriesController : Controller
     {
         private DataContext db = new DataContext();
 

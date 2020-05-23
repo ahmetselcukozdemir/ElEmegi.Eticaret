@@ -3129,14 +3129,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AdminBlogController.cs" />
-    <Compile Include="Controllers\AdminCategoriesController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminProductController.cs" />
-    <Compile Include="Controllers\BlogController.cs" />
+    <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\ShopController.cs" />
@@ -3288,11 +3288,11 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
-    <Content Include="Views\AdminCategories\Create.cshtml" />
-    <Content Include="Views\AdminCategories\Delete.cshtml" />
-    <Content Include="Views\AdminCategories\Details.cshtml" />
-    <Content Include="Views\AdminCategories\Edit.cshtml" />
-    <Content Include="Views\AdminCategories\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\AdminProduct\Create.cshtml" />
     <Content Include="Views\AdminProduct\Delete.cshtml" />
     <Content Include="Views\AdminProduct\Details.cshtml" />
@@ -3305,8 +3305,6 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Blog\Index.cshtml" />
-    <Content Include="Views\Blog\Details.cshtml" />
     <Content Include="Views\Shop\Index.cshtml" />
     <Content Include="Views\Error\Page404.cshtml" />
     <Content Include="Views\Error\Page403.cshtml" />
@@ -3326,6 +3324,13 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Blogs\Create.cshtml" />
+    <Content Include="Views\Blogs\Delete.cshtml" />
+    <Content Include="Views\Blogs\Details.cshtml" />
+    <Content Include="Views\Blogs\Edit.cshtml" />
+    <Content Include="Views\Blogs\Index.cshtml" />
+    <Content Include="Views\Orders\NotProcessedOrders.cshtml" />
+    <Content Include="Views\Orders\OrdersInCargo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

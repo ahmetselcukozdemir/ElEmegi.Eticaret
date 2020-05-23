@@ -27,9 +27,6 @@
 </head>
 <body>
     <section id="container">
-        <!-- **********************************************************************************************************************************************************
-            TOP BAR CONTENT & NOTIFICATIONS
-            *********************************************************************************************************************************************************** -->
         <!--header start-->
         <header class="header black-bg">
             <div class="sidebar-toggle-box">
@@ -261,7 +258,6 @@
                     if (Convert.ToBoolean(@admin_cerez["isAdmin"]) == true)
                     {
 
-                        
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-users"></i>
@@ -292,8 +288,8 @@
                                 <span>Kategori Yönetimi</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="/AdminCategories/Index/">Kategoriler</a></li>
-                                <li><a href="/AdminCategories/Create/">Yeni Kategori</a></li>
+                                <li><a href="/Categories/Index/">Kategoriler</a></li>
+                                <li><a href="/Categories/Create/">Yeni Kategori</a></li>
                             </ul>
                         </li>
 
@@ -303,7 +299,7 @@
                                 <span>Blog Yönetimi</span>
                             </a>
                             <ul class="sub">
-                                <li><a href="morris.html">Morris</a></li>
+                                <li><a href="/Blogs/Index">Yazılarım</a></li>
                             </ul>
                         </li>
 
@@ -344,9 +340,9 @@
                             <span>Sipariş Yönetimi</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="/Admin/AdminOrders/">Onaysız Siparişlerim</a></li>
-                            <li><a href="/Admin/AdminOrders/">Onaylı Siparişlerim</a></li>
-                            <li><a href="/Admin/AdminOrders/">Tüm Siparişler</a></li>
+                            <li><a href="/Orders/Index/">Tüm Siparişlerim</a></li>
+                            <li><a href="/Orders/NotProcessedOrders/">İşlem Bekleyen Siparişlerim</a></li>
+                            <li><a href="/Orders/OrdersInCargo/">Kargoya Verilen Siparişlerim</a></li>
                         </ul>
                     </li>
                   

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,11 @@ namespace ElEmegi.Ecommerce.Model.Entity
     {
         public int ID { get; set; }
         public string EncryptedString { get; set; }
+        [DisplayName("Sipariş Numarası")]
         public string OrderNumber { get; set; }
+        [DisplayName("Toplam Ücret")]
         public double Total { get; set; }
+        [DisplayName("Sipariş Tarihi")]
         public DateTime OrderDate { get; set; }
         public EnumOrderState OrderState { get; set; }
 
