@@ -44,8 +44,10 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
         public void UpdateCart(Product product,int quantity)
         {
             var data =_cardLines.Find(x => x.Product.ID == product.ID);
-            data.Quantity = quantity;
-
+            if (data !=null)
+            {
+                data.Quantity = quantity;
+            }
         }
         public double Total()
         {
