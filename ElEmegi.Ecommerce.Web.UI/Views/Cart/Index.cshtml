@@ -43,23 +43,27 @@
                                         <td class="column-2">@item.Product.Name</td>
                                         <td class="column-3">$@item.Product.Price</td>
                                         <td class="column-4">
-                                            <div class="flex-w bo5 of-hidden w-size17">                                                
-                                                @Html.EditorFor(model => @item.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                                @*@item.Quantity*@
-                                            </div>
+                                            @using (Html.BeginForm("UpdateFromCart", "Cart",FormMethod.Post))
+                                            {
+                                                <div class="flex-w bo5 of-hidden w-size17">
+                                                    @Html.TextBox("quantity", @item.Quantity,new{@type="number",@class="form-control"}) 
+                                                    @*@Html.EditorFor(model => @item.Quantity, new {htmlAttributes = new {@class = "form-control"}})*@
+                                                    @*@item.Quantity*@
+                                                </div>
+                                                @Html.Hidden("Id", item.Product.ID)
+                                                @*@Html.Hidden("quantity",item.Quantity)*@
+                                                <button type="submit" class="btn "><i class="fas fa-sync" aria-hidden="true"></i> Adet Güncelle</button>
+                                            }
+                                           
                                         </td>
                                         <td class="column-5">@((item.Product.Price * item.Quantity).ToString("c"))</td>
                                         <td>
-                                            @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                            @using (Html.BeginForm("RemoveFromCart", "Cart",FormMethod.Post))
                                             {
                                                 @Html.Hidden("Id", item.Product.ID)
                                                 <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt" aria-hidden="true"></i> Sil</button>
                                             }
-                                            @using (Html.BeginForm("UpdateFromCart", "Cart", new { quantity = item.Quantity }))
-                                            {
-                                                @Html.Hidden("Id", item.ID)
-                                                <button type="submit" class="btn btn-info"><i class="fas fa-trash-alt" aria-hidden="true"></i> Güncelle</button>
-                                            }
+                                          
 
                                         </td>
                                     </tr>

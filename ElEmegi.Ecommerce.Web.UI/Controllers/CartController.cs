@@ -40,11 +40,15 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public ActionResult UpdateFromCart(int Id,int quan)
+        public ActionResult UpdateFromCart(int Id, int quantity)
         {
-         
+            var product = db.Products.Where(x => x.ID == Id).FirstOrDefault();
+            if (product !=null)
+            {
+             GetCart().UpdateCart(product,quantity);
+            }
             return RedirectToAction("Index");
+
         }
         public ActionResult Checkout()
         {

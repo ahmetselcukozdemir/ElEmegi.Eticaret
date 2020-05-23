@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\GetDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -144,8 +145,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ElEmegi.Ecommerce.Model\ElEmegi.Ecommerce.Model.csproj">
+      <Project>{53C88250-EB54-41D3-B061-4304E23D240B}</Project>
+      <Name>ElEmegi.Ecommerce.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ElEmegi.Ecommerce.Web.UI\ElEmegi.Ecommerce.Web.UI.csproj">
+      <Project>{8b9e1151-de24-4092-8d42-a452d2a9d27f}</Project>
+      <Name>ElEmegi.Ecommerce.Web.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
