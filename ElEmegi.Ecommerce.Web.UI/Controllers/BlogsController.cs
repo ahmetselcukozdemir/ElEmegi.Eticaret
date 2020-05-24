@@ -62,7 +62,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("PageError", "Error");
+                return RedirectToAction("Page400", "Error");
             }
             Blog blog = db.Blogs.Find(id);
             if (blog == null)
@@ -91,7 +91,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("PageError", "Error");
+                return RedirectToAction("Page400", "Error");
             }
             Blog blog = db.Blogs.Find(id);
             if (blog == null)

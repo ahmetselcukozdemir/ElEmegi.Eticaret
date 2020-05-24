@@ -53,7 +53,13 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public PartialViewResult NewProducts()
         {
             var data = db.Products.ToList();
-            return PartialView(data);
+            return PartialView(data.OrderByDescending(x=>x.CreatedDate));
+        }
+
+        public PartialViewResult BlogPosts()
+        {
+            var data = db.Blogs.Where(x => x.IsActive == true).OrderByDescending(x => x.CreateDate);
+            return PartialView(data.ToList());
         }
         public ActionResult Contact()
         {
