@@ -3341,6 +3341,7 @@
     <Content Include="Views\Home\CookiePolicy.cshtml" />
     <Content Include="Views\Home\BlogPost.cshtml" />
     <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Admin\MemberInformation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

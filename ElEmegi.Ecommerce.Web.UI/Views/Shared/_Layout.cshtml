@@ -54,36 +54,45 @@
         </div>
     </div>
 
+
     <div class="wrap_header">
         <!-- Logo -->
         <a href="index.html" class="logo">
             <img src="~/Content/images/icons/logo.png" alt="IMG-LOGO">
         </a>
+        <script> 
+            $(function () {
+                $('ul.main_menu li').on('click', function () {
+                    $(this).parent().find('li.a.sale-noti').removeClass('sale-noti');
+                    $(this).addClass('sale-noti');
+                });
+            });
+        </script> 
 
         <!-- Menu -->
         <div class="wrap_menu">
             <nav class="menu">
 
                 <ul class="main_menu">
-                    <li>
+                    <li class="a sale-noti">
                         <a href="/Home/Index/">Anasayfa</a>
                     </li>
-                    <li>
+                    <li class="a">
                         <a href="/Home/About/">Hakkımızda</a>
                     </li>
-                    <li class="sale-noti">
+                    <li class="a">
                         <a href="/Shop/Index/">Alışveriş</a>
                     </li>
 
-                    <li>
+                    <li class="a">
                         <a href="cart.html">Satıcılar</a>
                     </li>
 
-                    <li>
-                        <a href="/Blog/Index/">Blog</a>
+                    <li class="a">
+                        <a href="/Blogs/Index/">Blog</a>
                     </li>
 
-                    <li>
+                    <li class="a">
                         <a href="/Home/Contact/">İletişim</a>
                     </li>
                 </ul>

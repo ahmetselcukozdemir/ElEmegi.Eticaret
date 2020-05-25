@@ -1,0 +1,92 @@
+﻿@model ElEmegi.Ecommerce.Model.Entity.Member
+
+@{
+    ViewBag.Title = "MemberInformation";
+    Layout = "~/Views/Admin/_AdminLayout.cshtml";
+}
+<h2>Kişisel Bilgilerim </h2>
+<hr />
+<form action="/Admin/UpdateMember/" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <div class="form-group">
+            <!-- Password -->
+            @{
+                if (ViewBag.SizeError != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.SizeError</div>
+                }
+            }
+            <script src="~/Content/vendor/jquery/jquery-3.2.1.min.js"></script>
+            <script type="text/javascript">
+                function validateFileType() {
+                    var fileName = document.getElementById("uploadfile").value;
+                    if (fileName != null) {
+                        document.getElementById("clear").style.visibility = "visible";
+                    }
+                    var idxDot = fileName.lastIndexOf(".") + 1;
+                    var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+                    if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
+                        //to do
+                    } else {
+                        alert("Lütfen fotografınızı .jpg,.jpeg ya da .png formatında yükleyiniz.");
+                    }
+                }
+
+            </script>
+            <label class="control-label" for="password_confirm">Mevcut Fotograf</label>
+            <div class="controls">
+                <img src="~/Content/images/profiles/@Model.Photo" width="50" height="65" />
+                <input type="file" name="image" id="uploadfile" class="form-control" accept=".jpg,.jpeg,.png" onchange="validateFileType()" />
+                <button type="button" id="clear" style="visibility: hidden" onclick="document.getElementById('uploadfile').value = ''">Temizle</button>
+                <p>Fotografınızı değiştirmek istiyorsanız lütfen fotograf seçiniz.</p>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- Username -->
+            <label class="control-label" for="username">Ad</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!-- E-mail -->
+            <label class="control-label" for="email">Soyad</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!-- Password-->
+            <label class="control-label" for="password">Telefon</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!-- Password -->
+            <label class="control-label" for="password_confirm">Email</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- Password -->
+            <label class="control-label" for="password_confirm">Şifre</label>
+            <div class="controls">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!-- Button -->
+            <div class="controls">
+                <input type="submit" class="btn btn-success" value="Güncelle" />
+            </div>
+        </div>
+    </fieldset>
+</form>

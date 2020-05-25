@@ -35,8 +35,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public ActionResult Details(int id)
         {
             var product = db.Products.Where(x => x.ID == id).FirstOrDefault();
-            var category = db.Categories.Where(x => x.ID == product.CategoryId).FirstOrDefault();
-            ViewBag.ctgry = category;
+            var related_products = db.Products.Where(x => x.CategoryId == product.CategoryId);
+            ViewBag.related_product = related_products.ToList();
             return View(product);
         }
 

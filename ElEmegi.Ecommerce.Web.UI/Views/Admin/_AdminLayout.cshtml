@@ -232,11 +232,10 @@
             *********************************************************************************************************************************************************** -->
         <!--sidebar start-->
         <aside>
-
             <div id="sidebar" class="nav-collapse ">
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
-                    <p class="centered"><a href="profile.html"><img src="~/Areas/Admin/Content/admin/img/ui-sam.jpg" class="img-circle" width="80"></a></p>
+                    <p class="centered"><a href="profile.html"><img src="~/Content/images/profiles/@admin_cerez["photo"]" class="img-circle" width="80"></a></p>
                  
                     <h5 class="centered"> @{
                         if (admin_cerez != null)
@@ -252,7 +251,17 @@
                                 <span>Durum</span>
                             </a>
                         </li>
-                  
+                    <li class="sub-menu">
+                        <a href="javascript:;">
+                            <i class="fa fa-cart-arrow-down"></i>
+                            <span>Kişisel Bilgilerim</span>
+                        </a>
+                        <ul class="sub">
+                            <li><a href="/Admin/MemberInformation/">Bilgilerim</a></li>
+                            <li><a href="/AdminProduct/Create/">Talep İlet</a></li>
+
+                        </ul>
+                    </li>
 
                 @{
                     if (Convert.ToBoolean(@admin_cerez["isAdmin"]) == true)
