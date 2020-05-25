@@ -4,121 +4,119 @@
     ViewBag.Title = "Edit";
 }
 
-
-
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="card card-profile">
-                        <div style="background-image: url(https://demo.bootstrapious.com/admin-premium/1-4-5/img/photos/paul-morris-116514-unsplash.jpg);" class="card-header"></div>
-                        <div class="card-body text-center">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="card-profile-img">
-                            <h3 class="mb-3">@Model.Name <strong>@Model.Surname</strong></h3>
-                            <p class="mb-4">One morning, when Gregor Samsa woke from troubled </p>
-                        </div>
-                    </div>
-
-                    <form class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">İşlemler</h3>
-                        </div>
-
-                        <div class="card-footer text-left">
-                            @Html.ActionLink("Kişisel Bilgiler", "Edit", "Profile", new { @class = "btn btn-primary" })
-                            <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Siparişlerim</button><br /><br />
-                            <button class="btn btn-primary"><i class="fa fa-commenting"></i> Mesajlar</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-lg-8">
-                @using (Html.BeginForm())
-                {
-                    @Html.AntiForgeryToken()
-
-                    <form class="card">
-                        <div class="card-body">
-                            <h3 class="card-title">Kişisel Bilgileri Güncelle</h3>
-
-                      
-                            <div class="form-horizontal">
-                                <h4>User</h4>
-                                <hr />
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                @Html.HiddenFor(model => model.ID)
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control"}})
-                                        @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        <div class="checkbox">
-                                            @Html.EditorFor(model => model.IsActive)
-                                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Photo, new {htmlAttributes = new {@class = "form-control"}})
-                                        @Html.ValidationMessageFor(model => model.Photo, "", new {@class = "text-danger"})
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-offset-2 col-md-10">
-                                        <input type="submit" value="Save" class="btn btn-default" />
-                                    </div>
-                                </div>
-                            </div>
-                        
-
-                            <div>
-                                @Html.ActionLink("Back to List", "Index")
-                            </div>
-
-                            <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-                            <script src="~/Scripts/jquery.validate.min.js"></script>
-                            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-                        </div>
-
-                    </form>
-                }
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="card card-profile">
+                <div style="background-image: url(https://demo.bootstrapious.com/admin-premium/1-4-5/img/photos/paul-morris-116514-unsplash.jpg);" class="card-header"></div>
+                <div class="card-body text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="card-profile-img">
+                    <h3 class="mb-3">@Model.Name <strong>@Model.Surname</strong></h3>
+                    <p class="mb-4">Hoşgeldiniz.. </p>
                 </div>
             </div>
+
+            <form class="card">
+                <div class="card-header">
+                    <h3 class="card-title">İşlemler</h3>
+                </div>
+
+                <div class="card-footer text-left">
+                    @Html.ActionLink("Kişisel Bilgiler", "Edit", "Profile", new { @class = "btn btn-primary" })
+                    <button class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Siparişlerim</button><br /><br />
+                    <button class="btn btn-primary"><i class="fa fa-commenting"></i> Mesajlar</button>
+                </div>
+            </form>
         </div>
+        <div class="col-lg-8">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <form class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Kişisel Bilgileri Güncelle</h3>
+
+
+                        <div class="form-horizontal">
+                            <h4>User</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.ID)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.IsActive)
+                                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Photo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+
+                        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+                        <script src="~/Scripts/jquery.validate.min.js"></script>
+                        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+                    </div>
+
+                </form>
+            }
+        </div>
+    </div>
+</div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -170,26 +168,26 @@
         vertical-align: bottom;
     }
 
-    .avatar.avatar-md {
-        width: 3rem;
-        height: 3rem;
-    }
+        .avatar.avatar-md {
+            width: 3rem;
+            height: 3rem;
+        }
 
-    .avatar.avatar-lg {
-        width: 4rem;
-        height: 4rem;
-    }
+        .avatar.avatar-lg {
+            width: 4rem;
+            height: 4rem;
+        }
 
-    .avatar.avatar-xl {
-        width: 5rem;
-        height: 5rem;
-    }
+        .avatar.avatar-xl {
+            width: 5rem;
+            height: 5rem;
+        }
 
-    .avatar.avatar-xxl {
-        width: 7rem;
-        height: 7rem;
-        min-width: 7rem;
-    }
+        .avatar.avatar-xxl {
+            width: 7rem;
+            height: 7rem;
+            min-width: 7rem;
+        }
 
     .card-header:first-child {
         border-radius: 0 0 0 0;

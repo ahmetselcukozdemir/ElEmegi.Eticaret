@@ -3,45 +3,44 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
-<main  class="mt-5 pt-4">
-  
+<main class="mt-5 pt-4">
+
     <div class="container dark-grey-text mt-5">
-        
-              
         <h2>Siparişler</h2>
-        <hr/>
+        <hr />
         <div class="row">
             <section class="text-center mb-4">
                 <table class="table table-bordered">
                     <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Order Number</th>
-                        <th>Order Date</th>
-                        <th>Order Status</th>
-                        <th>Order Count</th>
-                        <th>Total</th>
-                        <td></td>
-                    </tr>
+                        <tr>
+                            <th>Id</th>
+                            <th>Order Number</th>
+                            <th>Order Date</th>
+                            <th>Order Status</th>
+                            <th>Order Count</th>
+                            <th>Total</th>
+                            <td></td>
+                        </tr>
                     </thead>
                     <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.ID</td>
-                            <td>@item.OrderNumber</td>
-                            <td>@item.OrderDate</td>
-                            <td>@item.OrderState</td>
-                            <td>@item.OrderLines.Count</td>
-                            <td>@item.Total</td>
-                            <td>
-                                @Html.ActionLink("Detay", "Details", new {id = item.ID}, new {@class = "btn btn-primary btn-sm"})
-                            </td>
-                        </tr>
-                    }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.OrderNumber</td>
+                                <td>@item.OrderDate</td>
+                                <td>@item.OrderState</td>
+                                <td>@item.OrderLines.Count</td>
+                                <td>@item.Total</td>
+                                <td>
+                                    @Html.ActionLink("Detay", "Details", new { id = item.ID }, new { @class = "btn btn-primary btn-sm" })
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
-            </section>       </div>    </div>
-   
-</main>
+            </section>
+        </div>
+    </div>
 
+</main>

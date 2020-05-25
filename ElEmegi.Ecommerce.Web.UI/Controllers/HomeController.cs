@@ -16,7 +16,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
     {
         private DataContext db = new DataContext();
         // GET: Home
-        public ActionResult Index() 
+        public ActionResult Index()
         {
             if (Request.Cookies["cerezim"] != null)
             {
@@ -25,10 +25,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 Session["ad"] = kayitlicerez.Values["ad"];
                 Session["soyad"] = kayitlicerez.Values["soyad"];
                 Session["ID"] = kayitlicerez.Values["ID"].ToString();
-
             }
             var data = db.Products.OrderByDescending(x => x.IsApproved).Take(5).ToList();
-
             var blog = db.Blogs.Where(x => x.IsActive == true).ToList();
             ViewBag.blog = blog;
             return View(data);
@@ -41,6 +39,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             ViewBag.ctgry = category;
             return View(product);
         }
+
         public PartialViewResult GetBestSellers()
         {
             var data = db.Products.OrderByDescending(x => x.IsApproved).Take(5).ToList();
@@ -58,10 +57,15 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public PartialViewResult NewProducts()
         {
             var data = db.Products.Take(10).ToList();
-            return PartialView(data.OrderByDescending(x=>x.CreatedDate));
+            return PartialView(data.OrderByDescending(x => x.CreatedDate));
         }
 
-        public PartialViewResult BlogPosts()
+        public ActionResult BlogPost()
+        {
+            return View();
+        }
+
+        public PartialViewResult _PartialBlog()
         {
             //var data = db.Blogs.Where(x=>x.IsActive == true).ToList();
             //if (data !=null)
@@ -77,21 +81,31 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             var blog = db.Blogs.Where(x => x.ID == id).FirstOrDefault();
             return View(blog);
         }
+
+        public ActionResult About()
+        {
+            return View();
+        }
+
         public ActionResult Contact()
         {
             return View();
         }
 
-        public PartialViewResult test()
+        public ActionResult CookiePolicy()
         {
-            var blog = db.Products.Where(x => x.IsHome == true).ToList();
-            return PartialView(blog);
+            return View();
         }
-        
+
+        public ActionResult FAQ()
+        {
+            return View();
+        }
+
         public ActionResult OrderTracking(string order_id)
         {
             var order = db.Orders.Where(x => x.OrderNumber == order_id.ToString()).Include("OrderLines").FirstOrDefault();
-            if (order !=null)
+            if (order != null)
             {
                 return View(order);
             }
@@ -103,10 +117,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
             return View();
         }
-        public ActionResult About()
-        {
-            return View();
-        }
+
         public Cart GetCart()
         {
             Cart cart = (Cart)Session["Cart"];
@@ -118,6 +129,5 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return cart;
         }
     }
-
 
 }
