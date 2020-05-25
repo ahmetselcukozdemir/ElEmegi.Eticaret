@@ -40,15 +40,12 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 admincerez["isAdmin"] = member.IsAdmin.ToString();
                 admincerez.Expires = DateTime.Now.AddHours(1);
                 Response.Cookies.Add(admincerez);
-
-
             }
             else
             {
                 ViewBag.ErrorMessage = "Kullanıcı adınız veya şireniz hatalı.";
                 return View();
             }
-
             //Session["admin_name"] = member.Name;
             //Session["admin_surname"] = member.Surname;
             //Session["admin_ID"] = member.ID.ToString();
