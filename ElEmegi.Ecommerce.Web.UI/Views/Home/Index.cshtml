@@ -1,4 +1,5 @@
-﻿@model List<ElEmegi.Ecommerce.Model.Entity.Product>
+﻿@using ElEmegi.Ecommerce.Model.Entity;
+@model IEnumerable<Product>
 @{
     ViewBag.Title = "Index";
 }
@@ -175,7 +176,7 @@
         <div class="wrap-slick2">
             <div class="slick2">
 
-                @Html.Partial("NewProducts")
+            @Html.Partial("NewProducts")
 
               
             </div>
@@ -214,11 +215,14 @@
         </div>
 
         <div class="row">
-
-        @Html.Partial("BlogPosts")
-
-        </div>
-    </div>
+            
+               
+                    @Html.Partial("BlogPosts")
+                </div>
+            </div>
+           
+      
+  
 </section>
 
 <!-- Instagram -->

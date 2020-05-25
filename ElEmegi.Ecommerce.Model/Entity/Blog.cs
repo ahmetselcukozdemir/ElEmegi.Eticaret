@@ -24,6 +24,6 @@ namespace ElEmegi.Ecommerce.Model.Entity
         public string Content { get; set; }
         [DisplayName("Oluşturulma Tarihi")]
         public DateTime CreateDate{ get; set; }
-        public bool IsActive { get; set; } = true;
+        public bool IsActive { get; set; }
     }
 }

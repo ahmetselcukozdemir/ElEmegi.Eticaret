@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -27,8 +28,10 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
             }
             var data = db.Products.OrderByDescending(x => x.IsApproved).Take(5).ToList();
-            return View(data);
 
+            var blog = db.Blogs.Where(x => x.IsActive == true).ToList();
+            ViewBag.blog = blog;
+            return View(data);
         }
 
         public ActionResult Details(int id)
@@ -46,24 +49,43 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         public PartialViewResult OpportunitiesOfTheDayProduct()
         {
-            var data = (from x in db.Orders orderby Guid.NewGuid() ascending select x).ToList();
-            return PartialView((IEnumerable<Product>) data);
+            //var data = (from x in db.Orders orderby Guid.NewGuid() ascending select x).ToList();
+            //var data = db.Orders.OrderBy(x=>Guid.NewGuid()).Take(5).ToList();
+            var data = db.Products.Where(x => x.IsHome == true).ToList();
+            return PartialView(data);
         }
 
         public PartialViewResult NewProducts()
         {
-            var data = db.Products.ToList();
+            var data = db.Products.Take(10).ToList();
             return PartialView(data.OrderByDescending(x=>x.CreatedDate));
         }
 
         public PartialViewResult BlogPosts()
         {
-            var data = db.Blogs.Where(x => x.IsActive == true).OrderByDescending(x => x.CreateDate);
-            return PartialView(data.ToList());
+            //var data = db.Blogs.Where(x=>x.IsActive == true).ToList();
+            //if (data !=null)
+            //{
+            //    ViewBag.blog = data;
+            //    return PartialView(data);
+            //}
+            return PartialView();
+        }
+
+        public ActionResult BlogDetails(int? id)
+        {
+            var blog = db.Blogs.Where(x => x.ID == id).FirstOrDefault();
+            return View(blog);
         }
         public ActionResult Contact()
         {
             return View();
+        }
+
+        public PartialViewResult test()
+        {
+            var blog = db.Products.Where(x => x.IsHome == true).ToList();
+            return PartialView(blog);
         }
         
         public ActionResult OrderTracking(string order_id)

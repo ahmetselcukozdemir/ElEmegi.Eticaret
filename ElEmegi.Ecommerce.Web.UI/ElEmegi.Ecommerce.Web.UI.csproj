@@ -3335,6 +3335,8 @@
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Error\Page400.cshtml" />
     <Content Include="Views\Home\BlogPosts.cshtml" />
+    <Content Include="Views\Home\test.cshtml" />
+    <Content Include="Views\Home\BlogDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
