@@ -13,6 +13,10 @@
                 {
                     <div class="alert alert-danger">@ViewBag.SizeError</div>
                 }
+                if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Error</div>
+                }
             }
             <script src="~/Content/vendor/jquery/jquery-3.2.1.min.js"></script>
             <script type="text/javascript">

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ElEmegi.Ecommerce.Model.Entity
-{
+{   
     public enum EnumOrderState
     {
         [Display(Name = "Onay Bekleniyor..")]

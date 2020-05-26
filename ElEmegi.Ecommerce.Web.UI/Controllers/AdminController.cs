@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using ElEmegi.Ecommerce.Model.Entity;
+using ElEmegi.Ecommerce.Web.UI.Models;
 
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
 {
@@ -15,6 +18,39 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            var total_product = db.Products.Count();
+            ViewBag.total_product = total_product;
+            var total_orders = db.Orders.Count();
+            ViewBag.total_orders = total_orders;
+
+            var admin_cerez = Request.Cookies["admin_cerezim"];
+            if (Request.Cookies["admin_cerezim"] != null)
+            {
+                int id = Convert.ToInt32(admin_cerez["id"]);
+                var member = db.Members.Where(x => x.ID == id).FirstOrDefault();
+
+                var orders = db.Orders.Select(i => new AdminOrderModel()
+                {
+                    Id = i.ID,
+                    OrderNumber = i.OrderNumber,
+                    OrderDate = i.OrderDate,
+                    OrderState = i.OrderState,
+                    Total = i.Total,
+                    Count = i.OrderLines.Count,
+                    MemberID = i.MemberID,
+
+                }).Where(x => x.MemberID == id ).ToList();
+
+                ViewBag.completed = orders.Where(x => x.OrderState == EnumOrderState.Completed).Count();
+                ViewBag.orders_waiting = orders.Where(x => x.OrderState == EnumOrderState.Waiting).Count();
+                ViewBag.orders_prepare = orders.Where(x => x.OrderState == EnumOrderState.Prepare).Count();
+
+                if (member != null)
+                {
+                    var count_products = db.Products.Where(x => x.MemberID == id).ToList();
+                    ViewBag.my_products_count = count_products.Count;
+                }
+            }
             return View();
         }
 
@@ -90,10 +126,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 member.Photo = entity.Photo;
                 member.Phone = entity.Phone;
                 member.Password = entity.Password;
-                if (image.FileName != null)
+                if (image.ContentLength > 0 || image.FileName !=null)
                 {
-                    if (image.ContentLength > 0)
-                    {
                         double FileSize = Convert.ToDouble(image.ContentLength / 1024);
                         if (FileSize > 10240)
                         {
@@ -103,7 +137,10 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                         string path = Path.Combine(Server.MapPath("~/Content/images/profiles/" + image_name));
                         image.SaveAs(path);
                         member.Photo = image_name;
-                    }
+                }
+                else
+                {
+                    ViewBag.Error = "Resim yüklenirken bir hata oluştu. Lütfen bilgilerinizi kontrol ediniz.";
                 }
                 db.SaveChanges();
                 ViewBag.SuccessMessage = "Bilgileriniz başarıyla güncellenmiştir.";
