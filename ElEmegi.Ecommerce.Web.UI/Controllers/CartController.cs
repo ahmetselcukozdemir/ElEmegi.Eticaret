@@ -46,6 +46,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public void DiscountCouponForCard(string coupon)
+        {
+
+        }
         public ActionResult Checkout()
         {
             return View(new ShippingDetails());

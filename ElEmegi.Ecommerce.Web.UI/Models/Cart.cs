@@ -29,7 +29,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             }
             else
             {
-                //sepette aynı daha önce eklenen bir ürün varsa adetini bir arttır.
+                //aynı ürün var,o zaman adetini bir arttıralım :) 
                 line.Quantity += quantity;
             }
         }
@@ -48,6 +48,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
         public double Total()
         {
             return _cardLines.Sum(i => i.Product.Price * i.Quantity);
+        }
+
+        public double CouponDiscount(Product product,string coupon)
+        {
+            return 0;
         }
         public void Clear()
         {

@@ -97,7 +97,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                         double FileSize = Convert.ToDouble(image.ContentLength / 1024);
                         if (FileSize > 10240)
                         {
-                            ViewBag.SizeError = "Fotografınız 10 mb'dan büyük olamaz.";
+                            ViewBag.SizeError = "Fotoğraf 10 mb'dan büyük olamaz.";
                         }
                         string image_name = System.IO.Path.GetFileName(image.FileName);
                         string path = Path.Combine(Server.MapPath("~/Content/images/profiles/" + image_name));

@@ -24,20 +24,18 @@
                     var idxDot = fileName.lastIndexOf(".") + 1;
                     var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
                     if (extFile == "jpg" || extFile == "jpeg" || extFile == "png") {
-                        //to do
+                        //dosya uzantısı doğruysa..
                     } else {
                         alert("Lütfen fotografınızı .jpg,.jpeg ya da .png formatında yükleyiniz.");
                     }
                 }
-
             </script>
-            <label class="control-label" for="password_confirm">Mevcut Fotograf</label>
+            <label class="control-label">Mevcut Fotograf</label>
             <div class="controls">
                 <img src="~/Content/images/profiles/@Model.Photo" width="50" height="65" />
                 <input type="file" name="image" id="uploadfile" class="form-control" accept=".jpg,.jpeg,.png" onchange="validateFileType()" />
                 <button type="button" id="clear" style="visibility: hidden" onclick="document.getElementById('uploadfile').value = ''">Temizle</button>
-                <p>Fotografınızı değiştirmek istiyorsanız lütfen fotograf seçiniz.</p>
-
+                <p>Fotoğrafınızı değiştirmek istiyorsanız lütfen fotograf seçiniz.</p>
             </div>
         </div>
         <div class="form-group">
