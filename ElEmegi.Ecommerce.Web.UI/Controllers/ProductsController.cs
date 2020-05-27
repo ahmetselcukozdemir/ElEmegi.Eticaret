@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -56,7 +57,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // POST: Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,EncryptedString,Name,Description,DescriptionTwo,Price,Image,ImageTwo,ImageThree,Stock,IsApproved,IsHome,CreatedDate,CategoryId,MemberID")] Product product)
+        public ActionResult Create( Product product, IEnumerable<HttpPostedFileBase> images)
         {
             var admin_cerez = Request.Cookies["admin_cerezim"];
             if (ModelState.IsValid)
@@ -75,9 +76,19 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 }
                 product.EncryptedString = result;
                 product.CreatedDate = DateTime.Now;
+
+                //images list 
+                
+                var image_one = System.IO.Path.GetFileName(images.ElementAt(0).FileName);
+                var image_two = System.IO.Path.GetFileName(images.ElementAt(1).FileName);
+                var image_three = System.IO.Path.GetFileName(images.ElementAt(2).FileName);
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+            }
+            else
+            {
+                var errors = ModelState.SelectMany(x => x.Value.Errors.Select(z => z.Exception));
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
             return View(product);
