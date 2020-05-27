@@ -27,10 +27,15 @@ namespace ElEmegi.Ecommerce.Model.Entity
         public string ImageThree{ get; set; }
         [DisplayName("Ürün Stok")]
         public int Stock { get; set; }
+        [DisplayName("Aktif Mi ?")]
         public bool IsApproved { get; set; }
+        [DisplayName("Yayında Mı ?")]
         public bool IsHome { get; set; }
+        [DisplayName("Oluşturulma Tarihi")]
         public DateTime CreatedDate{ get; set; }
+        [DisplayName("Kategori")]
         public int CategoryId { get; set; }
+        [DisplayName("Kategori")]
         public Category Category { get; set; }
         public int MemberID{ get; set; }
         public virtual Member Member{ get; set; }

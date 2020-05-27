@@ -17,18 +17,28 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // GET: Products
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Category).Include(p => p.Member);
-            return View(products.ToList());
+            var admin_cerez = Request.Cookies["admin_cerezim"];
+            if (admin_cerez != null)
+            {
+                int id = Convert.ToInt32(admin_cerez["id"]);
+                var products = db.Products.Include(p => p.Category).Include(p => p.Member).Where(x => x.MemberID == id);
+                return View(products.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Login", "Admin");
+            }
         }
 
         // GET: Products/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+
+            Product product = db.Products.Include(p=>p.Category).Where(x => x.EncryptedString == id).FirstOrDefault();
             if (product == null)
             {
                 return HttpNotFound();
@@ -40,68 +50,91 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public ActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name");
-            ViewBag.MemberID = new SelectList(db.Members, "ID", "Name");
             return View();
         }
 
         // POST: Products/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,EncryptedString,Name,Description,DescriptionTwo,Price,Image,ImageTwo,ImageThree,Stock,IsApproved,IsHome,CreatedDate,CategoryId,MemberID")] Product product)
         {
+            var admin_cerez = Request.Cookies["admin_cerezim"];
             if (ModelState.IsValid)
             {
+                if (admin_cerez != null)
+                {
+                    product.MemberID = Convert.ToInt32(admin_cerez["id"]);
+                }
+                //EncryptedString
+                char[] cr = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
+                string result = string.Empty;
+                Random r = new Random();
+                for (int i = 0; i < 15; i++)
+                {
+                    result += cr[r.Next(0, cr.Length - 1)].ToString();
+                }
+                product.EncryptedString = result;
+                product.CreatedDate = DateTime.Now;
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
-            ViewBag.MemberID = new SelectList(db.Members, "ID", "Name", product.MemberID);
             return View(product);
         }
 
         // GET: Products/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            //Product product = db.Products.Find(id);
+            var product = db.Products.Where(x => x.EncryptedString == id).FirstOrDefault();
             if (product == null)
             {
                 return HttpNotFound();
             }
             ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
-            ViewBag.MemberID = new SelectList(db.Members, "ID", "Name", product.MemberID);
             return View(product);
         }
 
         // POST: Products/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name,Description,DescriptionTwo,Price,Image,ImageTwo,ImageThree,Stock,IsApproved,IsHome,CreatedDate,CategoryId,MemberID")] Product product)
+        public ActionResult Edit(Product product)
         {
-            var admin_cerez = Request.Cookies["admin_cerezim"];
-            if (ModelState.IsValid)
+            try
             {
-                product.MemberID = Convert.ToInt32(admin_cerez["id"]);
-                db.Entry(product).State = EntityState.Modified;
+                var admin_cerez = Request.Cookies["admin_cerezim"];
+                int id = Convert.ToInt32(admin_cerez["id"]);
+                var data = db.Products.Where(x => x.EncryptedString == product.EncryptedString).FirstOrDefault();
+                data.Image = product.Image;
+                data.CategoryId = product.CategoryId;
+                data.Description = product.Description;
+                data.IsHome = product.IsHome;
+                data.Name = product.Name;
+                data.Price = product.Price;
+                data.IsHome = product.IsHome;
+                data.ImageTwo = product.ImageTwo;
+                data.ImageThree = product.ImageThree;
+                data.IsApproved = data.IsApproved;
+                ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "ID", "Name", product.CategoryId);
-            ViewBag.MemberID = new SelectList(db.Members, "ID", "Name", product.MemberID);
-            return View(product);
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                ViewBag.ErrorMessage = "Güncelleme işleminde bir hata oluştu. :( Hata kodu =  "+e+"";
+                throw;
+            }
+            
         }
 
         // GET: Products/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {

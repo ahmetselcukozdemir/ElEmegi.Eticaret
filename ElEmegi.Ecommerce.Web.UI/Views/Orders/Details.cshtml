@@ -1,8 +1,99 @@
-﻿
+﻿@using ElEmegi.Ecommerce.Model.Entity
+@model ElEmegi.Ecommerce.Web.UI.Models.OrderDetailsModel
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h2>Details</h2>
+<div class="container " style="margin-top: 80px;">
+    <div class="row">
+        <h2>Sipariş Detay Bilgileri</h2>
+        <hr />
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+        <dl class="row">
+            <dt class="col-sm-3">Siparişi Veren kişi</dt>
+            <dd class="col-sm-9">
+              
+            </dd>
+            <dt class="col-sm-3">Sipariş Durumu</dt>
+            <dd class="col-sm-9">
+
+                @using (Html.BeginForm("UpdateOrderState", "Orders", FormMethod.Post))
+                {
+                    @Html.HiddenFor(i => i.OrderId)
+                    <div class="row">
+                        <div class="col-md-8">
+                            @Html.EnumDropDownListFor(i => i.OrderState, "Seçiniz..", new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-primary">Güncelle</button>
+                        </div>
+                    </div>
+                }
+
+
+            </dd>
+
+            <dt class="col-sm-3">Order Id</dt>
+            <dd class="col-sm-9">@Model.OrderId</dd>
+
+            <dt class="col-sm-3">Sipariş Numarası</dt>
+            <dt class="col-sm-9">@Model.OrderNumber</dt>
+
+            <dt class="col-sm-3">Ücret</dt>
+            <dt class="col-sm-9">@Model.Total ₺ </dt>
+
+            <dt class="col-sm-3">Sipariş Tarihi</dt>
+            <dt class="col-sm-9">@Model.OrderDate.ToShortDateString()</dt>
+
+            <dt class="col-sm-3">Adres</dt>
+            <dd class="col-sm-9">
+                @Model.AdresBasligi
+                <hr />
+                @Model.Adres
+                <br />
+                Sehir: @Model.Sehir / Semt: @Model.Semt / Mahalle: @Model.Mahalle
+                <br />
+                Posta Kodu: @Model.PostaKodu
+
+            </dd>
+
+            <dt class="col-sm-3">Products</dt>
+            <dt class="col-sm-9">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Fotoğraf</th>
+                            <th>Ürün Adı</th>
+                            <th>Adet</th>
+                            <th>Ücret</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.OrderLines)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/Content/Upload/@item.Image" width="70" />
+                                </td>
+                                <td>@item.ProductName</td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Price</td>
+                                <td>
+                                    <a href="/Home/Details/@item.ProductId" class="btn btn-primary" target="_blank">Detay</a>
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </dt>
+        </dl>
+    </div>
+</div>
+
 

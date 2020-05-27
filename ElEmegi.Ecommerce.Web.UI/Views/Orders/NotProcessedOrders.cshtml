@@ -1,8 +1,46 @@
-﻿
+﻿@model IEnumerable<ElEmegi.Ecommerce.Model.Entity.Order>
 @{
-    ViewBag.Title = "NotProcessedOrders";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
+<main class="mt-5 pt-4">
 
-<h2>NotProcessedOrders</h2>
+    <div class="container dark-grey-text mt-5">
+        <h2>İşlem Görmemiş Siparişlerim</h2>
+        <hr />
+        <div class="row">
+            <strong>@Model.Count() adet sipariş bulundu. </strong>
+            <section class="mb-4">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr style="font-weight: bold; ">
+                        <th>Sipariş Numarası</th>
+                        <th>Sipariş Tarihi</th>
+                        <th>Sipariş Durumu</th>
+                        <th>Adet</th>
+                        <th>Ücret</th>
+                        <td></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.OrderNumber</td>
+                            <td>@item.OrderDate</td>
+                            <td><span class="badge-danger">Onay Bekleniyor..</span></td>
+                            <td>@item.OrderLines.Count</td>
+                            <td>@item.Total ₺</td>
+                            <td>
+                                @Html.ActionLink("Detay", "Details", new {id = item.OrderNumber}, new {@class = "btn btn-primary btn-sm"})
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+
+</main>
 
