@@ -53,6 +53,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         }
         public ActionResult Checkout()
         {
+            ViewBag.cart = GetCart();
             return View(new ShippingDetails());
         }
 
@@ -60,6 +61,10 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public ActionResult Checkout(ShippingDetails entity)
         {
             var cart = GetCart();
+            if (cart !=null)
+            {
+                ViewBag.cart = GetCart();
+            }
             if (cart.CartLines.Count == 0)
             {
                 ModelState.AddModelError("NotProductError", "Sepetinizde ürün bulunmamaktadır.");
@@ -70,8 +75,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 SaveOrder(cart, entity);
                 //cartı sıfırla.
                 cart.Clear();
-                return View("Completed");
                 ViewBag.ErrorMessage = "Lütfen sözleşmeyi onaylayın.";
+                return View("Completed");
             }
             return View(entity);
         }

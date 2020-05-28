@@ -18,6 +18,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            var populer_categories = db.Categories.OrderByDescending(x => x.Products.Count).Take(3).ToList();
+            ViewBag.cat_populer = populer_categories;
             if (Request.Cookies["cerezim"] != null)
             {
                 HttpCookie kayitlicerez = Request.Cookies["cerezim"];
