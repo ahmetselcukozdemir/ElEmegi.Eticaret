@@ -62,7 +62,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         public ActionResult BlogPost()
         {
-            return View();
+            var data = db.Blogs.Where(x => x.IsActive == true).ToList();
+            return View(data);
         }
 
         public PartialViewResult _PartialBlog()
