@@ -49,7 +49,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         public void DiscountCouponForCard(string coupon)
         {
-
+            GetCart().CouponDiscount(coupon);
         }
         public ActionResult Checkout()
         {

@@ -2914,6 +2914,7 @@
     <Content Include="Content\images\product2.jpg" />
     <Content Include="Content\images\product3.PNG" />
     <Content Include="Content\images\product4.PNG" />
+    <Content Include="Content\images\products\nophoto.png" />
     <Content Include="Content\images\profiles\banner-01.jpg" />
     <Content Include="Content\images\register.jpg" />
     <Content Include="Content\images\shop-item-09.jpg" />

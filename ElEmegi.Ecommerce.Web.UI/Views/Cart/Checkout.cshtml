@@ -168,16 +168,17 @@
                             foreach (var item_Cart in ViewBag.cart.CartLines)
                             {
                                 <tbody>
-                                    <tr>
-                                        <td>@item_Cart.Product.Name</td>
-                                        <td>@item_Cart.Quantity</td>
-                                        <td>@item_Cart.Product.Price</td>
-                                    </tr>
+                                <tr>
+                                    <td>@item_Cart.Product.Name</td>
+                                    <td>@item_Cart.Quantity</td>
+                                    <td>@item_Cart.Product.Price ₺</td> 
+                                </tr>
+                           
                                 </tbody>
                             }
                         }
 
-                      
+                    
                     </table>
                 </div>
             </div>
@@ -189,14 +190,24 @@
                 </span>
 
                 <span class="m-text21 w-size20 w-full-sm">
-                  @Model.Total
+                    @ViewBag.cart.Total().ToString("c")<strong> ₺</strong> 
                 </span>
             </div>
         </div>
      
            }
            
+    <div class="flex-w flex-sb bo10 p-t-15 p-b-20">
+        <span class="s-text18 w-size19 w-full-sm">
+            Bilgilendirme :
+        </span>
 
+        <div class="w-size20 w-full-sm">
+            <p class="s-text8 p-b-23">
+               Ürünleriniz sipariş verildikten sonra kontrollerin ardından kargoya verilecektir.Bizi tercih ettiğiniz için teşekkür ederiz.
+            </p>
+        </div>
+    </div>
         </div>
 
     </div>

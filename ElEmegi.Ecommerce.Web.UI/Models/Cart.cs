@@ -50,9 +50,13 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             return _cardLines.Sum(i => i.Product.Price * i.Quantity);
         }
 
-        public double CouponDiscount(Product product,string coupon)
+        public double CouponDiscount(string coupon)
         {
-            return 0;
+            var total = _cardLines.Sum(x => x.Product.Price * x.Quantity);
+            double discount;
+            discount = total- (total* (0.25 / 100));
+            return discount;
+
         }
         public void Clear()
         {

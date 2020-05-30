@@ -57,7 +57,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // POST: Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Product product, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult Create([Bind(Include = "ID,Name,Description,DescriptionTwo,Price,Stock,IsApproved,IsHome,CategoryId")] Product product, IEnumerable<HttpPostedFileBase> images)
         {
             var admin_cerez = Request.Cookies["admin_cerezim"];
             if (ModelState.IsValid)
@@ -78,10 +78,23 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 product.CreatedDate = DateTime.Now;
 
                 //images list 
-                
-                var image_one = System.IO.Path.GetFileName(images.ElementAt(0).FileName);
-                var image_two = System.IO.Path.GetFileName(images.ElementAt(1).FileName);
-                var image_three = System.IO.Path.GetFileName(images.ElementAt(2).FileName);
+
+                foreach (var itemImage in images)
+                {
+                    var image_on = System.IO.Path.GetFileName(images.ElementAt(0).FileName);
+                    var image_two = System.IO.Path.GetFileName(images.ElementAt(1).FileName);
+                    var image_three = System.IO.Path.GetFileName(images.ElementAt(2).FileName);
+
+                    if (itemImage != null)
+                    {
+                        string imageFileName = System.IO.Path.GetFileName(itemImage.FileName);
+                        string path = Path.Combine(Server.MapPath("~/Content/images/products/" + itemImage.FileName));
+                        itemImage.SaveAs(path);
+                    }
+                    product.Image = image_on;
+                    product.ImageTwo = image_two;
+                    product.ImageThree = image_three;
+                }
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
