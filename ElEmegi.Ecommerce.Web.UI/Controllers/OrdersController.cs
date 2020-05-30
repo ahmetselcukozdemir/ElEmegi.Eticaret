@@ -61,14 +61,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return View();
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
 
             var admin_cerez = Request.Cookies["admin_cerezim"];
             if (admin_cerez != null)
             {
                 int member_id = Convert.ToInt32(admin_cerez["id"]);
-                var data = db.Orders.Where(x => x.OrderNumber == id.ToString() && x.MemberID == id)
+                var data = db.Orders.Where(x => x.ID == id && x.MemberID == id)
                     .Select(x => new OrderDetailsModel()
                     {
                         OrderId = x.ID,
@@ -108,6 +108,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         public ActionResult UpdateOrderState(int orderId, EnumOrderState orderState)
         {
+            var order = db.Orders.Where(i => i.ID == orderId).FirstOrDefault();
+            if (order != null)
+            {
+                order.OrderState = orderState;
+                db.SaveChanges();
+                TempData["Message"] = "Bilgileriniz kaydedildi.";
+                return RedirectToAction("Index", new { id = orderId });
+            }
             return RedirectToAction("Index", "Orders");
         }
     }

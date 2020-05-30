@@ -5,10 +5,10 @@
     Layout = "~/Views/Admin/_AdminLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Kategoriler</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Yeni Kategori", "Create","",new{@class="btn btn-success"})
 </p>
 <table class="table">
     <tr>
@@ -30,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.ID },new{@class="btn btn-primary"}) |
+            @Html.ActionLink("Detay", "Details", new { id=item.ID },new{@class="btn btn-default"}) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.ID },new{@class="btn btn-danger"})
         </td>
     </tr>
 }

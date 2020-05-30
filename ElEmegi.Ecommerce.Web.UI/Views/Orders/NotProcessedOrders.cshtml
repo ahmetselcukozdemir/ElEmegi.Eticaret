@@ -8,38 +8,51 @@
     <div class="container dark-grey-text mt-5">
         <h2>İşlem Görmemiş Siparişlerim</h2>
         <hr />
-        <div class="row">
-            <strong>@Model.Count() adet sipariş bulundu. </strong>
-            <section class="mb-4">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr style="font-weight: bold; ">
-                        <th>Sipariş Numarası</th>
-                        <th>Sipariş Tarihi</th>
-                        <th>Sipariş Durumu</th>
-                        <th>Adet</th>
-                        <th>Ücret</th>
-                        <td></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.OrderNumber</td>
-                            <td>@item.OrderDate</td>
-                            <td><span class="badge-danger">Onay Bekleniyor..</span></td>
-                            <td>@item.OrderLines.Count</td>
-                            <td>@item.Total ₺</td>
-                            <td>
-                                @Html.ActionLink("Detay", "Details", new {id = item.OrderNumber}, new {@class = "btn btn-primary btn-sm"})
-                            </td>
-                        </tr>
-                    }
-                    </tbody>
-                </table>
-            </section>
-        </div>
+        @{
+            if (@Model.Count() < 1)
+            {
+                <div class="alert alert-danger">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <span><strong>Hata: </strong> Sipariş bulunamadı. <a class="alert-link">Üzerinize atanmış bir sipariş bulunamadı.</a>.</span>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <strong>@Model.Count() adet sipariş bulundu. </strong>
+                    <section class="mb-4">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr style="font-weight: bold; ">
+                                    <th>Sipariş Numarası</th>
+                                    <th>Sipariş Tarihi</th>
+                                    <th>Sipariş Durumu</th>
+                                    <th>Adet</th>
+                                    <th>Ücret</th>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.OrderNumber</td>
+                                        <td>@item.OrderDate</td>
+                                        <td><span class="badge-danger">Onay Bekleniyor..</span></td>
+                                        <td>@item.OrderLines.Count</td>
+                                        <td>@item.Total ₺</td>
+                                        <td>
+                                            @Html.ActionLink("Detay", "Details", new { id = item.OrderNumber }, new { @class = "btn btn-primary btn-sm" })
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            }
+        }
+     
     </div>
 
 </main>
