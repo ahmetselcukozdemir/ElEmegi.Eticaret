@@ -192,6 +192,17 @@
                 <span class="m-text21 w-size20 w-full-sm">
                     @ViewBag.cart.Total().ToString("c")<strong> ₺</strong> 
                 </span>
+                @{
+                    if (Session["coupon"] !=null)
+                    {
+                        <span class="s-text18 w-size19 w-full-sm">
+                            İndirimli Fiyat:
+                        </span>
+                        <span class="m-text21 w-size20 w-full-sm">
+                            @ViewBag.cart.CouponDiscount("").ToString("c")
+                        </span>
+                    }
+                }
             </div>
         </div>
      

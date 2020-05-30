@@ -50,11 +50,15 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             return _cardLines.Sum(i => i.Product.Price * i.Quantity);
         }
 
-        public double CouponDiscount(string coupon)
+        public decimal CouponDiscount(string coupon)
         {
-            var total = _cardLines.Sum(x => x.Product.Price * x.Quantity);
-            double discount;
-            discount = total- (total* (0.25 / 100));
+            decimal discount = 0;
+           
+                discount = 20;
+                var total = Convert.ToDecimal(_cardLines.Sum(x => x.Product.Price * x.Quantity));
+                discount = total - (total * (discount / 100));
+           
+            var discount_total = _cardLines.Sum(a => (decimal)a.Product.Price * a.Quantity - (decimal)discount);
             return discount;
 
         }

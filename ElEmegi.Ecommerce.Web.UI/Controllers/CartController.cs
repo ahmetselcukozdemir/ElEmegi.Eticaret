@@ -47,9 +47,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return RedirectToAction("Index");
         }
 
-        public void DiscountCouponForCard(string coupon)
+        public ActionResult DiscountCouponFromCard(string coupon_code)
         {
-            GetCart().CouponDiscount(coupon);
+            if (coupon_code !=null)
+            {
+                Session["coupon"] = coupon_code;
+            }
+            GetCart().CouponDiscount(coupon_code);
+            return RedirectToAction("Index");
         }
         public ActionResult Checkout()
         {
@@ -76,6 +81,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 //cartı sıfırla.
                 cart.Clear();
                 ViewBag.ErrorMessage = "Lütfen sözleşmeyi onaylayın.";
+                Session["coupon"] = null;
                 return View("Completed");
             }
             return View(entity);
