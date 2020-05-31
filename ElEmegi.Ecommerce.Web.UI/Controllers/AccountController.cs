@@ -36,7 +36,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 Console.WriteLine(e);
                 throw;
             }
-
             return View();
         }
 
@@ -59,14 +58,12 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 cerez.Values.Add("ID",user.ID.ToString());
                 cerez.Expires = DateTime.Now.AddDays(30);
                 Response.Cookies.Add(cerez);
-              
             }
             else
             {
                 ModelState.AddModelError("LoginUserError", "Bilgilerinizi kontrol edin.");
                 return RedirectToAction("Login", "Account");
             }
-
             Session["ad"] = user.Name;
             Session["soyad"] = user.Surname;
             Session["ID"] = user.ID.ToString();
