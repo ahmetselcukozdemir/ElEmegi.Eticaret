@@ -14,6 +14,7 @@ namespace ElEmegi.Ecommerce.API
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
+            GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 

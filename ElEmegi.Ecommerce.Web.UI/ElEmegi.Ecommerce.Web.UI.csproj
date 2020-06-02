@@ -3136,6 +3136,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\DiscountCouponsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
@@ -3350,6 +3351,11 @@
     <Content Include="Views\Members\Details.cshtml" />
     <Content Include="Views\Members\Edit.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\DiscountCoupons\Create.cshtml" />
+    <Content Include="Views\DiscountCoupons\Delete.cshtml" />
+    <Content Include="Views\DiscountCoupons\Details.cshtml" />
+    <Content Include="Views\DiscountCoupons\Edit.cshtml" />
+    <Content Include="Views\DiscountCoupons\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

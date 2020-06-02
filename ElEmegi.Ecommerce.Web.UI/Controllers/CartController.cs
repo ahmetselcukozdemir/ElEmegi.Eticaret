@@ -51,9 +51,20 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             if (coupon_code !=null)
             {
-                Session["coupon"] = coupon_code;
+                var coupon = db.DiscountCoupons.Where(x => x.Name == coupon_code).FirstOrDefault();
+                if (coupon !=null)
+                {
+                    Session["percent"] = coupon.Percent;
+                    Session["coupon"] = coupon_code;
+                    GetCart().CouponDiscount(coupon.Percent);
+                }
+                else
+                {
+                    Session["percent"] = null;
+                    Session["coupon"] =  null;
+                    ViewBag.CouponError = "İndirim kuponunuz hatalı veya kullanım süresi geçmiş olabilir";
+                }
             }
-            GetCart().CouponDiscount(coupon_code);
             return RedirectToAction("Index");
         }
         public ActionResult Checkout()
@@ -82,6 +93,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 cart.Clear();
                 ViewBag.ErrorMessage = "Lütfen sözleşmeyi onaylayın.";
                 Session["coupon"] = null;
+                Session["percent"] = null;
                 return View("Completed");
             }
             return View(entity);

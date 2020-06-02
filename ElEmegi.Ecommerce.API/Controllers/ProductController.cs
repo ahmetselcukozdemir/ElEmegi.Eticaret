@@ -12,10 +12,17 @@ namespace ElEmegi.Ecommerce.API.Controllers
     public class ProductController : ApiController
     {
         private DataContext db = new DataContext();
-        public List<Category> Get()
+        [HttpGet]
+        [Route("api/product/category")]
+        public IEnumerable<Category> Get()
         {
             var data = db.Categories.ToList();
-            return data;
+            var datta = data.ToList().Select(x => new Category
+            {
+                Name = x.Name,
+                Description = x.Description
+            }).ToList();
+            return datta;
         }
 
         public Product Get(int id)
