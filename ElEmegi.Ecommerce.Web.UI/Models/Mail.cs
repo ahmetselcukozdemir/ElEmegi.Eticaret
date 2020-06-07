@@ -51,5 +51,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
         {
             //bugun doğan üyeler için bir tebrik maili. 
         }
+
+        public void ForgotMyPassword(string email)
+        {
+            //şifremi unuttum
+        }
+
     }
 }

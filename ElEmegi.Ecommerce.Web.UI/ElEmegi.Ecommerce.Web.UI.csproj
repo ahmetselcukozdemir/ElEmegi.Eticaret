@@ -3162,6 +3162,7 @@
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\ShippingDetails.cs" />
+    <Compile Include="Models\Sms.cs" />
     <Compile Include="Models\UserOrderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
