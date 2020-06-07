@@ -13,12 +13,12 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             //onaylı telefon mu ?
         }
 
-        public void DiscountMessage()
+        public void DiscountMessage(string phone)
         {
             //indirimler başladı sms'i
         }
 
-        public void CancelOrder()
+        public void CancelOrder(string phone)
         {
             //siparişin iptal edildi.
         }

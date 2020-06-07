@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Xml.Linq;
 using ElEmegi.Ecommerce.Model.Entity;
 using ElEmegi.Ecommerce.Web.UI.Models;
+using Newtonsoft.Json;
 
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
 {
@@ -63,29 +65,39 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         [HttpPost]
         public ActionResult Login(string email, string password)
         {
-            var member = db.Members.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
-            if (member != null)
+            CaptchaResponse response = ValidateCaptcha(Request["g-recaptcha-response"]);
+            if (response.Success && ModelState.IsValid)
             {
-                HttpCookie admincerez = new HttpCookie("admin_cerezim");
-                //admincerez.Values.Add("admin_ad", member.Name);
-                //admincerez.Values.Add("admin_surname", member.Surname);
-                //admincerez.Values.Add("admin_ID", member.ID.ToString());
-                admincerez["id"] = member.ID.ToString();
-                admincerez["name"] = member.Name;
-                admincerez["photo"] = member.Photo;
-                admincerez["isAdmin"] = member.IsAdmin.ToString();
-                admincerez.Expires = DateTime.Now.AddHours(1);
-                Response.Cookies.Add(admincerez);
+                var member = db.Members.Where(x => x.Email == email && x.Password == password).FirstOrDefault();
+                if (member != null)
+                {
+                    HttpCookie admincerez = new HttpCookie("admin_cerezim");
+                    //admincerez.Values.Add("admin_ad", member.Name);
+                    //admincerez.Values.Add("admin_surname", member.Surname);
+                    //admincerez.Values.Add("admin_ID", member.ID.ToString());
+                    admincerez["id"] = member.ID.ToString();
+                    admincerez["name"] = member.Name;
+                    admincerez["photo"] = member.Photo;
+                    admincerez["isAdmin"] = member.IsAdmin.ToString();
+                    admincerez.Expires = DateTime.Now.AddHours(1);
+                    Response.Cookies.Add(admincerez);
+                }
+                else
+                {
+                    ViewBag.ErrorMessage = "Kullanıcı adınız veya şireniz hatalı.";
+                    return View();
+                }
+
+                //Session["admin_name"] = member.Name;
+                //Session["admin_surname"] = member.Surname;
+                //Session["admin_ID"] = member.ID.ToString();
+                return RedirectToAction("Index", "Admin", "");
             }
             else
             {
-                ViewBag.ErrorMessage = "Kullanıcı adınız veya şireniz hatalı.";
-                return View();
+                TempData["Status"] = "Lütfen robot olmadığınızı belirtmek için testi geçiniz.";
+                return RedirectToAction("Login", "Admin");
             }
-            //Session["admin_name"] = member.Name;
-            //Session["admin_surname"] = member.Surname;
-            //Session["admin_ID"] = member.ID.ToString();
-            return RedirectToAction("Index", "Admin", "");
         }
 
         public ActionResult Logout()
@@ -146,6 +158,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 ViewBag.SuccessMessage = "Bilgileriniz başarıyla güncellenmiştir.";
             }
             RedirectToAction("MemberInformation").ExecuteResult(this.ControllerContext);
+        }
+        [HttpPost]
+        public static CaptchaResponse ValidateCaptcha(string response)
+        {
+            string secret = System.Web.Configuration.WebConfigurationManager.AppSettings["recaptchaPrivateKey"];
+            var client = new WebClient();
+            var jsonResult = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+            return JsonConvert.DeserializeObject<CaptchaResponse>(jsonResult.ToString());
         }
     }
 }

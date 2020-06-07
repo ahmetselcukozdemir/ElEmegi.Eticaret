@@ -2,9 +2,7 @@
 @{
     Layout = null;
 }
-
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -18,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="~/Content/adminlogin/vendor/select2/select2.min.css">
     <link rel="stylesheet" type="text/css" href="~/Content/adminlogin/css/util.css">
     <link rel="stylesheet" type="text/css" href="~/Content/adminlogin/css/main.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
 </head>
 <body>
     <div class="limiter">
@@ -53,7 +52,18 @@
                             <i class="fa fa-lock"></i>
                         </span>
                     </div>
-
+                    <div class="wrap-input100 validate-input m-b-10" data-validate="Recaptcha is required">
+                    <div class="g-recaptcha" data-sitekey="6LcfNAEVAAAAAIuOBpzCOLkUfHGpQEVsLbPWBo6e"></div>   
+                    @{
+                        if (@TempData["Status"] != null)
+                        {
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <strong>Hey dostum!</strong>Robot olup olmadığını anlamamız için testi geçmelisin.
+                            </div>
+                        }
+                    }
+                    </div>
                     <div class="container-login100-form-btn p-t-10">
                         <button type="submit" class="login100-form-btn">
                             Giriş Yap
