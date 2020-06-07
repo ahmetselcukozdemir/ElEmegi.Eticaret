@@ -19,5 +19,6 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
 
         [DisplayName("Beni hatırla")]
         public bool RememberMe { get; set; }
+        public string Captcha { get; set; }
     }
 }

@@ -1,8 +1,15 @@
 ﻿using ElEmegi.Ecommerce.Model.Entity;
 using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using ElEmegi.Ecommerce.Web.UI.Models;
+using Newtonsoft.Json;
 
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
 {
@@ -24,18 +31,28 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         [HttpPost]
         public ActionResult Register(User user)
         {
-            try
+            CaptchaResponse response = ValidateCaptcha(Request["g-recaptcha-response"]);
+            if (response.Success && ModelState.IsValid)
             {
-                user.IsActive = true;
-                user.LastActivityDate = DateTime.Now;
-                db.Users.Add(user);
-                db.SaveChanges();
+                try
+                {
+                    user.IsActive = true;
+                    user.LastActivityDate = DateTime.Now;
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e);
-                throw;
+                TempData["Status"] = "Lütfen robot olmadığınızı belirtmek için testi geçiniz.";
+                return RedirectToAction("Register", "Account");
             }
+           
             return View();
         }
 
@@ -48,26 +65,36 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         [HttpPost]
         public ActionResult Login(string Email,string Password)
         {
-            var user = db.Users.Where(x => x.Email == Email && x.Password == Password).FirstOrDefault();
-            if (user !=null)
+            CaptchaResponse response = ValidateCaptcha(Request["g-recaptcha-response"]);
+            if (response.Success && ModelState.IsValid)
             {
-                HttpCookie cerez = new HttpCookie("cerezim");
-                cerez.Values.Add("eposta", user.Email);
-                cerez.Values.Add("ad", user.Name);
-                cerez.Values.Add("soyad",user.Surname);
-                cerez.Values.Add("ID",user.ID.ToString());
-                cerez.Expires = DateTime.Now.AddDays(30);
-                Response.Cookies.Add(cerez);
+                var user = db.Users.Where(x => x.Email == Email && x.Password == Password).FirstOrDefault();
+                if (user != null)
+                {
+                    HttpCookie cerez = new HttpCookie("cerezim");
+                    cerez.Values.Add("eposta", user.Email);
+                    cerez.Values.Add("ad", user.Name);
+                    cerez.Values.Add("soyad", user.Surname);
+                    cerez.Values.Add("ID", user.ID.ToString());
+                    cerez.Expires = DateTime.Now.AddDays(30);
+                    Response.Cookies.Add(cerez);
+                }
+                else
+                {
+                    ModelState.AddModelError("LoginUserError", "Bilgilerinizi kontrol edin.");
+                    return RedirectToAction("Login", "Account");
+                }
+
+                Session["ad"] = user.Name;
+                Session["soyad"] = user.Surname;
+                Session["ID"] = user.ID.ToString();
+                return RedirectToAction("Index", "Home");
             }
             else
             {
-                ModelState.AddModelError("LoginUserError", "Bilgilerinizi kontrol edin.");
+                TempData["Status"] = "Lütfen robot olmadığınızı belirtmek için testi geçiniz.";
                 return RedirectToAction("Login", "Account");
             }
-            Session["ad"] = user.Name;
-            Session["soyad"] = user.Surname;
-            Session["ID"] = user.ID.ToString();
-            return RedirectToAction("Index","Home");
         }
 
         public ActionResult Logout()
@@ -83,5 +110,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+        [HttpPost]
+        public static CaptchaResponse ValidateCaptcha(string response)
+        {
+            string secret = System.Web.Configuration.WebConfigurationManager.AppSettings["recaptchaPrivateKey"];
+            var client = new WebClient();
+            var jsonResult = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+            return JsonConvert.DeserializeObject<CaptchaResponse>(jsonResult.ToString());
+        }
+
     }
 }

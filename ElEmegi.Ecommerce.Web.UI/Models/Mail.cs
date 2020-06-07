@@ -57,5 +57,10 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             //şifremi unuttum
         }
 
+        public void CancelOrder(string email)
+        {
+            //siparişin iptal edildi e-maili.
+        }
+
     }
 }

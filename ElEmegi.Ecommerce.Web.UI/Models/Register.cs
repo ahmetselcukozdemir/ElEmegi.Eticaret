@@ -29,5 +29,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
         [Required]
         [DisplayName("Cinsiyet")]
         public bool Gender{ get; set; }
+        [Required]
+        [Display(Name = "Kaç yapar?")]
+        public string Captcha { get; set; }
     }
 }

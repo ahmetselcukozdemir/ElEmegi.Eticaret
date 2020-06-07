@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Login";
 }
+<script src="https://www.google.com/recaptcha/api.js"></script>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -25,8 +26,16 @@
                 @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
             </div>
         </div>
-
-
+        <div class="g-recaptcha" data-sitekey="6LcfNAEVAAAAAIuOBpzCOLkUfHGpQEVsLbPWBo6e"></div>   
+        @{
+            if (@TempData["Status"] != null)
+            {
+                <div class="alert alert-danger alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <strong>Hey dostum!</strong>Robot olup olmadığını anlamamız için testi geçmelisin.
+                </div>
+            }
+        }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Giriş Yap" class="btn btn-primary"/>
