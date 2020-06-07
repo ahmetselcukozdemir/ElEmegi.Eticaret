@@ -52,13 +52,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // POST: Users/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Surname,Email,Password,IsActive,Photo,LastActivityDate,Gender")] User user)
+        public ActionResult Create([Bind(Include = "ID,Name,Surname,Email,Password,IsActive,LastActivityDate,Gender")] User user)
         {
             if (ModelState.IsValid)
             {
                 var admin_cerez = Request.Cookies["admin_cerezim"];
                 if (admin_cerez != null)
                 {
+                    
                     db.Users.Add(user);
                     db.SaveChanges();
                 }

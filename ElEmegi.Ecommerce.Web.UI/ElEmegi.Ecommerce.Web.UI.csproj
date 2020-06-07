@@ -3157,6 +3157,7 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MyOrdersModel.cs" />
     <Compile Include="Models\OrderDetailsModel.cs" />
+    <Compile Include="Models\Mail.cs" />
     <Compile Include="Models\OrderLineModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\Register.cs" />

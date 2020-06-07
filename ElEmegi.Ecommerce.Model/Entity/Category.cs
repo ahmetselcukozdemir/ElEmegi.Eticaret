@@ -17,6 +17,15 @@ namespace ElEmegi.Ecommerce.Model.Entity
         [DisplayName("Açıklama")]
         public string Description { get; set; }
 
+        public int SubCategoryID { get; set; }
+
         public List<Product> Products { get; set; }
+    }
+
+    public class SubCategory
+    {
+        public int ID{ get; set; }
+        public string Name{ get; set; }
+        public string Description { get; set; }
     }
 }

@@ -24,6 +24,7 @@ namespace ElEmegi.Ecommerce.Model.Entity
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<SubCategory> SubCategories{ get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<User> Users{ get; set; }
