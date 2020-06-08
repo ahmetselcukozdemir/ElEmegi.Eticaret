@@ -3125,6 +3125,8 @@
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
     <Content Include="Views\EMailTemplate\css\OrderMail.css" />
+    <Content Include="Views\MailTemplate\css\NewUserMail.css" />
+    <Content Include="Views\MailTemplate\css\OrderMail.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3362,6 +3364,8 @@
     <Content Include="Views\DiscountCoupons\Edit.cshtml" />
     <Content Include="Views\DiscountCoupons\Index.cshtml" />
     <Content Include="Views\EMailTemplate\OrderMail.cshtml" />
+    <Content Include="Views\MailTemplate\OrderMail.cshtml" />
+    <Content Include="Views\MailTemplate\NewUserMail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -16,6 +16,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             return View(GetCart());
         }
+
+        public ActionResult NewUserMail()
+        {
+            return View();
+        }
         public Cart GetCart()
         {
             Cart cart = (Cart)Session["Cart"];

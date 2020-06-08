@@ -40,6 +40,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     user.LastActivityDate = DateTime.Now;
                     db.Users.Add(user);
                     db.SaveChanges();
+                    Mail mail = new Mail();
+                    mail.NewUserMail(user.Email,user.Name,user.Surname);
                 }
                 catch (Exception e)
                 {

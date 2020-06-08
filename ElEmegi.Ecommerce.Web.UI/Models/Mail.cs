@@ -32,7 +32,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
                 message.IsBodyHtml = true;
                 message.BodyEncoding = Encoding.UTF8;
                 message.Subject = "Siparişiniz Bize Ulaştı :) ";
-                message.Body = CreateBodyMail(order_number,total_price);
+                message.Body = CreateBodyMailOrder(order_number,total_price);
                 smtpClient.Send(message);
             }
             catch (Exception e)
@@ -42,10 +42,10 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             }
            
         }
-        private string CreateBodyMail(string order_number, string total_price)
+        private string CreateBodyMailOrder(string order_number, string total_price)
         {
             string body = string.Empty;
-            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Views/EMailTemplate/OrderMail.cshtml")))
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Views/MailTemplate/OrderMail.cshtml")))
             {
                 body = reader.ReadToEnd();
             }
@@ -54,9 +54,29 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             return body;
         }
     
-        public void NewUserMail(string email)
+        public void NewUserMail(string email,string name, string surname)
         {
             //aramıza hoşgeldin yeni kullanıcı 
+            MailMessage message = new MailMessage();
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["SMTPuser"], ConfigurationManager.AppSettings["SMTPpassword"]);
+            smtpClient.Port = 587;
+            smtpClient.Host = "smtp.gmail.com";
+            smtpClient.EnableSsl = true;
+            message.To.Add(email);
+            message.From = new MailAddress(ConfigurationManager.AppSettings["SMTPuser"]);
+            message.IsBodyHtml = true;
+            message.BodyEncoding = Encoding.UTF8;
+            message.Subject = "Aramıza hoşgeldin :) ";
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Views/MailTemplate/NewUserMail.cshtml")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{name}", name);
+            body = body.Replace("{surname}", surname);
+            message.Body = body;
+            smtpClient.Send(message);
         }
 
         public void DiscountNews(IEnumerable<User> users)
