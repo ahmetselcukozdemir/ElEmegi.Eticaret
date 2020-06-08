@@ -3124,6 +3124,7 @@
     <Content Include="scripts\jquery.validate.unobtrusive.js" />
     <Content Include="scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
+    <Content Include="Views\EMailTemplate\css\OrderMail.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -3137,6 +3138,7 @@
     <Compile Include="Controllers\BlogsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\DiscountCouponsController.cs" />
+    <Compile Include="Controllers\EMailTemplateController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
@@ -3359,6 +3361,7 @@
     <Content Include="Views\DiscountCoupons\Details.cshtml" />
     <Content Include="Views\DiscountCoupons\Edit.cshtml" />
     <Content Include="Views\DiscountCoupons\Index.cshtml" />
+    <Content Include="Views\EMailTemplate\OrderMail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

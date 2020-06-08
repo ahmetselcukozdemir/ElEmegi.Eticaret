@@ -1,8 +1,11 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Hosting;
+    using System.Web.Mvc;
 using ElEmegi.Ecommerce.Model.Entity;
 using ElEmegi.Ecommerce.Web.UI.Models;
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
@@ -122,6 +125,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 order.Neighborhood = entity.Mahalle;
                 order.PostCode = entity.PostaKodu;
                 order.OrderUserControl = true;
+                order.Email = entity.Email;
                 order.UserID = Convert.ToInt32(Session["ID"]);
                 order.OrderLines = new List<OrderLine>();
                 foreach (var pr in cart.CartLines)
@@ -135,6 +139,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 db.Orders.Add(order);
                 Mail email = new Mail();
                 //email.Mail(order.Email);
+                email.OrderMail(order.Email,order.OrderNumber,order.Total.ToString());
                 db.SaveChanges();
             }
             else
@@ -153,7 +158,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 order.Neighborhood = entity.Mahalle;
                 order.PostCode = entity.PostaKodu;
                 order.OrderUserControl = false;
-
+                order.Email = entity.Email;
                 order.OrderLines = new List<OrderLine>();
                 foreach (var pr in cart.CartLines)
                 {
@@ -164,8 +169,18 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     order.OrderLines.Add(ordeline);
                 }
                 Mail orderEmail = new Mail();
+                orderEmail.OrderMail(order.Email, order.OrderNumber, order.Total.ToString());
                 //orderEmail.Mail(order.Email);
             }
+        }
+
+        public static async Task<string> EmailTemplate()
+        {
+            var templateFilePath = HostingEnvironment.MapPath("~/Template/NewUserMail.cshtml");
+            StreamReader objStreamReader = new StreamReader(templateFilePath);
+            var body = await objStreamReader.ReadToEndAsync();
+            objStreamReader.Close();
+            return body;
         }
 
         public Cart GetCart()
