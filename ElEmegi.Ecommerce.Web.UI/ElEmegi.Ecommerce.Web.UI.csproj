@@ -2932,6 +2932,7 @@
     <Content Include="Content\js\slick-custom.js" />
     <Content Include="Content\js\slick-custom.min.js" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\product_comments.css" />
     <Content Include="Content\tab.css" />
     <Content Include="Content\vendor\animate\animate.css" />
     <Content Include="Content\vendor\animsition\css\animsition.css" />

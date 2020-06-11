@@ -39,6 +39,13 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             var product = db.Products.Include("ProductComments").Where(x => x.ID == id).FirstOrDefault();
             var related_products = db.Products.Where(x => x.CategoryId == product.CategoryId);
             ViewBag.related_product = related_products.ToList();
+            var product_comments = db.ProductComments.Where(x => x.IsApproved == true && x.ProductID == id).ToList();
+            ViewBag.Comments = product_comments;
+            ViewBag.Comment_Count = product_comments.Count;
+            if (product_comments.Count == null)
+            {
+                ViewBag.CommentsError = "Bu ürüne yorum yapılmamış.";
+            }
             return View(product);
         }
 
@@ -83,6 +90,24 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             var blog = db.Blogs.Where(x => x.ID == id).FirstOrDefault();
             return View(blog);
+        }
+
+        [HttpPost]
+        public ActionResult AddProductComment(ProductComments productComments,int id)
+        {
+            if (ModelState.IsValid)
+            {
+                productComments.ProductID = id;
+                productComments.CreatedDate = DateTime.Now;
+                db.ProductComments.Add(productComments);
+                db.SaveChanges();
+                Response.Redirect(Request.UrlReferrer.ToString());
+            }
+            else
+            {
+                ViewBag.Error = "Lütfen tüm alanları doldurunuz";
+            }
+            return View();
         }
 
         public ActionResult About()

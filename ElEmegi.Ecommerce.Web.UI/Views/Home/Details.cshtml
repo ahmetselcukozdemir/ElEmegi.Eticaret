@@ -127,7 +127,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#comments" role="tab">
-                                <i class="now-ui-icons shopping_cart-simple"></i> Ürün Yorumları (@Model.ProductComments.Count) 
+                                <i class="now-ui-icons shopping_cart-simple"></i> Ürün Yorumları (@ViewBag.Comment_Count) 
                             </a>
                         </li>
                     </ul>
@@ -144,13 +144,55 @@
                             <p><strong>Eklenme Tarihi :</strong>@Model.CreatedDate.ToString("d")</p>
                         </div>
                         <div class="tab-pane" id="comments" role="tabpanel">
-                         dhadha
+                        
+                            <div class="container">
+                                <div class="col-lg-12 col-sm-12 text-center">
+                                    <div class="well">
+                                    @using (Html.BeginForm("AddProductComment", "Home",FormMethod.Post))
+                                    {
+                                        <h4>Yorum yapmak ister misin ?</h4>
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Ad ve soyad.."/>
+                                        <div class="input-group">
+                                            @Html.HiddenFor(i => i.ID)
+                                            <input type="text" id="content" name="content" class="form-control input-sm chat-input" placeholder="yorumunuzu buraya girin.."/>
+                                            <span class="input-group-btn" onclick="addComment()">
+                                               <button type="submit" class="btn btn-success">Yorum Yap</button>
+                                            </span>
+                                        </div>
+                                    }
+                                        <hr data-brackets-id="12673">
+                                    <ul data-brackets-id="12674" id="sortable" class="list-unstyled ui-sortable">
+                                        @{
+                                            foreach (var productComment in ViewBag.Comments)
+                                            {
+                                                if (ViewBag.Comments != null)
+                                                {
+                                                    <strong class="pull-left primary-font">@productComment.Name</strong>
+                                                    <small class="pull-right text-muted">
+                                                        <span class="glyphicon glyphicon-time"></span>@productComment.CreatedDate
+                                                    </small>
+                                                    <br>
+                                                    <li class="ui-state-default">@productComment.Content</li>
+                                                }
+                                                if (ViewBag.CommentsError != null)
+                                                {
+                                                   @Html.TextBox("","dgagaa")
+                                                }
+                                            }
+
+                                        }
+                                        
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                        
                 </div>
             </div>
         </div>
     
+    </div>
     </div>
 </div>
 <link href="~/Content/tab.css" rel="stylesheet" />
@@ -227,5 +269,5 @@
 <script type="text/javascript" src="~/Content/vendor/countdowntime/countdowntime.js"></script>
 <script type="text/javascript" src="~/Content/vendor/lightbox2/js/lightbox.min.js"></script>
 <script type="text/javascript" src="~/Content/vendor/sweetalert/sweetalert.min.js"></script>
-
+<link href="~/Content/product_comments.css" rel="stylesheet" />
 <script src="~/Content/js/main.js"></script>
