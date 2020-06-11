@@ -34,15 +34,15 @@
                         </div>
                     </div>
 
-                    <div class="item-slick3" data-thumb="images/thumb-item-02.jpg">
+                    <div class="item-slick3" data-thumb="@Model.ImageTwo">
                         <div class="wrap-pic-w">
-                            <img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
+                            <img src="@Model.ImageTwo" alt="IMG-PRODUCT">
                         </div>
                     </div>
 
-                    <div class="item-slick3" data-thumb="images/thumb-item-03.jpg">
+                    <div class="item-slick3" data-thumb="@Model.ImageThree">
                         <div class="wrap-pic-w">
-                            <img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
+                            <img src="@Model.ImageThree" alt="IMG-PRODUCT">
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
             </h4>
 
             <span class="m-text17">
-                $@Model.Price
+                @Model.Price.ToString("c")
             </span>
 
             <p class="s-text8 p-t-10">
@@ -65,15 +65,14 @@
             <!--  -->
             <div class="p-t-33 p-b-60">
                 <div class="flex-r-m flex-w p-t-10">
+                    @Html.Label("","Adet :")
                     <div class="w-size16 flex-m flex-w">
-
-
                         <!-- Button -->
-                        <label>Adet :</label>
                         @using (Html.BeginForm("AddToCart", "Cart"))
                         {
+
                             <div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
-                                @Html.TextBox("text1", 1, new { @type = "number" })
+                                @Html.TextBox("text1", 1, new {@type = "number"})
                             </div>
 
                             <div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
@@ -91,14 +90,10 @@
                 </div>
             </div>
 
-            <div class="p-b-45">
-                <span class="s-text8 m-r-35">Kategori :</span>
-            </div>
-
             <!--  -->
             <div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
                 <h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-                    Description
+                    Açıklama
                     <i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
                     <i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
                 </h5>
@@ -109,38 +104,56 @@
                     </p>
                 </div>
             </div>
-
-            <div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
-                <h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-                    Additional information
-                    <i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
-                    <i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
-                </h5>
-
-                <div class="dropdown-content dis-none p-t-15 p-b-23">
-                    <p class="s-text8">
-                        Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
-                    </p>
-                </div>
-            </div>
-
-            <div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
-                <h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-                    Reviews (0)
-                    <i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
-                    <i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
-                </h5>
-
-                <div class="dropdown-content dis-none p-t-15 p-b-23">
-                    <p class="s-text8">
-                        Fusce ornare mi vel risus porttitor dignissim. Nunc eget risus at ipsum blandit ornare vel sed velit. Proin gravida arcu nisl, a dignissim mauris placerat
-                    </p>
-                </div>
-            </div>
         </div>
     </div>
 </div>
 
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 ml-auto col-xl-12 mr-auto">
+            <!-- Nav tabs -->
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs justify-content-center" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#member" role="tab">
+                                <i class="now-ui-icons objects_umbrella-13"></i> Satıcı Bilgileri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#property" role="tab">
+                                <i class="now-ui-icons shopping_cart-simple"></i> Ürün Özellikleri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#comments" role="tab">
+                                <i class="now-ui-icons shopping_cart-simple"></i> Ürün Yorumları (@Model.ProductComments.Count) 
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <!-- Tab panes -->
+                    <div class="tab-content text-center">
+                        <div class="tab-pane active" id="member" role="tabpanel">
+                            <p>Ad ve soyad :</> @Model.Member.Name @Model.Member.Surname</p><br/>
+                            <p><strong>Mail :</strong> @Model.Member.Email</p>
+                        </div>
+                        <div class="tab-pane" id="property" role="tabpanel">
+                            <p><strong> Açıklama 2 </strong> : @Model.DescriptionTwo</p><br/>
+                            <p><strong>Eklenme Tarihi :</strong>@Model.CreatedDate.ToString("d")</p>
+                        </div>
+                        <div class="tab-pane" id="comments" role="tabpanel">
+                         dhadha
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</div>
+<link href="~/Content/tab.css" rel="stylesheet" />
 
 <!-- Relate Product -->
 <section class="relateproduct bgwhite p-t-45 p-b-138">
@@ -198,14 +211,14 @@
     $('.block2-btn-addcart').each(function () {
         var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
         $(this).on('click', function () {
-            swal(nameProduct, "is added to cart !", "success");
+            swal(nameProduct, "sepete eklendi !", "success");
         });
     });
 
     $('.block2-btn-addwishlist').each(function () {
         var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
         $(this).on('click', function () {
-            swal(nameProduct, "is added to wishlist !", "success");
+            swal(nameProduct, "istek listende  !", "success");
         });
     });
 </script>

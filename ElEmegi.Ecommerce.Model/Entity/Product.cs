@@ -39,5 +39,6 @@ namespace ElEmegi.Ecommerce.Model.Entity
         public Category Category { get; set; }
         public int MemberID{ get; set; }
         public virtual Member Member{ get; set; }
+        public List<ProductComments> ProductComments { get; set; }
     }
 }

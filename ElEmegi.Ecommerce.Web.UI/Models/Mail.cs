@@ -25,7 +25,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
                 SmtpClient smtpClient = new SmtpClient();
                 smtpClient.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["SMTPuser"], ConfigurationManager.AppSettings["SMTPpassword"]);
                 smtpClient.Port = 587;
-                smtpClient.Host = "smtp.yandex.com.tr";
+                smtpClient.Host = "smtp.gmail.com";
                 smtpClient.EnableSsl = true;
                 message.To.Add(email);
                 message.From = new MailAddress(ConfigurationManager.AppSettings["SMTPuser"]);

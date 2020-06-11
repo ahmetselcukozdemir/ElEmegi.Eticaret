@@ -72,15 +72,17 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         }
         public ActionResult Checkout()
         {
-            if (Request.Cookies["cerezim"] == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            else
-            {
-                ViewBag.cart = GetCart();
-                return View(new ShippingDetails());
-            }
+            //if (Request.Cookies["cerezim"] == null)
+            //{
+            //    return RedirectToAction("Login", "Account");
+            //}
+            //else
+            //{
+            //    ViewBag.cart = GetCart();
+            //    return View(new ShippingDetails());
+            //}
+            ViewBag.cart = GetCart();
+            return View(new ShippingDetails());
         }
         [HttpPost]
         public ActionResult Checkout(ShippingDetails entity)
@@ -137,10 +139,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     order.OrderLines.Add(ordeline);
                 }
                 db.Orders.Add(order);
+                db.SaveChanges();
                 Mail email = new Mail();
                 //email.Mail(order.Email);
                 email.OrderMail(order.Email,order.OrderNumber,order.Total.ToString());
-                db.SaveChanges();
+               
             }
             else
             {
@@ -168,6 +171,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     ordeline.ProductID = pr.Product.ID;
                     order.OrderLines.Add(ordeline);
                 }
+
+                db.SaveChanges();
                 Mail orderEmail = new Mail();
                 orderEmail.OrderMail(order.Email, order.OrderNumber, order.Total.ToString());
                 //orderEmail.Mail(order.Email);

@@ -33,5 +33,6 @@ namespace ElEmegi.Ecommerce.Model.Entity
         public DbSet<Log> Logs{ get; set; }
         public DbSet<DiscountCoupon> DiscountCoupons{ get; set; }
         public DbSet<UserAddress> UserAddress { get; set; }
+        public DbSet<ProductComments> ProductComments{ get; set; }
     }
 }

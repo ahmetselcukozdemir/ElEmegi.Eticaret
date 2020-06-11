@@ -2874,6 +2874,7 @@
     <Content Include="Content\images\icons\logo.png" />
     <Content Include="Content\images\icons\mastercard.png" />
     <Content Include="Content\images\icons\paypal.png" />
+    <Content Include="Content\images\icons\shopping-cart.png" />
     <Content Include="Content\images\icons\video-16-9.jpg" />
     <Content Include="Content\images\icons\visa.png" />
     <Content Include="Content\images\item-01.jpg" />
@@ -2931,8 +2932,7 @@
     <Content Include="Content\js\slick-custom.js" />
     <Content Include="Content\js\slick-custom.min.js" />
     <Content Include="Content\PagedList.css" />
-    <Content Include="Content\price.css" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\tab.css" />
     <Content Include="Content\vendor\animate\animate.css" />
     <Content Include="Content\vendor\animsition\css\animsition.css" />
     <Content Include="Content\vendor\animsition\css\animsition.min.css" />
