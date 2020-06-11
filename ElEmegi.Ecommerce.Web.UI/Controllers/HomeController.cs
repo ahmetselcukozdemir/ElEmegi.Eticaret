@@ -112,21 +112,25 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         public ActionResult About()
         {
+            //waitingfordocument
             return View();
         }
 
         public ActionResult Contact()
         {
+            //waitingfordocument
             return View();
         }
 
         public ActionResult CookiePolicy()
         {
+
             return View();
         }
 
         public ActionResult FAQ()
         {
+            //waitingfordocument
             return View();
         }
 
