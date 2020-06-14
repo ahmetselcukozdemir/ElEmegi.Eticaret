@@ -26,9 +26,6 @@ namespace ElEmegi.Ecommerce.Model.Entity
         [DisplayName("Kullanıcı Fotograf")]
         public string Photo{ get; set; }
         public DateTime LastActivityDate{ get; set; }
-        [DisplayName("Cinsiyet")]
-        public bool Gender{ get; set; }
-     
-
+        public List<UserAddress> UserAddresses{ get; set; }
     }
 }

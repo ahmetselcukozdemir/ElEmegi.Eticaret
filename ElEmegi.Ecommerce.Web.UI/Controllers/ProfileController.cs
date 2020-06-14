@@ -49,10 +49,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         {
             try
             {
-
                 int id = Convert.ToInt32(Session["ID"]);
                 var user = db.Users.Where(x => x.ID == id).FirstOrDefault();
-
                 user.Name = entity.Name;
                 user.Surname = entity.Surname;
                 user.Email = entity.Email;
@@ -69,6 +67,20 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 Console.WriteLine(e);
                 throw;
             }
+        }
+
+        [HttpGet]
+        public ActionResult MyAddress()
+        {
+            int id = Convert.ToInt32(Session["ID"]);
+            var address = db.UserAddress.Where(x => x.UserID == id);
+            return View(address.FirstOrDefault());
+        }
+
+        [HttpPost]
+        public ActionResult MyAddress(UserAddress entity)
+        {
+            return View();
         }
 
         public ActionResult MyOrders()

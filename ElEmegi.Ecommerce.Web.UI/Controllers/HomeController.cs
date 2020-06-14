@@ -18,11 +18,11 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            HttpCookie kayitlicerez = Request.Cookies["cerezim"];
             var populer_categories = db.Categories.OrderByDescending(x => x.Products.Count).Take(3).ToList();
             ViewBag.cat_populer = populer_categories;
             if (Request.Cookies["cerezim"] != null)
             {
-                HttpCookie kayitlicerez = Request.Cookies["cerezim"];
                 Session["eposta"] = kayitlicerez.Values["eposta"];
                 Session["ad"] = kayitlicerez.Values["ad"];
                 Session["soyad"] = kayitlicerez.Values["soyad"];
@@ -36,6 +36,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
         public ActionResult Details(int id)
         {
+            HttpCookie kayitlicerez = Request.Cookies["cerezim"];
+            ViewBag.name = kayitlicerez["ad"];
             var product = db.Products.Include("ProductComments").Where(x => x.ID == id).FirstOrDefault();
             var related_products = db.Products.Where(x => x.CategoryId == product.CategoryId);
             ViewBag.related_product = related_products.ToList();
@@ -95,8 +97,13 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         [HttpPost]
         public ActionResult AddProductComment(ProductComments productComments,int id)
         {
+            var user_cerez = Request.Cookies["cerezim"];
             if (ModelState.IsValid)
             {
+                if (user_cerez ==null)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
                 productComments.ProductID = id;
                 productComments.CreatedDate = DateTime.Now;
                 db.ProductComments.Add(productComments);

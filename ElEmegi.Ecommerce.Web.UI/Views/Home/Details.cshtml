@@ -117,7 +117,7 @@
                     <ul class="nav nav-tabs justify-content-center" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#member" role="tab">
-                                <i class="now-ui-icons objects_umbrella-13"></i> Satıcı Bilgileri
+                                <i class="fas fa-user-tie"></i> Satıcı Bilgileri
                             </a>
                         </li>
                         <li class="nav-item">
@@ -127,7 +127,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#comments" role="tab">
-                                <i class="now-ui-icons shopping_cart-simple"></i> Ürün Yorumları (@ViewBag.Comment_Count) 
+                                <i class="far fa-comment-dots"></i> Ürün Yorumları (@ViewBag.Comment_Count) 
                             </a>
                         </li>
                     </ul>
@@ -151,7 +151,15 @@
                                     @using (Html.BeginForm("AddProductComment", "Home",FormMethod.Post))
                                     {
                                         <h4>Yorum yapmak ister misin ?</h4>
-                                        <input type="text" id="name" name="name" class="form-control" placeholder="Ad ve soyad.."/>
+                                        <p style="font-size: 14px;">*Sadece sitemize üye kullanıcılar yorum yapabilir.</p>
+                                        if (ViewBag.name == null && @Session["soyad"] == null)
+                                        {
+                                            <input type="text" id="name" name="name" class="form-control" placeholder="Ad ve soyad.."/>
+                                        }
+                                        else
+                                        {
+                                            <input type="text" id="name" value="@Session["ad"]@Session["soyad"]" name="name" class="form-control" readonly="readonly" />
+                                        }
                                         <div class="input-group">
                                             @Html.HiddenFor(i => i.ID)
                                             <input type="text" id="content" name="content" class="form-control input-sm chat-input" placeholder="yorumunuzu buraya girin.."/>

@@ -38,8 +38,11 @@
         }
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Giriş Yap" class="btn btn-primary"/>
+                <br/>
+                <input type="submit" value="Giriş Yap" class="btn btn-primary"/> |
+                @Html.ActionLink("Üye Ol", "Register", "Account", "", new {@class = "btn btn-success"})
             </div>
+           
         </div>
         @{
             if (Request.Cookies["cerezim"] == null)

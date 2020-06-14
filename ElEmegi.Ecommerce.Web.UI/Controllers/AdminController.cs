@@ -109,6 +109,16 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return RedirectToAction("Login", "Admin");
         }
 
+        public ActionResult ProductComments()
+        {
+            var data = db.ProductComments.Where(x => x.IsApproved == false);
+            return View(data.ToList());
+        }
+
+        public ActionResult EditProductComments()
+        {
+            return View();
+        }
         public ActionResult MemberInformation()
         {
             var admin_cerez = Request.Cookies["admin_cerezim"];

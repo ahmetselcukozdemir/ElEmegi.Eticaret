@@ -25,7 +25,6 @@
         }
         else
         {
-
             <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
             <div class="container">
                 <div class="row">
@@ -45,10 +44,16 @@
                             </div>
 
                             <div class="card-footer text-left">
-                                @Html.ActionLink("Kişisel Bilgiler", "Edit", "Profile", new { id = @Session["ID"] }, new { @class = "btn btn-primary" })
-                                @Html.ActionLink("Siparişlerim","MyOrders","Profile",new{ @class="btn btn-primary"})
+                                <ul>
+                                    <li style="margin-top: 5px;">@Html.ActionLink("Kişisel Bilgiler", "Edit", "Profile", new { id = @Session["ID"] }, new { @class = "btn btn-primary" })<br /></li>
+                                    <li style="margin-top: 5px;">@Html.ActionLink("Adresim", "Edit", "Profile", new { id = @Session["ID"] }, new { @class = "btn btn-primary" })<br /></li>
+                                    <li style="margin-top: 5px;">@Html.ActionLink("Siparişlerim", "MyOrders", "Profile", new { @class = "btn btn-primary" })<br /></li>
+                                    <li style="margin-top: 5px;"><button class="btn btn-primary"><i class="fa fa-commenting"></i> Mesajlar</button></li>
+                                </ul>
+                              
+                               
                                 @*<button class="btn btn-primary"><i class="fa fa-shoppinsg-cart"></i> Siparişlerim</button><br /><br />*@
-                                <button class="btn btn-primary"><i class="fa fa-commenting"></i> Mesajlar</button>
+                                
                             </div>
                         </form>
                     </div>

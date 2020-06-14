@@ -74,9 +74,9 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 if (user != null)
                 {
                     HttpCookie cerez = new HttpCookie("cerezim");
-                    cerez.Values.Add("eposta", user.Email);
-                    cerez.Values.Add("ad", user.Name);
-                    cerez.Values.Add("soyad", user.Surname);
+                    cerez.Values.Add("eposta", Server.UrlEncode(user.Email));
+                    cerez.Values.Add("ad", Server.UrlEncode(user.Name));
+                    cerez.Values.Add("soyad", Server.UrlEncode(user.Surname));
                     cerez.Values.Add("ID", user.ID.ToString());
                     cerez.Expires = DateTime.Now.AddDays(30);
                     Response.Cookies.Add(cerez);

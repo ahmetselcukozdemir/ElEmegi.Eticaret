@@ -1,11 +1,11 @@
-﻿    using System;
+﻿using System;
 using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using System.Web;
-    using System.Web.Hosting;
-    using System.Web.Mvc;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Hosting;
+using System.Web.Mvc;
 using ElEmegi.Ecommerce.Model.Entity;
 using ElEmegi.Ecommerce.Web.UI.Models;
 namespace ElEmegi.Ecommerce.Web.UI.Controllers
@@ -43,19 +43,19 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public ActionResult UpdateFromCart(int Id, int quantity)
         {
             var product = db.Products.Where(x => x.ID == Id).FirstOrDefault();
-            if (product !=null)
+            if (product != null)
             {
-              GetCart().UpdateCart(product,quantity);
+                GetCart().UpdateCart(product, quantity);
             }
             return RedirectToAction("Index");
         }
 
         public ActionResult DiscountCouponFromCard(string coupon_code)
         {
-            if (coupon_code !=null)
+            if (coupon_code != null)
             {
                 var coupon = db.DiscountCoupons.Where(x => x.Name == coupon_code).FirstOrDefault();
-                if (coupon !=null)
+                if (coupon != null)
                 {
                     Session["percent"] = coupon.Percent;
                     Session["coupon"] = coupon_code;
@@ -64,7 +64,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 else
                 {
                     Session["percent"] = null;
-                    Session["coupon"] =  null;
+                    Session["coupon"] = null;
                     ViewBag.CouponError = "İndirim kuponunuz hatalı veya kullanım süresi geçmiş olabilir";
                 }
             }
@@ -88,7 +88,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public ActionResult Checkout(ShippingDetails entity)
         {
             var cart = GetCart();
-            if (cart !=null)
+            if (cart != null)
             {
                 ViewBag.cart = GetCart();
             }
@@ -142,8 +142,8 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 db.SaveChanges();
                 Mail email = new Mail();
                 //email.Mail(order.Email);
-                email.OrderMail(order.Email,order.OrderNumber,order.Total.ToString());
-               
+                email.OrderMail(order.Email, order.OrderNumber, order.Total.ToString());
+
             }
             else
             {
