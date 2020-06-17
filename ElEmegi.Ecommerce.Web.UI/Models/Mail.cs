@@ -93,14 +93,44 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
             //bugun doğan üyeler için bir tebrik maili. 
         }
 
-        public void ForgotMyPassword(string email)
+        public void ForgotMyPassword(string email,string code)
         {
+            MailMessage message = new MailMessage();
+            SmtpClient smtpClient = new SmtpClient();
+            smtpClient.Credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["SMTPuser"], ConfigurationManager.AppSettings["SMTPpassword"]);
+            smtpClient.Port = 587;
+            smtpClient.Host = "smtp.yandex.com";
+            smtpClient.EnableSsl = true;
+            message.To.Add(email);
+            message.From = new MailAddress(ConfigurationManager.AppSettings["SMTPuser"]);
+            message.IsBodyHtml = true;
+            message.BodyEncoding = Encoding.UTF8;
+            message.Subject = "Aramıza hoşgeldin :) ";
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath("~/Views/MailTemplate/NewUserMail.cshtml")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{name}", code);
+            body = body.Replace("{surname}", code);
+            message.Body = body;
+            smtpClient.Send(message);
             //şifremi unuttum
         }
 
         public void CancelOrder(string email)
         {
             //siparişin iptal edildi e-maili.
+        }
+
+        public void PasswordHasChanged(string email)
+        {
+            //şifreniz değişmiştir.
+        }
+
+        public void UserApproved(string email)
+        {
+            //kullanıcın onaylandı.
         }
         public Cart GetCart()
         {

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using ElEmegi.Ecommerce.Model.Entity;
@@ -67,14 +69,15 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     product.MemberID = Convert.ToInt32(admin_cerez["id"]);
                 }
                 //EncryptedString
-                char[] cr = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
-                string result = string.Empty;
-                Random r = new Random();
-                for (int i = 0; i < 15; i++)
-                {
-                    result += cr[r.Next(0, cr.Length - 1)].ToString();
-                }
-                product.EncryptedString = result;
+                //char[] cr = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
+                //string result = string.Empty;
+                //Random r = new Random();
+                //for (int i = 0; i < 15; i++)
+                //{
+                //    result += cr[r.Next(0, cr.Length - 1)].ToString();
+                //}
+                string guid = Guid.NewGuid().ToString();
+                product.EncryptedString = guid;
                 product.CreatedDate = DateTime.Now;
 
                 //images list 
@@ -85,12 +88,14 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     var image_two = System.IO.Path.GetFileName(images.ElementAt(1).FileName);
                     var image_three = System.IO.Path.GetFileName(images.ElementAt(2).FileName);
 
+                    
                     if (itemImage != null)
                     {
                         string imageFileName = System.IO.Path.GetFileName(itemImage.FileName);
                         string path = Path.Combine(Server.MapPath("~/Content/images/products/" + itemImage.FileName));
                         itemImage.SaveAs(path);
                     }
+                    
                     product.Image = image_on;
                     product.ImageTwo = image_two;
                     product.ImageThree = image_three;

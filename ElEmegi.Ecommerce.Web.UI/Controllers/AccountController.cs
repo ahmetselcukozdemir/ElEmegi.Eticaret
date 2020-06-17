@@ -20,7 +20,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         // GET: Account
         public ActionResult Index()
         {
-           return View();
+            return View();
         }
         [HttpGet]
         public ActionResult Register()
@@ -41,7 +41,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     db.Users.Add(user);
                     db.SaveChanges();
                     Mail mail = new Mail();
-                    mail.NewUserMail(user.Email,user.Name,user.Surname);
+                    mail.NewUserMail(user.Email, user.Name, user.Surname);
                 }
                 catch (Exception e)
                 {
@@ -54,7 +54,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 TempData["Status"] = "Lütfen robot olmadığınızı belirtmek için testi geçiniz.";
                 return RedirectToAction("Register", "Account");
             }
-           
+
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string Email,string Password)
+        public ActionResult Login(string Email, string Password)
         {
             CaptchaResponse response = ValidateCaptcha(Request["g-recaptcha-response"]);
             if (response.Success && ModelState.IsValid)
@@ -111,6 +111,66 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 Response.Cookies["cerezim"].Expires = DateTime.Now.AddDays(-1);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult ForgotMyPassword()
+        {
+            return View();
+        }
+
+        public ActionResult ResetPasswordMail(string email)
+        {
+            var user = db.Users.Where(x => x.Email == email).FirstOrDefault();
+            if (user != null)
+            {
+                char[] cr = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
+                string result = string.Empty;
+                Random r = new Random();
+                for (int i = 0; i < 8; i++)
+                {
+                    result += cr[r.Next(0, cr.Length - 1)].ToString();
+                }
+                HttpCookie cerez = new HttpCookie("reset_password");
+                cerez.Values.Add("code", Server.UrlEncode(result));
+                cerez.Values.Add("reset_user_id",Server.UrlEncode(user.ID.ToString()));
+                cerez.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(cerez);
+
+                Session["password_id"] = result;
+                Mail mail = new Mail();
+                mail.ForgotMyPassword(email, result);
+
+                //RedirectToAction("NewPassword", "Account", new { user_id = user.ID });
+            }
+            return RedirectToAction("NewPassword", "Account", new { user_id = user.ID });
+        }
+
+        [HttpGet]
+        public ActionResult NewPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult NewPassword(string password,string repassword, string reset_code)
+        {
+            var reset_cerez = Request.Cookies["reset_password"];
+            var userid = reset_cerez["reset_user_id"];
+            var data = db.Users.Where(x => x.ID.ToString() == userid).FirstOrDefault();
+            var code = reset_cerez["code"];
+            if (data != null && password == repassword)
+            {
+                if (code == reset_code)
+                {
+                    data.Password = password;
+                    db.SaveChanges();
+                    Response.Cookies["reset_password"].Expires = DateTime.Now.AddDays(-1);
+                }
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Şifreleriniz uyuşmuyor ya da böyle bir kullanıcı bulunamadı.";
+            }
+            return View();
         }
         [HttpPost]
         public static CaptchaResponse ValidateCaptcha(string response)

@@ -7,51 +7,51 @@
 {
     @Html.AntiForgeryToken()
     <div class="container">
-    <div class="form-horizontal">
-        <h4>Kullanıcı Girişi</h4>
-        <hr/>
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new {@class = "control-label col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
-            </div>
-        </div>
-        <div class="g-recaptcha" data-sitekey="6LcfNAEVAAAAAIuOBpzCOLkUfHGpQEVsLbPWBo6e"></div>   
-        @{
-            if (@TempData["Status"] != null)
-            {
-                <div class="alert alert-danger alert-dismissable">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <strong>Hey dostum!</strong>Robot olup olmadığını anlamamız için testi geçmelisin.
+        <div class="form-horizontal">
+            <h4>Kullanıcı Girişi</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "email adresiniz" }})
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
-            }
-        }
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <br/>
-                <input type="submit" value="Giriş Yap" class="btn btn-primary"/> |
-                @Html.ActionLink("Üye Ol", "Register", "Account", "", new {@class = "btn btn-success"})
             </div>
-           
-        </div>
-        @{
-            if (Request.Cookies["cerezim"] == null)
-            {
-                @Html.ActionLink("Üye Olmadan Devam Et","Checkout","Cart","", new { @class = "btn btn-success" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" , placeholder = "şifreniz" }})
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6LcfNAEVAAAAAIuOBpzCOLkUfHGpQEVsLbPWBo6e"></div>
+            @{
+                if (@TempData["Status"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <strong>Hey dostum!</strong>Robot olup olmadığını anlamamız için testi geçmelisin.
+                    </div>
+                }
             }
-        }
-       
-    </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="submit" value="Giriş Yap" class="btn btn-primary" /> |
+                    @Html.ActionLink("Üye Ol", "Register", "Account", "", new { @class = "btn btn-success" })
+                </div>
+
+            </div>
+            @{
+                if (Request.Cookies["cerezim"] == null)
+                {
+                    @Html.ActionLink("Üye Olmadan Devam Et", "Checkout", "Cart", "", new { @class = "btn btn-success" })
+                }
+            }
+
+        </div>
 
     </div>
-}
+                }

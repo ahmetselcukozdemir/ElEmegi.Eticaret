@@ -19,6 +19,8 @@ namespace ElEmegi.Ecommerce.Model.Entity
         public string DescriptionTwo { get; set; }
         [DisplayName("Ürün Fiyat")]
         public double Price { get; set; }
+
+        public byte[] ImageBytes{ get; set; }
         [DisplayName("Ürün Fotograf")]
         public string Image { get; set; }
         [DisplayName("Ürün Fotograf 2")]

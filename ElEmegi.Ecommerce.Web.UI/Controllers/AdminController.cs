@@ -41,7 +41,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                     Count = i.OrderLines.Count,
                     MemberID = i.MemberID,
 
-                }).Where(x => x.MemberID == id ).ToList();
+                }).Where(x => x.MemberID == id).ToList();
 
                 ViewBag.completed = orders.Where(x => x.OrderState == EnumOrderState.Completed).Count();
                 ViewBag.orders_waiting = orders.Where(x => x.OrderState == EnumOrderState.Waiting).Count();
@@ -115,9 +115,35 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return View(data.ToList());
         }
 
-        public ActionResult EditProductComments()
+        public ActionResult EditProductComments(int id)
         {
+            var data = db.ProductComments.Where(x => x.ID == id).FirstOrDefault();
+            return View(data);
+        }
+
+        public ActionResult UpdateProductComment(ProductComments entityComments)
+        {
+            var admin_cerez = Request.Cookies["admin_cerezim"];
+            var data = db.ProductComments.Where(x => x.ID == entityComments.ID).FirstOrDefault();
+            if (data != null)
+            {
+                data.IsApproved = entityComments.IsApproved;
+                db.SaveChanges();
+                return RedirectToAction("ProductComments", "Admin");
+            }
+
             return View();
+        }
+
+        public ActionResult DeleteProductComment(int id)
+        {
+            var data = db.ProductComments.Where(x => x.ID == id).FirstOrDefault();
+            if (data != null)
+            {
+                db.ProductComments.Remove(data);
+                db.SaveChanges();
+            }
+            return RedirectToAction("ProductComments", "Admin");
         }
         public ActionResult MemberInformation()
         {
@@ -140,7 +166,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             var admin_cerez = Request.Cookies["admin_cerezim"];
             int id = Convert.ToInt32(admin_cerez["id"]);
             var member = db.Members.Where(x => x.ID == id).FirstOrDefault();
-            if (id !=null && member !=null)
+            if (id != null && member != null)
             {
                 member.Email = entity.Email;
                 member.Name = entity.Name;
@@ -148,17 +174,17 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 member.Photo = entity.Photo;
                 member.Phone = entity.Phone;
                 member.Password = entity.Password;
-                if (image.ContentLength > 0 || image.FileName !=null)
+                if (image.ContentLength > 0 || image.FileName != null)
                 {
-                        double FileSize = Convert.ToDouble(image.ContentLength / 1024);
-                        if (FileSize > 10240)
-                        {
-                            ViewBag.SizeError = "Fotoğraf 10 mb'dan büyük olamaz.";
-                        }
-                        string image_name = System.IO.Path.GetFileName(image.FileName);
-                        string path = Path.Combine(Server.MapPath("~/Content/images/profiles/" + image_name));
-                        image.SaveAs(path);
-                        member.Photo = image_name;
+                    double FileSize = Convert.ToDouble(image.ContentLength / 1024);
+                    if (FileSize > 10240)
+                    {
+                        ViewBag.SizeError = "Fotoğraf 10 mb'dan büyük olamaz.";
+                    }
+                    string image_name = System.IO.Path.GetFileName(image.FileName);
+                    string path = Path.Combine(Server.MapPath("~/Content/images/profiles/" + image_name));
+                    image.SaveAs(path);
+                    member.Photo = image_name;
                 }
                 else
                 {
@@ -168,6 +194,74 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 ViewBag.SuccessMessage = "Bilgileriniz başarıyla güncellenmiştir.";
             }
             RedirectToAction("MemberInformation").ExecuteResult(this.ControllerContext);
+        }
+        public ActionResult ForgotMyPassword()
+        {
+            return View();
+        }
+
+        public ActionResult ResetPasswordMail(string email)
+        {
+            CaptchaResponse response = ValidateCaptcha(Request["g-recaptcha-response"]);
+            if (response.Success)
+            {
+
+
+                var member = db.Members.Where(x => x.Email == email).FirstOrDefault();
+                if (member != null)
+                {
+                    char[] cr = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray();
+                    string result = string.Empty;
+                    Random r = new Random();
+                    for (int i = 0; i < 8; i++)
+                    {
+                        result += cr[r.Next(0, cr.Length - 1)].ToString();
+                    }
+                    HttpCookie cerez = new HttpCookie("reset_password_admin");
+                    cerez.Values.Add("code", Server.UrlEncode(result));
+                    cerez.Values.Add("reset_member_id", Server.UrlEncode(member.ID.ToString()));
+                    cerez.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(cerez);
+
+                    Session["password_id"] = result;
+                    Mail mail = new Mail();
+                    mail.ForgotMyPassword(email, result);
+                }
+                return RedirectToAction("NewPassword", "Admin", new { member_id = member.ID });
+            }
+            else
+            {
+                ViewBag.error = "Robot testini geçmeniz gerekiyor.";
+            }
+            return View();
+        }
+        [HttpGet]
+        public ActionResult NewPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult NewPassword(string password, string repassword, string reset_code)
+        {
+            var reset_cerez_admin = Request.Cookies["reset_password_admin"];
+            var memberid = reset_cerez_admin["reset_member_id"];
+            var data = db.Members.Where(x => x.ID.ToString() == memberid).FirstOrDefault();
+            var code = reset_cerez_admin["code"];
+            if (data != null && password == repassword)
+            {
+                if (code == reset_code)
+                {
+                    data.Password = password;
+                    db.SaveChanges();
+                    Response.Cookies["reset_password_admin"].Expires = DateTime.Now.AddDays(-1);
+                }
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Şifreleriniz uyuşmuyor ya da böyle bir kullanıcı bulunamadı.";
+            }
+            ViewData["Success"] = "Şifreniz başarılı bir şekilde güncellenmiştir.";
+            return RedirectToAction("Login", "Admin");
         }
         [HttpPost]
         public static CaptchaResponse ValidateCaptcha(string response)

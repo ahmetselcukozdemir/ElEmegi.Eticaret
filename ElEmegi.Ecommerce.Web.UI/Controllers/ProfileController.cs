@@ -72,6 +72,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         [HttpGet]
         public ActionResult MyAddress()
         {
+           
             int id = Convert.ToInt32(Session["ID"]);
             var address = db.UserAddress.Where(x => x.UserID == id);
             return View(address.FirstOrDefault());
@@ -105,6 +106,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
             return View();
         }
+
 
         public ActionResult OrderDetails(int? id)
         {

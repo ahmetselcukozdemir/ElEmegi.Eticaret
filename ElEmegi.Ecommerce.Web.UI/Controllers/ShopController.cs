@@ -20,26 +20,15 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
             return View(data);
         }
 
-        public ActionResult FilterProduct(int? min, int? max,string text)
+        public ActionResult FilterProductPrice(int? min, int? max)
         {
             var category = db.Categories.ToList();
             ViewBag.categoryList = category;
-            if (min!=null && max !=null && text == null)
+            if (min!=null && max !=null)
             {
                 var data = db.Products.Where(x => x.Price >= min && x.Price <= max).ToList();
                 return View(data);
             }
-
-            if (min==null && max == null && text !=null)
-            {
-
-                var data = db.Products
-                    .Where(p => p.Name.Contains(text))
-                    .Single()
-                    .Name.ToList();
-                return View((IEnumerable<Product>) data);
-            }
-
             return View();
         }
        

@@ -37,7 +37,10 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
         public ActionResult Details(int id)
         {
             HttpCookie kayitlicerez = Request.Cookies["cerezim"];
-            ViewBag.name = kayitlicerez["ad"];
+            if (kayitlicerez !=null)
+            {
+                ViewBag.name = kayitlicerez["ad"];
+            }
             var product = db.Products.Include("ProductComments").Where(x => x.ID == id).FirstOrDefault();
             var related_products = db.Products.Where(x => x.CategoryId == product.CategoryId);
             ViewBag.related_product = related_products.ToList();
@@ -107,7 +110,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 productComments.ProductID = id;
                 productComments.CreatedDate = DateTime.Now;
                 db.ProductComments.Add(productComments);
-                db.SaveChanges();
+                    db.SaveChanges();
                 Response.Redirect(Request.UrlReferrer.ToString());
             }
             else

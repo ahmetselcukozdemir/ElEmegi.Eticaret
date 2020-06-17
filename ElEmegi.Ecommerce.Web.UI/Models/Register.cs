@@ -26,11 +26,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Models
         [DisplayName("Şifre Tekrar")]
         [Compare("Password", ErrorMessage = "Şifreleriniz uyuşmuyor.")]
         public string RePassword{ get; set; }
-        [Required]
-        [DisplayName("Cinsiyet")]
-        public bool Gender{ get; set; }
-        [Required]
-        [Display(Name = "Kaç yapar?")]
-        public string Captcha { get; set; }
+     
+      
     }
 }

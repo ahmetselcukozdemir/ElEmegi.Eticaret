@@ -2872,6 +2872,8 @@
     <Content Include="Content\images\icons\icon-header-02.png" />
     <Content Include="Content\images\icons\icon-position-map.png" />
     <Content Include="Content\images\icons\logo.png" />
+    <Content Include="Content\images\icons\logo2.png" />
+    <Content Include="Content\images\icons\logo3.png" />
     <Content Include="Content\images\icons\mastercard.png" />
     <Content Include="Content\images\icons\paypal.png" />
     <Content Include="Content\images\icons\shopping-cart.png" />
@@ -2912,7 +2914,6 @@
     <Content Include="Content\images\product-detail-02.jpg" />
     <Content Include="Content\images\product-detail-03.jpg" />
     <Content Include="Content\images\product1.PNG" />
-    <Content Include="Content\images\product2.jpg" />
     <Content Include="Content\images\product3.PNG" />
     <Content Include="Content\images\product4.PNG" />
     <Content Include="Content\images\products\nophoto.png" />
@@ -3116,6 +3117,8 @@
     <Content Include="Content\adminlogin\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Content\adminlogin\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\adminlogin\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <None Include="Properties\PublishProfiles\e-dogalmarket.pubxml" />
+    <None Include="Properties\PublishProfiles\eDogalMarket.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -3167,6 +3170,7 @@
     <Compile Include="Models\OrderLineModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\ResetPassword.cs" />
     <Compile Include="Models\ShippingDetails.cs" />
     <Compile Include="Models\Sms.cs" />
     <Compile Include="Models\UserOrderModel.cs" />
@@ -3369,6 +3373,11 @@
     <Content Include="Views\MailTemplate\NewUserMail.cshtml" />
     <Content Include="Views\Profile\MyAddress.cshtml" />
     <Content Include="Views\Admin\ProductComments.cshtml" />
+    <Content Include="Views\Admin\EditProductComments.cshtml" />
+    <Content Include="Views\Account\ForgotMyPassword.cshtml" />
+    <Content Include="Views\Account\NewPassword.cshtml" />
+    <Content Include="Views\Admin\ForgotMyPassword.cshtml" />
+    <Content Include="Views\Admin\NewPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

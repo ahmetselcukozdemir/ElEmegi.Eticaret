@@ -54,7 +54,9 @@
         <dt>
             @Html.DisplayNameFor(model => model.Image)
         </dt>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageBytes)
+        </dt>
         <dd>
             @{
                 if (@Model.Image == null)
@@ -135,7 +137,9 @@
         <dd>
             @Html.DisplayFor(model => model.CreatedDate)
         </dd>
-
+        <dd>
+            @Html.DisplayFor(model => model.ImageBytes)
+        </dd>
     </dl>
 </div>
 <p>

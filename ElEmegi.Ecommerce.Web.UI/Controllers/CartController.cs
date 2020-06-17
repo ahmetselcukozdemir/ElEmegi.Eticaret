@@ -142,7 +142,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
                 db.SaveChanges();
                 Mail email = new Mail();
                 //email.Mail(order.Email);
-                email.OrderMail(order.Email, order.OrderNumber, order.Total.ToString());
+                //email.OrderMail(order.Email, order.OrderNumber, order.Total.ToString());
 
             }
             else
@@ -174,7 +174,7 @@ namespace ElEmegi.Ecommerce.Web.UI.Controllers
 
                 db.SaveChanges();
                 Mail orderEmail = new Mail();
-                orderEmail.OrderMail(order.Email, order.OrderNumber, order.Total.ToString());
+                //orderEmail.OrderMail(order.Email, order.OrderNumber, order.Total.ToString());
                 //orderEmail.Mail(order.Email);
             }
         }
